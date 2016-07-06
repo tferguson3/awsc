@@ -3522,10 +3522,10 @@ Commonly used for small ceramic capacitors. Like our 0.1uF (http://www.sparkfun.
 <instance part="RTC" gate="G$1" x="99.06" y="83.82"/>
 <instance part="TO_BBB_GPIO" gate="G$1" x="40.64" y="137.16"/>
 <instance part="TO_BBB_I2C" gate="G$1" x="40.64" y="99.06"/>
-<instance part="H1" gate="G$1" x="91.44" y="200.66"/>
-<instance part="H2" gate="G$1" x="109.22" y="198.12"/>
-<instance part="H3" gate="G$1" x="119.38" y="187.96"/>
-<instance part="H4" gate="G$1" x="127" y="203.2"/>
+<instance part="H1" gate="G$1" x="81.28" y="215.9"/>
+<instance part="H2" gate="G$1" x="81.28" y="208.28"/>
+<instance part="H3" gate="G$1" x="81.28" y="200.66"/>
+<instance part="H4" gate="G$1" x="81.28" y="193.04"/>
 <instance part="C3" gate="G$1" x="220.98" y="157.48" rot="R90"/>
 </instances>
 <busses>
