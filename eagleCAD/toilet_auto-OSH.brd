@@ -140,36 +140,10 @@
 </layers>
 <board>
 <plain>
-<wire x1="7.62" y1="2.54" x2="75.87" y2="2.54" width="0" layer="20"/>
-<wire x1="75.87" y1="2.54" x2="75.87" y2="53.33" width="0" layer="20"/>
-<wire x1="75.87" y1="53.33" x2="7.62" y2="53.33" width="0" layer="20"/>
-<wire x1="7.62" y1="53.33" x2="7.62" y2="2.54" width="0" layer="20"/>
-<text x="43.815" y="43.815" size="1.27" layer="21" rot="R90">3.3v</text>
-<text x="41.275" y="43.815" size="1.27" layer="21" rot="R90">GND</text>
-<text x="38.735" y="43.815" size="1.27" layer="21" rot="R90">SCL</text>
-<text x="38.735" y="43.815" size="1.27" layer="21" rot="R90">SCL</text>
-<text x="36.195" y="43.815" size="1.27" layer="21" rot="R90">SDA</text>
-<text x="33.655" y="43.815" size="1.27" layer="21" rot="R90">FLOW</text>
-<text x="31.115" y="43.815" size="1.27" layer="21" rot="R90">STEP_EN</text>
-<text x="28.575" y="43.815" size="1.27" layer="21" rot="R90">ST_STEP</text>
-<text x="26.035" y="43.815" size="1.27" layer="21" rot="R90">ST_DIR</text>
-<text x="23.495" y="43.815" size="1.27" layer="21" rot="R90">V_BLK</text>
-<text x="20.955" y="43.815" size="1.27" layer="21" rot="R90">V_RED</text>
-<text x="18.415" y="43.815" size="1.27" layer="21" rot="R90">V_GREEN</text>
-<text x="12.065" y="12.065" size="1.27" layer="21" rot="R90">BLU</text>
-<text x="12.065" y="26.035" size="1.27" layer="21" rot="R180">GND</text>
-<text x="22.225" y="17.145" size="1.27" layer="21" rot="R90">RED</text>
-<text x="19.685" y="17.145" size="1.27" layer="21" rot="R90">GRN</text>
-<text x="17.145" y="17.145" size="1.27" layer="21" rot="R90">BRN</text>
-<text x="24.765" y="17.145" size="1.27" layer="21" rot="R90">BLK</text>
-<text x="29.845" y="12.065" size="1.27" layer="21" rot="R90">WHT</text>
-<text x="32.385" y="6.985" size="1.27" layer="21" rot="R90">GRN</text>
-<text x="34.925" y="6.985" size="1.27" layer="21" rot="R90">BLK</text>
-<text x="37.465" y="6.985" size="1.27" layer="21" rot="R90">RED</text>
-<text x="40.005" y="6.985" size="1.27" layer="21" rot="R90">BLU</text>
-<text x="67.945" y="4.445" size="1.27" layer="21" rot="R90">GND</text>
-<text x="65.405" y="4.445" size="1.27" layer="21" rot="R90">3.3v</text>
-<text x="60.325" y="4.445" size="1.27" layer="21" rot="R90">FLOW</text>
+<wire x1="-2.54" y1="7.62" x2="80.95" y2="7.62" width="0" layer="20"/>
+<wire x1="80.95" y1="7.62" x2="80.95" y2="55.87" width="0" layer="20"/>
+<wire x1="80.95" y1="55.87" x2="-2.54" y2="55.87" width="0" layer="20"/>
+<wire x1="-2.54" y1="55.87" x2="-2.54" y2="7.62" width="0" layer="20"/>
 </plain>
 <libraries>
 <library name="dotson">
@@ -217,6 +191,36 @@
 <text x="11.43" y="6.35" size="0.8128" layer="21">1B</text>
 <text x="10.16" y="3.81" size="0.8128" layer="21">VDD</text>
 <text x="10.16" y="1.27" size="0.8128" layer="21">GND</text>
+</package>
+<package name="POLOLU-MAX14870">
+<pad name="GND" x="1.27" y="1.27" drill="0.8" shape="long"/>
+<pad name="EN" x="1.27" y="3.81" drill="0.8" shape="long"/>
+<pad name="FAULT" x="1.27" y="6.35" drill="0.8" shape="long"/>
+<pad name="DIR" x="1.27" y="8.89" drill="0.8" shape="long"/>
+<pad name="PWM" x="1.27" y="11.43" drill="0.8" shape="long"/>
+<pad name="GNDMOT" x="13.97" y="1.27" drill="0.8" shape="long"/>
+<pad name="VMOT" x="13.97" y="3.81" drill="0.8" shape="long"/>
+<pad name="M2" x="13.97" y="6.35" drill="0.8" shape="long"/>
+<pad name="M1" x="13.97" y="8.89" drill="0.8" shape="long"/>
+<pad name="VM" x="13.97" y="11.43" drill="0.8" shape="long"/>
+<wire x1="-0.635" y1="0" x2="15.875" y2="0" width="0.127" layer="51"/>
+<wire x1="15.875" y1="0" x2="15.875" y2="12.7" width="0.127" layer="51"/>
+<wire x1="15.875" y1="12.7" x2="-0.635" y2="12.7" width="0.127" layer="51"/>
+<wire x1="-0.635" y1="12.7" x2="-0.635" y2="0" width="0.127" layer="51"/>
+<wire x1="-0.635" y1="0" x2="15.875" y2="0" width="0.127" layer="21"/>
+<wire x1="15.875" y1="0" x2="15.875" y2="12.065" width="0.127" layer="21"/>
+<text x="0" y="13.335" size="1.27" layer="25">&gt;NAME</text>
+<text x="0" y="-1.905" size="1.27" layer="27">&gt;VALUE</text>
+<text x="3.175" y="11.43" size="0.8128" layer="21">PWM</text>
+<text x="3.175" y="8.89" size="0.8128" layer="21">DIR</text>
+<text x="3.175" y="6.35" size="0.8128" layer="21">FAULT</text>
+<text x="3.175" y="3.81" size="0.8128" layer="21">EN</text>
+<text x="3.175" y="1.27" size="0.8128" layer="21">GND</text>
+<text x="10.795" y="11.43" size="0.8128" layer="21">VM</text>
+<text x="10.795" y="8.89" size="0.8128" layer="21">M1</text>
+<text x="10.795" y="6.35" size="0.8128" layer="21">M2</text>
+<text x="8.89" y="3.81" size="0.8128" layer="21">VMOT</text>
+<text x="7.62" y="1.27" size="0.8128" layer="21">GNDMOT</text>
 </package>
 <package name="ADAFRUIT-DS3231">
 <pad name="VIN" x="2.54" y="1.27" drill="0.8" shape="long" rot="R90"/>
@@ -315,45 +319,7 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <rectangle x1="4.7879" y1="-0.4191" x2="5.3721" y2="0.1651" layer="51"/>
 <rectangle x1="7.3279" y1="-0.4191" x2="7.9121" y2="0.1651" layer="51" rot="R90"/>
 </package>
-<package name="1X06_LOCK_LONGPADS">
-<description>This footprint was designed to help hold the alignment of a through-hole component (i.e.  6-pin header) while soldering it into place.  
-You may notice that each hole has been shifted either up or down by 0.005 of an inch from it's more standard position (which is a perfectly straight line).  
-This slight alteration caused the pins (the squares in the middle) to touch the edges of the holes.  Because they are alternating, it causes a "brace" 
-to hold the component in place.  0.005 has proven to be the perfect amount of "off-center" position when using our standard breakaway headers.
-Although looks a little odd when you look at the bare footprint, once you have a header in there, the alteration is very hard to notice.  Also,
-if you push a header all the way into place, it is covered up entirely on the bottom side.  This idea of altering the position of holes to aid alignment 
-will be further integrated into the Sparkfun Library for other footprints.  It can help hold any component with 3 or more connection pins.</description>
-<wire x1="1.524" y1="-0.127" x2="1.016" y2="-0.127" width="0.2032" layer="21"/>
-<wire x1="4.064" y1="-0.127" x2="3.556" y2="-0.127" width="0.2032" layer="21"/>
-<wire x1="6.604" y1="-0.127" x2="6.096" y2="-0.127" width="0.2032" layer="21"/>
-<wire x1="9.144" y1="-0.127" x2="8.636" y2="-0.127" width="0.2032" layer="21"/>
-<wire x1="11.684" y1="-0.127" x2="11.176" y2="-0.127" width="0.2032" layer="21"/>
-<wire x1="-1.27" y1="-0.127" x2="-1.016" y2="-0.127" width="0.2032" layer="21"/>
-<wire x1="-1.27" y1="-0.127" x2="-1.27" y2="0.8636" width="0.2032" layer="21"/>
-<wire x1="-1.27" y1="0.8636" x2="-0.9906" y2="1.143" width="0.2032" layer="21"/>
-<wire x1="-1.27" y1="-0.127" x2="-1.27" y2="-1.1176" width="0.2032" layer="21"/>
-<wire x1="-1.27" y1="-1.1176" x2="-0.9906" y2="-1.397" width="0.2032" layer="21"/>
-<wire x1="13.97" y1="-0.127" x2="13.716" y2="-0.127" width="0.2032" layer="21"/>
-<wire x1="13.97" y1="-0.127" x2="13.97" y2="-1.1176" width="0.2032" layer="21"/>
-<wire x1="13.97" y1="-1.1176" x2="13.6906" y2="-1.397" width="0.2032" layer="21"/>
-<wire x1="13.97" y1="-0.127" x2="13.97" y2="0.8636" width="0.2032" layer="21"/>
-<wire x1="13.97" y1="0.8636" x2="13.6906" y2="1.143" width="0.2032" layer="21"/>
-<pad name="1" x="0" y="0" drill="1.016" shape="long" rot="R90"/>
-<pad name="2" x="2.54" y="-0.254" drill="1.016" shape="long" rot="R90"/>
-<pad name="3" x="5.08" y="0" drill="1.016" shape="long" rot="R90"/>
-<pad name="4" x="7.62" y="-0.254" drill="1.016" shape="long" rot="R90"/>
-<pad name="5" x="10.16" y="0" drill="1.016" shape="long" rot="R90"/>
-<pad name="6" x="12.7" y="-0.254" drill="1.016" shape="long" rot="R90"/>
-<text x="-1.27" y="1.778" size="1.27" layer="25" font="vector">&gt;NAME</text>
-<text x="-1.27" y="-3.302" size="1.27" layer="27" font="vector">&gt;VALUE</text>
-<rectangle x1="-0.2921" y1="-0.4191" x2="0.2921" y2="0.1651" layer="51"/>
-<rectangle x1="2.2479" y1="-0.4191" x2="2.8321" y2="0.1651" layer="51"/>
-<rectangle x1="4.7879" y1="-0.4191" x2="5.3721" y2="0.1651" layer="51"/>
-<rectangle x1="7.3279" y1="-0.4191" x2="7.9121" y2="0.1651" layer="51" rot="R90"/>
-<rectangle x1="9.8679" y1="-0.4191" x2="10.4521" y2="0.1651" layer="51"/>
-<rectangle x1="12.4079" y1="-0.4191" x2="12.9921" y2="0.1651" layer="51"/>
-</package>
-<package name="1X11_LOCK_LONGPADS">
+<package name="1X12_LOCK_LONGPADS">
 <wire x1="1.524" y1="0" x2="1.016" y2="0" width="0.2032" layer="21"/>
 <wire x1="4.064" y1="0" x2="3.556" y2="0" width="0.2032" layer="21"/>
 <wire x1="6.604" y1="0" x2="6.096" y2="0" width="0.2032" layer="21"/>
@@ -369,11 +335,12 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <wire x1="19.304" y1="0" x2="18.796" y2="0" width="0.2032" layer="21"/>
 <wire x1="21.844" y1="0" x2="21.336" y2="0" width="0.2032" layer="21"/>
 <wire x1="24.384" y1="0" x2="23.876" y2="0" width="0.2032" layer="21"/>
-<wire x1="26.67" y1="0" x2="26.67" y2="-0.9906" width="0.2032" layer="21"/>
-<wire x1="26.67" y1="-0.9906" x2="26.3906" y2="-1.27" width="0.2032" layer="21"/>
-<wire x1="26.67" y1="0" x2="26.67" y2="0.9906" width="0.2032" layer="21"/>
-<wire x1="26.67" y1="0.9906" x2="26.3906" y2="1.27" width="0.2032" layer="21"/>
-<wire x1="26.67" y1="0" x2="26.416" y2="0" width="0.2032" layer="21"/>
+<wire x1="26.924" y1="0" x2="26.416" y2="0" width="0.2032" layer="21"/>
+<wire x1="29.21" y1="0" x2="29.21" y2="-0.9906" width="0.2032" layer="21"/>
+<wire x1="29.21" y1="-0.9906" x2="28.9306" y2="-1.27" width="0.2032" layer="21"/>
+<wire x1="29.21" y1="0" x2="29.21" y2="0.9906" width="0.2032" layer="21"/>
+<wire x1="29.21" y1="0.9906" x2="28.9306" y2="1.27" width="0.2032" layer="21"/>
+<wire x1="29.21" y1="0" x2="28.956" y2="0" width="0.2032" layer="21"/>
 <pad name="1" x="0" y="0.127" drill="1.016" shape="long" rot="R90"/>
 <pad name="2" x="2.54" y="-0.127" drill="1.016" shape="long" rot="R90"/>
 <pad name="3" x="5.08" y="0.127" drill="1.016" shape="long" rot="R90"/>
@@ -385,6 +352,7 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <pad name="9" x="20.32" y="0.127" drill="1.016" shape="long" rot="R90"/>
 <pad name="10" x="22.86" y="-0.127" drill="1.016" shape="long" rot="R90"/>
 <pad name="11" x="25.4" y="0.127" drill="1.016" shape="long" rot="R90"/>
+<pad name="12" x="27.94" y="-0.127" drill="1.016" shape="long" rot="R90"/>
 <text x="-1.27" y="1.905" size="1.27" layer="25" font="vector">&gt;NAME</text>
 <text x="-1.27" y="-3.175" size="1.27" layer="27" font="vector">&gt;VALUE</text>
 <rectangle x1="-0.2921" y1="-0.2921" x2="0.2921" y2="0.2921" layer="51"/>
@@ -398,6 +366,7 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <rectangle x1="20.0279" y1="-0.2921" x2="20.6121" y2="0.2921" layer="51"/>
 <rectangle x1="22.5679" y1="-0.2921" x2="23.1521" y2="0.2921" layer="51" rot="R90"/>
 <rectangle x1="25.1079" y1="-0.2921" x2="25.6921" y2="0.2921" layer="51"/>
+<rectangle x1="27.6479" y1="-0.2921" x2="28.2321" y2="0.2921" layer="51"/>
 </package>
 </packages>
 </library>
@@ -689,175 +658,214 @@ design rules under a new name.</description>
 </pass>
 </autorouter>
 <elements>
-<element name="STEP_DRIVER" library="dotson" package="POLOLU-4988" value="POLOLU-4988" x="25.4" y="34.29" rot="R270"/>
-<element name="12V" library="SparkFun-Connectors" package="1X02_LOCK_LONGPADS" value="" x="10.16" y="22.86" rot="R270"/>
-<element name="STEPPER" library="SparkFun-Connectors" package="1X04_LOCK_LONGPADS" value="" x="39.37" y="13.97" rot="R180">
-<attribute name="PROD_ID" value="CONN-09696" x="39.37" y="13.97" size="1.778" layer="27" rot="R180" display="off"/>
+<element name="URINEPUMP_DRIVER" library="dotson" package="POLOLU-4988" value="POLOLU-4988" x="39.37" y="34.29" rot="R270"/>
+<element name="URINEFLUSH_DRIVER" library="dotson" package="POLOLU-MAX14870" value="POLOLU-MAX14870" x="19.05" y="34.29" rot="R270"/>
+<element name="FULLFLUSH_DRIVER" library="dotson" package="POLOLU-MAX14870" value="POLOLU-MAX14870" x="1.27" y="34.29" rot="R270"/>
+<element name="12V" library="SparkFun-Connectors" package="1X02_LOCK_LONGPADS" value="" x="1.27" y="41.91" rot="R270"/>
+<element name="URINE_ACTUATOR" library="SparkFun-Connectors" package="1X02_LOCK_LONGPADS" value="" x="30.48" y="15.24" rot="R180"/>
+<element name="FULLFLUSH_ACTUATOR" library="SparkFun-Connectors" package="1X02_LOCK_LONGPADS" value="" x="12.7" y="15.24" rot="R180"/>
+<element name="URINE_STEPPER" library="SparkFun-Connectors" package="1X04_LOCK_LONGPADS" value="" x="52.07" y="15.24" rot="R180">
+<attribute name="PROD_ID" value="CONN-09696" x="52.07" y="15.24" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="FLOWMETER" library="SparkFun-Connectors" package="1X04_LOCK_LONGPADS" value="" x="59.69" y="11.43">
-<attribute name="PROD_ID" value="CONN-09696" x="59.69" y="11.43" size="1.778" layer="27" display="off"/>
+<element name="FLOWMETER" library="SparkFun-Connectors" package="1X04_LOCK_LONGPADS" value="" x="64.77" y="15.24">
+<attribute name="PROD_ID" value="CONN-09696" x="64.77" y="15.24" size="1.778" layer="27" display="off"/>
 </element>
-<element name="R3" library="SparkFun-Passives" package="AXIAL-0.3EZ" value="10k" x="64.77" y="20.32"/>
-<element name="RTC" library="dotson" package="ADAFRUIT-DS3231" value="ADAFRUIT-DS3231" x="54.61" y="39.37" rot="R270"/>
-<element name="H1" library="holes" package="2,8" value="MOUNT-HOLE2.8" x="72.39" y="49.53"/>
-<element name="H2" library="holes" package="2,8" value="MOUNT-HOLE2.8" x="72.39" y="6.35"/>
-<element name="H3" library="holes" package="2,8" value="MOUNT-HOLE2.8" x="11.43" y="6.35"/>
-<element name="H4" library="holes" package="2,8" value="MOUNT-HOLE2.8" x="11.43" y="49.53"/>
-<element name="C3" library="SparkFun-Capacitors" package="CAP-PTH-SMALL-KIT" value="100uF" x="47.625" y="12.7" rot="R270">
-<attribute name="PROD_ID" value="CAP-08370" x="47.625" y="12.7" size="1.778" layer="27" rot="R270" display="off"/>
+<element name="R3" library="SparkFun-Passives" package="AXIAL-0.3EZ" value="10k" x="72.39" y="25.4" rot="R270"/>
+<element name="RTC" library="dotson" package="ADAFRUIT-DS3231" value="ADAFRUIT-DS3231" x="62.23" y="45.72" rot="R270"/>
+<element name="H1" library="holes" package="2,8" value="MOUNT-HOLE2.8" x="77.47" y="50.8"/>
+<element name="H2" library="holes" package="2,8" value="MOUNT-HOLE2.8" x="1.27" y="11.43"/>
+<element name="H3" library="holes" package="2,8" value="MOUNT-HOLE2.8" x="77.47" y="11.43" rot="R90"/>
+<element name="H4" library="holes" package="2,8" value="MOUNT-HOLE2.8" x="1.27" y="50.8" rot="R90"/>
+<element name="C3" library="SparkFun-Capacitors" package="CAP-PTH-SMALL-KIT" value="100uF" x="58.42" y="14.605" rot="R180">
+<attribute name="PROD_ID" value="CAP-08370" x="58.42" y="14.605" size="1.778" layer="27" rot="R180" display="off"/>
 </element>
-<element name="VALVE" library="SparkFun-Connectors" package="1X06_LOCK_LONGPADS" value="" x="26.67" y="13.97" rot="R180"/>
-<element name="BBB_CON" library="SparkFun-Connectors" package="1X11_LOCK_LONGPADS" value="" x="17.78" y="40.64"/>
+<element name="J1" library="SparkFun-Connectors" package="1X12_LOCK_LONGPADS" value="" x="17.78" y="45.72"/>
 </elements>
 <signals>
 <signal name="GND">
 <contactref element="12V" pad="1"/>
-<contactref element="STEP_DRIVER" pad="GND"/>
+<contactref element="URINEFLUSH_DRIVER" pad="GNDMOT"/>
+<contactref element="FULLFLUSH_DRIVER" pad="GNDMOT"/>
+<contactref element="URINEPUMP_DRIVER" pad="GND"/>
 <contactref element="FLOWMETER" pad="4"/>
-<contactref element="STEP_DRIVER" pad="GNDMOT"/>
+<contactref element="URINEFLUSH_DRIVER" pad="GND"/>
+<contactref element="FULLFLUSH_DRIVER" pad="GND"/>
+<polygon width="0.8128" layer="16">
+<vertex x="-2.54" y="55.88"/>
+<vertex x="81.28" y="55.88"/>
+<vertex x="81.28" y="7.62"/>
+<vertex x="-2.54" y="7.62"/>
+</polygon>
+<contactref element="URINEPUMP_DRIVER" pad="GNDMOT"/>
 <contactref element="C3" pad="2"/>
 <contactref element="RTC" pad="GND"/>
-<polygon width="0.4064" layer="16">
-<vertex x="7.62" y="53.34"/>
-<vertex x="76.2" y="53.34"/>
-<vertex x="76.2" y="2.54"/>
-<vertex x="7.62" y="2.54"/>
-</polygon>
-<contactref element="VALVE" pad="6"/>
+<contactref element="J1" pad="11"/>
 <polygon width="0.4064" layer="1">
-<vertex x="7.62" y="53.34"/>
-<vertex x="76.2" y="53.34"/>
-<vertex x="76.2" y="2.54"/>
-<vertex x="7.62" y="2.54"/>
+<vertex x="-2.54" y="55.88"/>
+<vertex x="81.28" y="55.88"/>
+<vertex x="81.28" y="7.62"/>
+<vertex x="-2.54" y="7.62"/>
 </polygon>
-<contactref element="BBB_CON" pad="10"/>
 </signal>
 <signal name="12V">
 <contactref element="12V" pad="2"/>
-<contactref element="STEP_DRIVER" pad="VMOT"/>
+<contactref element="URINEFLUSH_DRIVER" pad="VMOT"/>
+<contactref element="FULLFLUSH_DRIVER" pad="VMOT"/>
+<contactref element="URINEPUMP_DRIVER" pad="VMOT"/>
 <contactref element="C3" pad="1"/>
-<contactref element="VALVE" pad="5"/>
-<wire x1="16.51" y1="13.97" x2="24.13" y2="6.35" width="1.27" layer="16" curve="90"/>
-<wire x1="24.13" y1="6.35" x2="39.37" y2="6.35" width="1.27" layer="16"/>
-<wire x1="39.37" y1="6.35" x2="44.45" y2="15.24" width="1.27" layer="16" curve="90"/>
-<wire x1="44.45" y1="15.24" x2="44.45" y2="20.32" width="1.27" layer="16"/>
-<wire x1="47.625" y1="14.097" x2="44.45" y2="15.24" width="1.27" layer="16"/>
-<wire x1="10.16" y1="20.193" x2="10.287" y2="20.193" width="0.8128" layer="16"/>
-<wire x1="10.287" y1="20.193" x2="16.51" y2="13.97" width="1.27" layer="16" curve="-90"/>
+<wire x1="58.4073" y1="20.2819" x2="59.817" y2="14.605" width="1.27" layer="16"/>
+<wire x1="-1.27" y1="19.05" x2="1.27" y2="16.51" width="1.27" layer="16" curve="90"/>
+<wire x1="1.27" y1="16.51" x2="3.81" y2="16.51" width="1.27" layer="16"/>
+<wire x1="3.81" y1="16.51" x2="5.08" y2="17.78" width="1.27" layer="16" curve="90"/>
+<wire x1="5.08" y1="17.78" x2="5.08" y2="20.32" width="0.8128" layer="16"/>
+<wire x1="5.08" y1="20.32" x2="5.08" y2="16.51" width="1.27" layer="16"/>
+<wire x1="5.08" y1="16.51" x2="10.16" y2="11.43" width="1.27" layer="16" curve="90"/>
+<wire x1="10.16" y1="11.43" x2="19.05" y2="11.43" width="1.27" layer="16"/>
+<wire x1="19.05" y1="11.43" x2="22.86" y2="15.24" width="1.27" layer="16" curve="90"/>
+<wire x1="22.86" y1="20.32" x2="22.86" y2="15.24" width="1.27" layer="16"/>
+<wire x1="22.86" y1="15.24" x2="27.94" y2="10.16" width="1.27" layer="16" curve="90"/>
+<wire x1="27.94" y1="10.16" x2="55.88" y2="10.16" width="1.27" layer="16"/>
+<wire x1="55.88" y1="10.16" x2="59.69" y2="13.97" width="1.27" layer="16" curve="90"/>
+<wire x1="58.42" y1="20.32" x2="59.69" y2="13.97" width="1.27" layer="16"/>
+<wire x1="1.27" y1="39.243" x2="-1.27" y2="36.703" width="1.27" layer="16" curve="90"/>
+<wire x1="-1.27" y1="36.703" x2="-1.27" y2="19.05" width="1.27" layer="16"/>
+<wire x1="58.42" y1="20.32" x2="58.4073" y2="20.2819" width="0" layer="19" extent="16-16"/>
+</signal>
+<signal name="N$2">
+<contactref element="URINEFLUSH_DRIVER" pad="M1"/>
+<contactref element="URINE_ACTUATOR" pad="1"/>
+<wire x1="30.607" y1="15.24" x2="27.94" y2="20.32" width="0.8128" layer="16"/>
+</signal>
+<signal name="N$5">
+<contactref element="FULLFLUSH_DRIVER" pad="M1"/>
+<contactref element="FULLFLUSH_ACTUATOR" pad="1"/>
+<wire x1="12.827" y1="15.24" x2="10.16" y2="20.32" width="0.8128" layer="16"/>
+</signal>
+<signal name="N$6">
+<contactref element="FULLFLUSH_DRIVER" pad="M2"/>
+<contactref element="FULLFLUSH_ACTUATOR" pad="2"/>
+<wire x1="10.033" y1="15.24" x2="7.62" y2="20.32" width="0.8128" layer="16"/>
+</signal>
+<signal name="N$4">
+<contactref element="URINEFLUSH_DRIVER" pad="M2"/>
+<contactref element="URINE_ACTUATOR" pad="2"/>
+<wire x1="27.813" y1="15.24" x2="25.4" y2="20.32" width="0.8128" layer="16"/>
 </signal>
 <signal name="N$3">
-<contactref element="STEP_DRIVER" pad="2B"/>
-<contactref element="STEPPER" pad="1"/>
-<wire x1="39.37" y1="20.32" x2="39.37" y2="13.97" width="0.8128" layer="16"/>
+<contactref element="URINEPUMP_DRIVER" pad="2B"/>
+<contactref element="URINE_STEPPER" pad="1"/>
+<wire x1="52.07" y1="15.24" x2="53.34" y2="20.32" width="0.8128" layer="16"/>
 </signal>
 <signal name="N$7">
-<contactref element="STEP_DRIVER" pad="2A"/>
-<contactref element="STEPPER" pad="2"/>
-<wire x1="36.83" y1="20.32" x2="36.83" y2="14.224" width="0.8128" layer="16"/>
+<contactref element="URINEPUMP_DRIVER" pad="2A"/>
+<contactref element="URINE_STEPPER" pad="2"/>
+<wire x1="49.53" y1="15.494" x2="50.8" y2="20.32" width="0.8128" layer="16"/>
 </signal>
 <signal name="N$8">
-<contactref element="STEP_DRIVER" pad="1A"/>
-<contactref element="STEPPER" pad="3"/>
-<wire x1="34.29" y1="20.32" x2="34.29" y2="13.97" width="0.8128" layer="16"/>
+<contactref element="URINEPUMP_DRIVER" pad="1A"/>
+<contactref element="URINE_STEPPER" pad="3"/>
+<wire x1="46.99" y1="15.24" x2="48.26" y2="20.32" width="0.8128" layer="16"/>
 </signal>
 <signal name="N$9">
-<contactref element="STEP_DRIVER" pad="1B"/>
-<contactref element="STEPPER" pad="4"/>
-<wire x1="31.75" y1="20.32" x2="31.75" y2="14.224" width="0.8128" layer="16"/>
+<contactref element="URINEPUMP_DRIVER" pad="1B"/>
+<contactref element="URINE_STEPPER" pad="4"/>
+<wire x1="44.45" y1="15.494" x2="45.72" y2="20.32" width="0.8128" layer="16"/>
 </signal>
 <signal name="FLOW_PULSE">
 <contactref element="FLOWMETER" pad="1"/>
 <contactref element="R3" pad="P$1"/>
-<wire x1="59.69" y1="11.43" x2="60.96" y2="20.32" width="0.8128" layer="16"/>
-<wire x1="60.96" y1="20.32" x2="60.96" y2="22.86" width="0.8128" layer="16"/>
-<wire x1="60.96" y1="22.86" x2="64.77" y2="27.94" width="0.8128" layer="16" curve="-90"/>
-<wire x1="64.77" y1="27.94" x2="68.58" y2="31.75" width="0.8128" layer="16" curve="90"/>
-<wire x1="68.58" y1="31.75" x2="68.58" y2="39.37" width="0.8128" layer="16"/>
-<wire x1="68.58" y1="39.37" x2="57.15" y2="50.8" width="0.8128" layer="16" curve="90"/>
-<wire x1="57.15" y1="50.8" x2="41.91" y2="50.8" width="0.8128" layer="16"/>
-<wire x1="41.91" y1="50.8" x2="33.02" y2="40.64" width="0.8128" layer="16" curve="90"/>
-<contactref element="BBB_CON" pad="7"/>
-<wire x1="33.02" y1="40.64" x2="33.02" y2="40.767" width="0" layer="19" extent="16-16"/>
+<wire x1="64.8081" y1="16.002" x2="64.77" y2="15.24" width="0.7874" layer="16"/>
+<wire x1="64.8081" y1="16.002" x2="72.39" y2="29.21" width="0.8128" layer="16"/>
+<wire x1="72.39" y1="29.21" x2="69.85" y2="46.99" width="0.8128" layer="16"/>
+<wire x1="69.85" y1="46.99" x2="64.77" y2="52.07" width="0.8128" layer="16" curve="90"/>
+<wire x1="64.77" y1="52.07" x2="39.243" y2="52.07" width="0.8128" layer="16"/>
+<contactref element="J1" pad="8"/>
+<wire x1="39.243" y1="52.07" x2="35.56" y2="48.387" width="0.8128" layer="16" curve="90"/>
+<wire x1="35.56" y1="48.387" x2="35.56" y2="45.593" width="0.8128" layer="16"/>
 </signal>
 <signal name="N$10">
-<contactref element="STEP_DRIVER" pad="SLEEP"/>
-<contactref element="STEP_DRIVER" pad="RESET"/>
-<wire x1="31.75" y1="33.02" x2="34.29" y2="33.02" width="0.8128" layer="16"/>
+<contactref element="URINEPUMP_DRIVER" pad="SLEEP"/>
+<contactref element="URINEPUMP_DRIVER" pad="RESET"/>
+<wire x1="45.72" y1="33.02" x2="48.26" y2="33.02" width="0.8128" layer="16"/>
 </signal>
-<signal name="N$11">
-<contactref element="STEP_DRIVER" pad="STEP"/>
-<contactref element="BBB_CON" pad="5"/>
-<wire x1="29.21" y1="33.02" x2="27.94" y2="40.767" width="0.8128" layer="16"/>
+<signal name="N$13">
+<contactref element="URINEFLUSH_DRIVER" pad="PWM"/>
+<contactref element="J1" pad="4"/>
+<wire x1="30.48" y1="33.02" x2="25.4" y2="45.593" width="0.8128" layer="16"/>
 </signal>
-<signal name="N$12">
-<contactref element="STEP_DRIVER" pad="DIR"/>
-<contactref element="BBB_CON" pad="4"/>
-<wire x1="26.67" y1="33.02" x2="25.4" y2="39.37" width="0.8128" layer="16"/>
-<wire x1="25.4" y1="39.37" x2="25.4" y2="40.513" width="0.8128" layer="16"/>
+<signal name="N$14">
+<contactref element="URINEFLUSH_DRIVER" pad="DIR"/>
+<contactref element="J1" pad="3"/>
+<wire x1="22.86" y1="45.847" x2="27.94" y2="33.02" width="0.8128" layer="16"/>
+</signal>
+<signal name="N$16">
+<contactref element="FULLFLUSH_DRIVER" pad="DIR"/>
+<contactref element="J1" pad="1"/>
+<wire x1="17.78" y1="45.847" x2="10.16" y2="33.02" width="0.8128" layer="16"/>
 </signal>
 <signal name="3.3V">
 <contactref element="RTC" pad="VIN"/>
-<contactref element="VALVE" pad="1"/>
-<wire x1="43.307" y1="40.513" x2="55.88" y2="36.83" width="0.8128" layer="16" curve="-90"/>
 <contactref element="FLOWMETER" pad="3"/>
 <contactref element="R3" pad="P$2"/>
-<contactref element="STEP_DRIVER" pad="VDD"/>
-<wire x1="55.88" y1="36.83" x2="53.34" y2="36.83" width="0.8128" layer="16"/>
-<wire x1="53.34" y1="36.83" x2="50.8" y2="34.29" width="0.8128" layer="16" curve="90"/>
-<wire x1="50.8" y1="34.29" x2="50.8" y2="24.13" width="0.8128" layer="16"/>
-<wire x1="50.8" y1="24.13" x2="50.8" y2="12.7" width="0.8128" layer="16"/>
-<wire x1="29.21" y1="20.32" x2="33.02" y2="24.13" width="0.8128" layer="16" curve="-90"/>
-<wire x1="33.02" y1="24.13" x2="50.8" y2="24.13" width="0.8128" layer="16"/>
-<wire x1="64.77" y1="11.43" x2="68.58" y2="20.32" width="0.8128" layer="16"/>
-<wire x1="26.67" y1="13.97" x2="29.21" y2="20.32" width="0.8128" layer="16"/>
-<wire x1="50.8" y1="12.7" x2="57.15" y2="6.35" width="0.8128" layer="16" curve="90"/>
-<wire x1="57.15" y1="6.35" x2="60.96" y2="6.35" width="0.8128" layer="16"/>
-<wire x1="60.96" y1="6.35" x2="64.77" y2="10.16" width="0.8128" layer="16" curve="90"/>
-<wire x1="64.77" y1="10.16" x2="64.77" y2="11.43" width="0.8128" layer="16"/>
-<contactref element="BBB_CON" pad="11"/>
-<wire x1="43.307" y1="40.513" x2="43.18" y2="40.767" width="0" layer="19" extent="16-16"/>
+<contactref element="URINEPUMP_DRIVER" pad="VDD"/>
+<wire x1="43.18" y1="20.32" x2="43.18" y2="21.59" width="0.8128" layer="16"/>
+<wire x1="43.18" y1="21.59" x2="44.45" y2="22.86" width="0.8128" layer="16" curve="-90"/>
+<wire x1="44.45" y1="22.86" x2="60.96" y2="22.86" width="0.8128" layer="16"/>
+<wire x1="60.96" y1="22.86" x2="61.595" y2="22.225" width="0.8128" layer="16" curve="-90"/>
+<wire x1="61.595" y1="22.225" x2="62.865" y2="12.065" width="0.8128" layer="16"/>
+<wire x1="64.77" y1="10.16" x2="67.31" y2="10.16" width="0.8128" layer="16"/>
+<wire x1="67.31" y1="10.16" x2="69.85" y2="12.7" width="0.8128" layer="16" curve="90"/>
+<wire x1="45.72" y1="45.72" x2="49.53" y2="49.53" width="0.8128" layer="16" curve="-90"/>
+<wire x1="49.53" y1="49.53" x2="57.15" y2="49.53" width="0.8128" layer="16"/>
+<wire x1="57.15" y1="49.53" x2="63.5" y2="43.18" width="0.8128" layer="16" curve="-90"/>
+<wire x1="60.96" y1="22.86" x2="64.77" y2="22.86" width="0.8128" layer="16"/>
+<wire x1="64.77" y1="22.86" x2="67.31" y2="25.4" width="0.8128" layer="16" curve="90"/>
+<wire x1="67.31" y1="25.4" x2="67.31" y2="39.37" width="0.8128" layer="16"/>
+<wire x1="67.31" y1="39.37" x2="63.5" y2="43.18" width="0.8128" layer="16" curve="90"/>
+<wire x1="69.85" y1="15.24" x2="69.85" y2="12.7" width="0.8128" layer="16"/>
+<wire x1="72.39" y1="21.59" x2="69.85" y2="15.24" width="0.8128" layer="16"/>
+<wire x1="62.865" y1="12.065" x2="64.77" y2="10.16" width="0.8128" layer="16" curve="90"/>
+<contactref element="J1" pad="12"/>
+<wire x1="45.72" y1="45.72" x2="45.72" y2="45.593" width="0" layer="19" extent="16-16"/>
 </signal>
-<signal name="N$15">
-<contactref element="RTC" pad="SCL"/>
-<wire x1="38.1" y1="40.64" x2="43.18" y2="45.72" width="0.8128" layer="16" curve="-90"/>
-<wire x1="43.18" y1="45.72" x2="52.07" y2="45.72" width="0.8128" layer="16"/>
-<wire x1="52.07" y1="45.72" x2="60.96" y2="36.83" width="0.8128" layer="16" curve="-90"/>
-<wire x1="60.96" y1="36.83" x2="55.88" y2="31.75" width="0.8128" layer="16" curve="-90"/>
-<contactref element="BBB_CON" pad="9"/>
-<wire x1="38.1" y1="40.767" x2="38.1" y2="40.64" width="0" layer="19" extent="16-16"/>
-</signal>
-<signal name="N$16">
+<signal name="N$24">
 <contactref element="RTC" pad="SDA"/>
-<wire x1="35.56" y1="40.64" x2="41.91" y2="48.26" width="0.8128" layer="16" curve="-90"/>
-<wire x1="41.91" y1="48.26" x2="53.34" y2="48.26" width="0.8128" layer="16"/>
-<wire x1="53.34" y1="48.26" x2="64.77" y2="36.83" width="0.8128" layer="16" curve="-90"/>
-<wire x1="64.77" y1="36.83" x2="57.15" y2="29.21" width="0.8128" layer="16" curve="-90"/>
-<wire x1="57.15" y1="29.21" x2="55.88" y2="29.21" width="0.8128" layer="16"/>
-<contactref element="BBB_CON" pad="8"/>
-<wire x1="35.56" y1="40.513" x2="35.56" y2="40.64" width="0" layer="19" extent="16-16"/>
+<contactref element="J1" pad="9"/>
+<wire x1="38.1" y1="45.847" x2="38.1" y2="41.91" width="0.8128" layer="16"/>
+<wire x1="38.1" y1="41.91" x2="63.5" y2="35.56" width="0.8128" layer="16"/>
+</signal>
+<signal name="N$23">
+<contactref element="RTC" pad="SCL"/>
+<contactref element="J1" pad="10"/>
+<wire x1="40.64" y1="45.72" x2="40.64" y2="43.18" width="0.8128" layer="16"/>
+<wire x1="40.64" y1="43.18" x2="63.5" y2="38.1" width="0.8128" layer="16"/>
+<wire x1="40.64" y1="45.72" x2="40.64" y2="45.593" width="0" layer="19" extent="16-16"/>
+</signal>
+<signal name="N$11">
+<contactref element="J1" pad="5"/>
+<contactref element="URINEPUMP_DRIVER" pad="DIR"/>
+<wire x1="27.94" y1="45.847" x2="31.75" y2="36.83" width="0.8128" layer="16"/>
+<wire x1="31.75" y1="36.83" x2="40.64" y2="33.02" width="0.8128" layer="16"/>
+</signal>
+<signal name="N$12">
+<contactref element="J1" pad="6"/>
+<contactref element="URINEPUMP_DRIVER" pad="STEP"/>
+<wire x1="30.48" y1="45.593" x2="33.02" y2="39.37" width="0.8128" layer="16"/>
+<wire x1="33.02" y1="39.37" x2="41.91" y2="35.56" width="0.8128" layer="16"/>
+<wire x1="41.91" y1="35.56" x2="43.18" y2="33.02" width="0.8128" layer="16"/>
 </signal>
 <signal name="N$1">
-<contactref element="VALVE" pad="2"/>
-<contactref element="BBB_CON" pad="3"/>
-<wire x1="22.86" y1="40.767" x2="24.13" y2="14.224" width="0.8128" layer="16"/>
+<contactref element="J1" pad="2"/>
+<contactref element="FULLFLUSH_DRIVER" pad="PWM"/>
+<wire x1="12.7" y1="33.02" x2="20.32" y2="45.593" width="0.8128" layer="16"/>
 </signal>
-<signal name="N$2">
-<contactref element="VALVE" pad="3"/>
-<contactref element="BBB_CON" pad="2"/>
-<wire x1="20.32" y1="40.513" x2="21.59" y2="13.97" width="0.8128" layer="16"/>
-</signal>
-<signal name="N$4">
-<contactref element="VALVE" pad="4"/>
-<contactref element="BBB_CON" pad="1"/>
-<wire x1="17.78" y1="40.767" x2="19.05" y2="14.224" width="0.8128" layer="16"/>
-</signal>
-<signal name="N$5">
-<contactref element="STEP_DRIVER" pad="ENABLE"/>
-<contactref element="BBB_CON" pad="6"/>
-<wire x1="30.48" y1="40.513" x2="30.48" y2="39.37" width="0.8128" layer="16"/>
-<wire x1="30.48" y1="39.37" x2="33.02" y2="36.83" width="0.8128" layer="16" curve="90"/>
-<wire x1="33.02" y1="36.83" x2="40.64" y2="36.83" width="0.8128" layer="16"/>
-<wire x1="40.64" y1="36.83" x2="44.45" y2="33.02" width="0.8128" layer="16" curve="-90"/>
+<signal name="N$15">
+<contactref element="URINEPUMP_DRIVER" pad="ENABLE"/>
+<contactref element="J1" pad="7"/>
+<wire x1="58.42" y1="33.02" x2="58.42" y2="34.925" width="0.8128" layer="16"/>
+<wire x1="58.42" y1="34.925" x2="36.83" y2="40.005" width="0.8128" layer="16"/>
+<wire x1="36.83" y1="40.005" x2="34.925" y2="41.275" width="0.8128" layer="16"/>
+<wire x1="34.925" y1="41.275" x2="33.02" y2="45.847" width="0.8128" layer="16"/>
 </signal>
 </signals>
 </board>
