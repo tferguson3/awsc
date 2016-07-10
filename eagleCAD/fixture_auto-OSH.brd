@@ -697,7 +697,7 @@ design rules under a new name.</description>
 <element name="FLOWMETER" library="SparkFun-Connectors" package="1X04_LOCK_LONGPADS" value="" x="59.69" y="11.43">
 <attribute name="PROD_ID" value="CONN-09696" x="59.69" y="11.43" size="1.778" layer="27" display="off"/>
 </element>
-<element name="R3" library="SparkFun-Passives" package="AXIAL-0.3EZ" value="10k" x="64.77" y="20.32"/>
+<element name="R3" library="SparkFun-Passives" package="AXIAL-0.3EZ" value="10k" x="64.77" y="24.13" rot="R270"/>
 <element name="RTC" library="dotson" package="ADAFRUIT-DS3231" value="ADAFRUIT-DS3231" x="54.61" y="39.37" rot="R270"/>
 <element name="H1" library="holes" package="2,8" value="MOUNT-HOLE2.8" x="72.39" y="49.53"/>
 <element name="H2" library="holes" package="2,8" value="MOUNT-HOLE2.8" x="72.39" y="6.35"/>
@@ -768,15 +768,15 @@ design rules under a new name.</description>
 <signal name="FLOW_PULSE">
 <contactref element="FLOWMETER" pad="1"/>
 <contactref element="R3" pad="P$1"/>
-<wire x1="59.69" y1="11.43" x2="60.96" y2="20.32" width="0.8128" layer="16"/>
-<wire x1="60.96" y1="20.32" x2="60.96" y2="22.86" width="0.8128" layer="16"/>
-<wire x1="60.96" y1="22.86" x2="64.77" y2="27.94" width="0.8128" layer="16" curve="-90"/>
-<wire x1="64.77" y1="27.94" x2="68.58" y2="31.75" width="0.8128" layer="16" curve="90"/>
-<wire x1="68.58" y1="31.75" x2="68.58" y2="39.37" width="0.8128" layer="16"/>
+<wire x1="59.69" y1="11.43" x2="59.69" y2="24.13" width="0.8128" layer="16"/>
+<wire x1="59.69" y1="24.13" x2="63.5" y2="27.94" width="0.8128" layer="16" curve="-90"/>
+<wire x1="63.5" y1="27.94" x2="64.77" y2="27.94" width="0.8128" layer="16"/>
 <wire x1="68.58" y1="39.37" x2="57.15" y2="50.8" width="0.8128" layer="16" curve="90"/>
 <wire x1="57.15" y1="50.8" x2="41.91" y2="50.8" width="0.8128" layer="16"/>
 <wire x1="41.91" y1="50.8" x2="33.02" y2="40.64" width="0.8128" layer="16" curve="90"/>
 <contactref element="BBB_CON" pad="7"/>
+<wire x1="68.58" y1="39.37" x2="68.58" y2="31.75" width="0.8128" layer="16"/>
+<wire x1="68.58" y1="31.75" x2="64.77" y2="27.94" width="0.8128" layer="16" curve="-90"/>
 <wire x1="33.02" y1="40.64" x2="33.02" y2="40.767" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="N$10">
@@ -808,7 +808,7 @@ design rules under a new name.</description>
 <wire x1="50.8" y1="24.13" x2="50.8" y2="12.7" width="0.8128" layer="16"/>
 <wire x1="29.21" y1="20.32" x2="33.02" y2="24.13" width="0.8128" layer="16" curve="-90"/>
 <wire x1="33.02" y1="24.13" x2="50.8" y2="24.13" width="0.8128" layer="16"/>
-<wire x1="64.77" y1="11.43" x2="68.58" y2="20.32" width="0.8128" layer="16"/>
+<wire x1="64.77" y1="11.43" x2="64.77" y2="20.32" width="0.8128" layer="16"/>
 <wire x1="26.67" y1="13.97" x2="29.21" y2="20.32" width="0.8128" layer="16"/>
 <wire x1="50.8" y1="12.7" x2="57.15" y2="6.35" width="0.8128" layer="16" curve="90"/>
 <wire x1="57.15" y1="6.35" x2="60.96" y2="6.35" width="0.8128" layer="16"/>
