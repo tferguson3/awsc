@@ -35,3 +35,6 @@ def Blink(numTimes,speed):
 ## Ask user for total number of blinks and length of each blink
 iterations = raw_input("Enter total number of times to step: ")
 speed = raw_input("Enter length of each step sequence (seconds): ")
+
+## Start Blink() function. Convert user input from strings to numeric data types and pass to Blink() as parameters
+Blink(int(iterations),float(speed))
