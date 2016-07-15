@@ -40,21 +40,42 @@ file=open(filename,"a")
 file.write("Time,Reading,Volts,Amps\n")
 file.close()
 #initialize averaging counter
-AVE_reading=0
-AVE_volts=0
-AVE_AMPS=0
+AVE_reading1=0
+AVE_volts1=0
+AVE_AMPS1=0
+
+AVE_reading2=0
+AVE_volts2=0
+AVE_AMPS2=0
+
+AVE_reading3=0
+AVE_volts3=0
+AVE_AMPS3=0
+
+AVE_reading4=0
+AVE_volts4=0
+AVE_AMPS4=0
+
+AVE_reading5=0
+AVE_volts5=0
+AVE_AMPS5=0
+
+AVE_reading6=0
+AVE_volts6=0
+AVE_AMPS6=0
+
 count=0
 
 
 #### Begin measurement loop
 while True:
         #read analog pin #
-        reading1 = ADC.read(sensor_pin)
-        reading2 = ADC.read(sensor_pin)
-        reading3 = ADC.read(sensor_pin)
-        reading4 = ADC.read(sensor_pin)
-        reading5 = ADC.read(sensor_pin)
-        reading6 = ADC.read(sensor_pin)
+        reading1 = ADC.read(sensor_pin1)
+        reading2 = ADC.read(sensor_pin2)
+        reading3 = ADC.read(sensor_pin3)
+        reading4 = ADC.read(sensor_pin4)
+        reading5 = ADC.read(sensor_pin5)
+        reading6 = ADC.read(sensor_pin6)
 
         # increment counter for average calculation
         count = count+1
@@ -116,44 +137,44 @@ while True:
 
         #write to the screen #
         ###comment this out when not testing####
-        print pt,'\t%f\t%f\t%f\t%i' % ( "1",reading1,volts1,AMPS1,count)
-        print pt,'\t%f\t%f\t%f\t%i' % ( "2",reading2,volts2,AMPS2,count)
-        print pt,'\t%f\t%f\t%f\t%i' % ( "3",reading3,volts3,AMPS3,count)
-        print pt,'\t%f\t%f\t%f\t%i' % ( "4",reading4,volts4,AMPS4,count)
-        print pt,'\t%f\t%f\t%f\t%i' % ( "5",reading5,volts5,AMPS5,count)
-        print pt,'\t%f\t%f\t%f\t%i' % ( "6",reading6,volts6,AMPS6,count)
+        #print pt,'\t%s\t%f\t%f\t%f\t%i' % ( "1",reading1,volts1,AMPS1,count)
+        #print pt,'\t%s\t%f\t%f\t%f\t%i' % ( "2",reading2,volts2,AMPS2,count)
+        #print pt,'\t%s\t%f\t%f\t%f\t%i' % ( "3",reading3,volts3,AMPS3,count)
+        #print pt,'\t%s\t%f\t%f\t%f\t%i' % ( "4",reading4,volts4,AMPS4,count)
+        #print pt,'\t%s\t%f\t%f\t%f\t%i' % ( "5",reading5,volts5,AMPS5,count)
+        #print pt,'\t%s\t%f\t%f\t%f\t%i' % ( "6",reading6,volts6,AMPS6,count)
 
         if (now.tm_sec == 0)&(count>10): #if new minute, write data to file
                                          # and write only one value for second $
                 AVE_reading1=(AVE_reading1+reading1)/count
                 AVE_volts1=(AVE_volts1+volts1)/count
                 AVE_AMPS1=(AVE_AMPS1+AMPS1)/count
-                print pt,'AVE-\t%f\t%f\t%f' % ( "1",AVE_reading1,AVE_volts1,AVE_AMPS1)
+                print pt,'AVE-\t%s\t%f\t%f\t%f' % ( "1",AVE_reading1,AVE_volts1,AVE_AMPS1)
 
                 AVE_reading2=(AVE_reading2+reading2)/count
                 AVE_volts2=(AVE_volts2+volts2)/count
                 AVE_AMPS2=(AVE_AMPS2+AMPS2)/count
-                print pt,'AVE-\t%f\t%f\t%f' % ( "2",AVE_reading2,AVE_volts2,AVE_AMPS2)
+                print pt,'AVE-\t%s\t%f\t%f\t%f' % ( "2",AVE_reading2,AVE_volts2,AVE_AMPS2)
 
                 AVE_reading3=(AVE_reading3+reading3)/count
                 AVE_volts3=(AVE_volts3+volts3)/count
                 AVE_AMPS3=(AVE_AMPS3+AMPS3)/count
-                print pt,'AVE-\t%f\t%f\t%f' % ( "3",AVE_reading3,AVE_volts3,AVE_AMPS3)
+                print pt,'AVE-\t%s\t%f\t%f\t%f' % ( "3",AVE_reading3,AVE_volts3,AVE_AMPS3)
 
                 AVE_reading4=(AVE_reading4+reading4)/count
                 AVE_volts4=(AVE_volts4+volts4)/count
                 AVE_AMPS4=(AVE_AMPS4+AMPS4)/count
-                print pt,'AVE-\t%f\t%f\t%f' % ( "4",AVE_reading4,AVE_volts4,AVE_AMPS4)
+                print pt,'AVE-\t%s\t%f\t%f\t%f' % ( "4",AVE_reading4,AVE_volts4,AVE_AMPS4)
 
                 AVE_reading5=(AVE_reading5+reading5)/count
                 AVE_volts5=(AVE_volts5+volts5)/count
                 AVE_AMPS5=(AVE_AMPS5+AMPS5)/count
-                print pt,'AVE-\t%f\t%f\t%f' % ( "5",AVE_reading5,AVE_volts5,AVE_AMPS5)
+                print pt,'AVE-\t%s\t%f\t%f\t%f' % ( "5",AVE_reading5,AVE_volts5,AVE_AMPS5)
 
                 AVE_reading6=(AVE_reading6+reading6)/count
                 AVE_volts6=(AVE_volts6+volts6)/count
                 AVE_AMPS6=(AVE_AMPS6+AMPS6)/count
-                print pt,'AVE-\t%f\t%f\t%f' % ( "6",AVE_reading6,AVE_volts6,AVE_AMPS6)
+                print pt,'AVE-\t%s\t%f\t%f\t%f' % ( "6",AVE_reading6,AVE_volts6,AVE_AMPS6)
 
 
                 #open file to append
@@ -161,12 +182,12 @@ while True:
                 #add first column date/time stamp
                 file.write(pt)
                 #add next columns with raw reading, and converted voltage
-                file.write(",%f,%f,%f\n" % (AVE_reading1,AVE_volts1,AVE_AMPS1))
-                file.write(",%f,%f,%f\n" % (AVE_reading2,AVE_volts2,AVE_AMPS2))
-                file.write(",%f,%f,%f\n" % (AVE_reading3,AVE_volts3,AVE_AMPS3))
-                file.write(",%f,%f,%f\n" % (AVE_reading4,AVE_volts4,AVE_AMPS4))
-                file.write(",%f,%f,%f\n" % (AVE_reading5,AVE_volts5,AVE_AMPS5))
-                file.write(",%f,%f,%f\n" % (AVE_reading6,AVE_volts6,AVE_AMPS6))
+                file.write(",%s,%f,%f,%f\n" % ("1",AVE_reading1,AVE_volts1,AVE_AMPS1))
+                file.write(",%s,%f,%f,%f\n" % ("2",AVE_reading2,AVE_volts2,AVE_AMPS2))
+                file.write(",%s,%f,%f,%f\n" % ("3",AVE_reading3,AVE_volts3,AVE_AMPS3))
+                file.write(",%s,%f,%f,%f\n" % ("4",AVE_reading4,AVE_volts4,AVE_AMPS4))
+                file.write(",%s,%f,%f,%f\n" % ("5",AVE_reading5,AVE_volts5,AVE_AMPS5))
+                file.write(",%s,%f,%f,%f\n" % ("6",AVE_reading6,AVE_volts6,AVE_AMPS6))
                 #close file, in case of program termination prematurely,
                 file.close()
                 #if MM/DD/YR changes, update filename
