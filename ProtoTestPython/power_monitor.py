@@ -19,7 +19,7 @@ ADC.setup()
 # "AIN0", "P9_39"
 # "AIN1", "P9_40"
 
-sensor_pin1 = 'P9_39'
+sensor_pin1 = 'P9_40'
 sensor_pin2 = 'P9_37'
 sensor_pin3 = 'P9_38'
 sensor_pin4 = 'P9_33'
@@ -70,12 +70,12 @@ count=0
 #### Begin measurement loop
 while True:
         #read analog pin #
-        reading1 = ADC.read(sensor_pin1)
-        reading2 = ADC.read(sensor_pin2)
-        reading3 = ADC.read(sensor_pin3)
-        reading4 = ADC.read(sensor_pin4)
-        reading5 = ADC.read(sensor_pin5)
-        reading6 = ADC.read(sensor_pin6)
+        reading1 = ADC.read(sensor_pin1)  #laundry (mid)
+        reading2 = ADC.read(sensor_pin2)  #drinking water system (low)
+        reading3 = ADC.read(sensor_pin3)  #toilet (low)
+        reading4 = ADC.read(sensor_pin4)  #water heaters (low)
+        reading5 = ADC.read(sensor_pin5)  #compressor (mid)
+        reading6 = ADC.read(sensor_pin6)  #battery charger (low)
 
         # increment counter for average calculation
         count = count+1
@@ -89,7 +89,7 @@ while True:
 
 
         #scale reading back to voltage
-        volts1=reading1*1.800
+        volts1=reading1*1.800  
         volts2=reading2*1.800
         volts3=reading3*1.800
         volts4=reading4*1.800
@@ -113,12 +113,12 @@ while True:
         ##      or use trim pot and adjust until
         ##       Vout = 0.36V for 1 Vin
         #############################
-        volts1 = volts1 / 0.36  #I don't know what this does...
-        volts2 = volts2 / 0.36  #I don't know what this does...
-        volts3 = volts3 / 0.36  #I don't know what this does...
-        volts4 = volts4 / 0.36  #I don't know what this does...
-        volts5 = volts5 / 0.36  #I don't know what this does...
-        volts6 = volts6 / 0.36  #I don't know what this does...
+        volts1 = volts1 / 0.36  #correct for 1000ohm, 562ohm voltage divider
+        volts2 = volts2 / 0.36  
+        volts3 = volts3 / 0.36  
+        volts4 = volts4 / 0.36  
+        volts5 = volts5 / 0.36  
+        volts6 = volts6 / 0.36  
 
         # No jumper -- CT scaled for 0-10A
         ### uncomment if setting used
