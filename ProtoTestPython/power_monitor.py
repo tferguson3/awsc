@@ -31,7 +31,7 @@ now=time.localtime(time.time())
 currentmonth=now.tm_mon
 currentday=now.tm_mday
 currentyear=now.tm_year
-filename = "{0}_{1}_{2}_XX-power.txt".format(currentmonth, currentday, currentyear)
+filename = "{0}_{1}_{2}_cabin-power.txt".format(currentmonth, currentday, currentyear)
 
 #### informative messaging for starting storage file
 print "Opening ",filename, " for appending..."
@@ -203,7 +203,7 @@ while True:
                 file.close()
                 #if MM/DD/YR changes, update filename
                 #this translates to a new file every day
-                filename = "{0}_{1}_{2}_XX-power.txt".format(currentmonth, currentday, currentyear)
+                filename = "{0}_{1}_{2}_cabin-power.txt".format(currentmonth, currentday, currentyear)
                 #reset averageing counters
                 AVE_reading1=0
                 AVE_volts1=0
