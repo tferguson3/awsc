@@ -11,13 +11,13 @@ import time
 ####setup ADC and assign input pin
 ADC.setup()
 #analog input pins are
-
-
-
 # "AIN0", "P9_39"
 # "AIN1", "P9_40"
 # "AIN2", "P9_37"
 # "AIN3", "P9_38"
+# "AIN4", "P9_33"
+# "AIN5", "P9_36"
+# "AIN6", "P9_35"
 
 sensor_pin1 = 'P9_40'
 sensor_pin2 = 'P9_37'
