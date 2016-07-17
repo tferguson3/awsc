@@ -203,6 +203,7 @@ while True:
                 file.close()
                 #if MM/DD/YR changes, update filename
                 #this translates to a new file every day
+                ##!!!!header row is dropped from subsequent days
                 filename = "{0}_{1}_{2}_cabin-power.txt".format(currentyear, currentmonth, currentday)
                 #reset averageing counters
                 AVE_reading1=0
