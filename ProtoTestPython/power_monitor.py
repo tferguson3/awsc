@@ -184,16 +184,26 @@ while True:
                 file.write(pt)
                 #add next columns with raw reading, and converted voltage
                 file.write(",%s,%f,%f,%f\n" % ("1",AVE_reading1,AVE_volts1,AVE_AMPS1))
+                #add first column date/time stamp
+                file.write(pt)
                 file.write(",%s,%f,%f,%f\n" % ("2",AVE_reading2,AVE_volts2,AVE_AMPS2))
+                #add first column date/time stamp
+                file.write(pt)
                 file.write(",%s,%f,%f,%f\n" % ("3",AVE_reading3,AVE_volts3,AVE_AMPS3))
+                #add first column date/time stamp
+                file.write(pt)
                 file.write(",%s,%f,%f,%f\n" % ("4",AVE_reading4,AVE_volts4,AVE_AMPS4))
+                #add first column date/time stamp
+                file.write(pt)
                 file.write(",%s,%f,%f,%f\n" % ("5",AVE_reading5,AVE_volts5,AVE_AMPS5))
+                #add first column date/time stamp
+                file.write(pt)
                 file.write(",%s,%f,%f,%f\n" % ("6",AVE_reading6,AVE_volts6,AVE_AMPS6))
                 #close file, in case of program termination prematurely,
                 file.close()
                 #if MM/DD/YR changes, update filename
                 #this translates to a new file every day
-                filename = "{0}_{1}_{2}_CT.txt".format(currentmonth, currentday, currentyear)
+                filename = "{0}_{1}_{2}_XX-power.txt".format(currentmonth, currentday, currentyear)
                 #reset averageing counters
                 AVE_reading1=0
                 AVE_volts1=0
