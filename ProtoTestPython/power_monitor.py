@@ -31,7 +31,7 @@ now=time.localtime(time.time())
 currentmonth=now.tm_mon
 currentday=now.tm_mday
 currentyear=now.tm_year
-filename = "{0}_{1}_{2}_CT.txt".format(currentmonth, currentday, currentyear)
+filename = "{0}_{1}_{2}_XX-power.txt".format(currentmonth, currentday, currentyear)
 
 #### informative messaging for starting storage file
 print "Opening ",filename, " for appending..."
@@ -70,12 +70,12 @@ count=0
 #### Begin measurement loop
 while True:
         #read analog pin #
-        reading1 = ADC.read(sensor_pin1)  #laundry (mid)
-        reading2 = ADC.read(sensor_pin2)  #drinking water system (low)
-        reading3 = ADC.read(sensor_pin3)  #toilet (low)
-        reading4 = ADC.read(sensor_pin4)  #water heaters (low)
-        reading5 = ADC.read(sensor_pin5)  #compressor (mid)
-        reading6 = ADC.read(sensor_pin6)  #battery charger (low)
+        reading1 = ADC.read(sensor_pin1)  
+        reading2 = ADC.read(sensor_pin2)  
+        reading3 = ADC.read(sensor_pin3)  
+        reading4 = ADC.read(sensor_pin4)  
+        reading5 = ADC.read(sensor_pin5)  
+        reading6 = ADC.read(sensor_pin6)  
 
         # increment counter for average calculation
         count = count+1
@@ -130,6 +130,7 @@ while True:
         AMPS6=volts6/0.5 #Volts / (V/A) = amps
         # mid jumper -- CT scaled for mid 0-20 amps
         #uncomment if setting used#
+        #AMPS = volts / 0.25
 
         # high jumper -- CT output scaled for high, 0-50 amps
         #uncomment if setting used#
