@@ -3,8 +3,7 @@ import Adafruit_BBIO.GPIO as GPIO
 import Adafruit_BBIO.PWM as PWM
 import time, sys
 
-#step pin on motor driver to be controlled by PWM below *note changed to P9_16 as no
-t all listed PWM pins appear to function
+#step pin on motor driver to be controlled by PWM below *note changed to P9_16 as not all listed PWM pins appear to function
 GPIO.setup("P8_7", GPIO.OUT) #direction pin
 GPIO.setup("P8_11", GPIO.OUT) #ENABLE motor driver
 GPIO.setup("P9_41", GPIO.IN) #flowmeter
@@ -36,8 +35,7 @@ while True:
 		flow = 4.1
         stepf = flow * 0.02 * 1000 / 60 / 2.36 * 200
         totalflow = totalflow + flow/60
-        print '%s%f\t%s%f\t%s%f' % ( "Flow (LPM): ",flow,"Step rate (Hz): ",stepf,"T
-otal Flow (L):",totalflow)
+        print '%s%f\t%s%f\t%s%f' % ( "Flow (LPM): ",flow,"Step rate (Hz): ",stepf,"Total Flow (L):",totalflow)
 
         if stepf >= 5 and PWMstarted == 0:
             GPIO.output("P8_11", GPIO.LOW)
