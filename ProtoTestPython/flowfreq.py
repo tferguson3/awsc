@@ -48,6 +48,14 @@ GPIO.add_event_detect(flowPULSE, GPIO.RISING, callback=countPulse)
 
 while True:
     try:
+
+        #get current time
+        now=time.localtime(time.time())
+        pt=time.asctime(now)  #formatted time for file
+        currentmonth=now.tm_mon
+        currentday=now.tm_mday
+        currentyear=now.tm_year
+
         start_counter = 1
         count=0
         time.sleep(1)
@@ -70,6 +78,7 @@ while True:
             file.write(pt)
             #add next columns with raw reading, and converted voltage
             file.write(",%f,%f\n" % (flow,totalflow))
+            file.close()
             #if MM/DD/YR changes, update filename
             #this translates to a new file every day
             ##!!!!header row is dropped from subsequent days
@@ -84,6 +93,7 @@ while True:
             file.write(pt)
             #add next columns with raw reading, and converted voltage
             file.write(",%f,%f\n" % (flow,totalflow))
+            file.close()
             #if MM/DD/YR changes, update filename
             #this translates to a new file every day
             ##!!!!header row is dropped from subsequent days
@@ -95,20 +105,23 @@ while True:
             GPIO.output(stepperENABLE, GPIO.HIGH)
             PWMstarted = 0
 
-                if countIDLE >= 900:
-                    #open file to append
-                    file=open(filename,"a")
-                    #add first column date/time stamp
-                    file.write(pt)
-                    #add next columns with raw reading, and converted voltage
-                    file.write(",%f,%f\n" % (flow,totalflow))
-                    #if MM/DD/YR changes, update filename
-                    #this translates to a new file every day
-                    ##!!!!header row is dropped from subsequent days
-                    filename = "{0}_{1}_{2}_FIXTURE-flow.csv".format(currentyear, currentmonth, currentday)
+        else:
+            countIDLE = countIDLE+1
+            print countIDLE
 
-                else:
-                    countIDLE = countIDLE+1
+            if countIDLE == 900:
+                countIDLE = 0
+                #open file to append
+                file=open(filename,"a")
+                #add first column date/time stamp
+                file.write(pt)
+                #add next columns with raw reading, and converted voltage
+                file.write(",%f,%f\n" % (flow,totalflow))
+                file.close()
+                #if MM/DD/YR changes, update filename
+                #this translates to a new file every day
+                ##!!!!header row is dropped from subsequent days
+                filename = "{0}_{1}_{2}_FIXTURE-flow.csv".format(currentyear, currentmonth, currentday)
 
         #else:
             #stepf < 5 and PWMstarted == 0 is do nothing
