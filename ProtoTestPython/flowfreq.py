@@ -37,15 +37,15 @@ while True:
         totalflow = totalflow + flow/60
         print '%s%f\t%s%f\t%s%f' % ( "Flow (LPM): ",flow,"Step rate (Hz): ",stepf,"Total Flow (L):",totalflow)
 
-        if stepf >= 5 and PWMstarted == 0:
+        if stepf >= 50 and PWMstarted == 0:
             GPIO.output("P8_11", GPIO.LOW)
             PWM.start("P9_16", 50, stepf, 1)
             PWMstarted = 1
 
-        elif stepf >= 5 and PWMstarted == 1:
+        elif stepf >= 50 and PWMstarted == 1:
             PWM.set_frequency("P9_16", stepf)
 
-        elif stepf < 5 and PWMstarted == 1:
+        elif stepf < 50 and PWMstarted == 1:
             PWM.stop("P9_16")
             PWM.cleanup()
             GPIO.output("P8_11", GPIO.HIGH)
