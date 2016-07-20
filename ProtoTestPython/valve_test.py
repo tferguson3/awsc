@@ -2,24 +2,27 @@
 import Adafruit_BBIO.GPIO as GPIO
 import time
 
-GPIO.setup("P8_8", GPIO.OUT)
-GPIO.setup("P8_10", GPIO.IN)
-GPIO.setup("P8_12", GPIO.IN)
+valveswitch = 'P8_10'
+closedlimit = 'P8_11'
+openlimit = 'P8_14'
 
-if GPIO.input("P8_10"):
+GPIO.setup(valveswitch, GPIO.OUT)
+GPIO.setup(closedlimit, GPIO.IN)
+GPIO.setup(openlimit, GPIO.IN)
+
+if GPIO.input(closedlimit):
         print("Valve Closed")
 else:
         print("Valve Open OR Moving")
 
-GPIO.output("P8_8", GPIO.HIGH)
+GPIO.output(valveswitch, GPIO.HIGH)
 
 time.sleep(10)
 
-if GPIO.input("P8_12"):
+if GPIO.input(openlimit):
         print("Valve Open")
 else:
         print("Valve Closed OR Moving")
 
-GPIO.output("P8_8", GPIO.LOW)
+GPIO.output(valveswitch, GPIO.LOW)
 GPIO.cleanup()
-
