@@ -2,9 +2,9 @@
 import Adafruit_BBIO.GPIO as GPIO
 import time, sys
 
-GPIO.setup("P9_12", GPIO.IN)
-GPIO.setup("P9_15", GPIO.IN)
-GPIO.setup("P9_23", GPIO.IN)
+GPIO.setup("P9_12", GPIO.IN) #blackwater
+GPIO.setup("P9_15", GPIO.IN) #greywater
+GPIO.setup("P9_23", GPIO.IN) #washwater
 
 now=time.localtime(time.time())
 currentmonth=now.tm_mon
