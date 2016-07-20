@@ -32,9 +32,11 @@ file.write("Time,Flow,TotalFlow\n")
 file.close()
 
 global count
-global totalcount
+global countIDLE
 
 count = 0
+countIDLE = 0
+
 totalflow = 0
 PWMstarted = 0
 
@@ -61,6 +63,7 @@ while True:
             GPIO.output(stepperENABLE, GPIO.LOW)
             PWM.start(stepperSTEP, 50, stepf, 1)
             PWMstarted = 1
+            countIDLE = 0
             #open file to append
             file=open(filename,"a")
             #add first column date/time stamp
@@ -74,6 +77,7 @@ while True:
 
         elif stepf >= 60 and PWMstarted == 1:
             PWM.set_frequency(stepperSTEP, stepf)
+            countIDLE = 0
             #open file to append
             file=open(filename,"a")
             #add first column date/time stamp
@@ -90,6 +94,7 @@ while True:
             PWM.cleanup()
             GPIO.output(stepperENABLE, GPIO.HIGH)
             PWMstarted = 0
+
                 if countIDLE >= 900:
                     #open file to append
                     file=open(filename,"a")
@@ -101,6 +106,9 @@ while True:
                     #this translates to a new file every day
                     ##!!!!header row is dropped from subsequent days
                     filename = "{0}_{1}_{2}_FIXTURE-flow.csv".format(currentyear, currentmonth, currentday)
+
+                else:
+                    countIDLE = countIDLE+1
 
         #else:
             #stepf < 5 and PWMstarted == 0 is do nothing
