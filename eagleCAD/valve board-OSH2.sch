@@ -5217,12 +5217,12 @@ FQP27P06 -
 </class>
 </classes>
 <parts>
-<part name="R1" library="resistor" deviceset="R-US_" device="0207/10"/>
-<part name="R2" library="resistor" deviceset="R-US_" device="0207/10"/>
-<part name="R5" library="resistor" deviceset="R-US_" device="0207/10"/>
-<part name="R6" library="resistor" deviceset="R-US_" device="0207/10"/>
-<part name="R3" library="resistor" deviceset="R-US_" device="0207/10"/>
-<part name="R4" library="resistor" deviceset="R-US_" device="0207/10"/>
+<part name="R1" library="resistor" deviceset="R-US_" device="0207/10" value="10k"/>
+<part name="R2" library="resistor" deviceset="R-US_" device="0207/10" value="10k"/>
+<part name="R5" library="resistor" deviceset="R-US_" device="0207/10" value="10k"/>
+<part name="R6" library="resistor" deviceset="R-US_" device="0207/10" value="10k"/>
+<part name="R3" library="resistor" deviceset="R-US_" device="0207/10" value="100"/>
+<part name="R4" library="resistor" deviceset="R-US_" device="0207/10" value="100"/>
 <part name="J7" library="SparkFun-Connectors" deviceset="M06" device="LOCK_LONGPADS"/>
 <part name="J8" library="SparkFun-Connectors" deviceset="M06" device="LOCK_LONGPADS"/>
 <part name="GND1" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
@@ -5231,8 +5231,8 @@ FQP27P06 -
 <part name="GND4" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND5" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
 <part name="GND6" library="SparkFun-Aesthetics" deviceset="GND" device=""/>
-<part name="Q1" library="SparkFun-DiscreteSemi" deviceset="MOSFET-PCHANNEL" device="FQP27P06"/>
-<part name="Q2" library="SparkFun-DiscreteSemi" deviceset="MOSFET-NCHANNEL" device="FQP30N06L"/>
+<part name="P-FET" library="SparkFun-DiscreteSemi" deviceset="MOSFET-PCHANNEL" device="FQP27P06"/>
+<part name="N-FET" library="SparkFun-DiscreteSemi" deviceset="MOSFET-NCHANNEL" device="FQP30N06L"/>
 </parts>
 <sheets>
 <sheet>
@@ -5247,14 +5247,18 @@ FQP27P06 -
 <instance part="R4" gate="G$1" x="35.56" y="55.88"/>
 <instance part="J7" gate="G$1" x="-5.08" y="68.58"/>
 <instance part="J8" gate="G$1" x="139.7" y="71.12" rot="R180"/>
-<instance part="GND1" gate="1" x="81.28" y="68.58"/>
+<instance part="GND1" gate="1" x="83.82" y="68.58"/>
 <instance part="GND2" gate="1" x="7.62" y="78.74"/>
 <instance part="GND3" gate="1" x="121.92" y="78.74"/>
 <instance part="GND4" gate="1" x="91.44" y="78.74"/>
 <instance part="GND5" gate="1" x="25.4" y="78.74"/>
 <instance part="GND6" gate="1" x="55.88" y="78.74"/>
-<instance part="Q1" gate="G$1" x="63.5" y="63.5" rot="R180"/>
-<instance part="Q2" gate="G$1" x="88.9" y="63.5" rot="R180"/>
+<instance part="P-FET" gate="G$1" x="63.5" y="63.5" smashed="yes" rot="R180">
+<attribute name="NAME" x="71.12" y="60.96" size="1.778" layer="95" rot="R180"/>
+</instance>
+<instance part="N-FET" gate="G$1" x="88.9" y="63.5" smashed="yes" rot="R180">
+<attribute name="NAME" x="96.52" y="60.96" size="1.778" layer="95" rot="R180"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -5262,9 +5266,9 @@ FQP27P06 -
 <net name="GND" class="0">
 <segment>
 <pinref part="GND1" gate="1" pin="GND"/>
-<pinref part="Q2" gate="G$1" pin="S"/>
+<pinref part="N-FET" gate="G$1" pin="S"/>
 <wire x1="88.9" y1="68.58" x2="88.9" y2="71.12" width="0.1524" layer="91"/>
-<wire x1="88.9" y1="71.12" x2="81.28" y2="71.12" width="0.1524" layer="91"/>
+<wire x1="88.9" y1="71.12" x2="83.82" y2="71.12" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="R6" gate="G$1" pin="2"/>
@@ -5309,7 +5313,7 @@ FQP27P06 -
 <wire x1="0" y1="71.12" x2="58.42" y2="71.12" width="0.1524" layer="91"/>
 <wire x1="58.42" y1="71.12" x2="58.42" y2="58.42" width="0.1524" layer="91"/>
 <pinref part="J7" gate="G$1" pin="4"/>
-<pinref part="Q1" gate="G$1" pin="D"/>
+<pinref part="P-FET" gate="G$1" pin="D"/>
 <wire x1="63.5" y1="58.42" x2="58.42" y2="58.42" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -5319,7 +5323,7 @@ FQP27P06 -
 <pinref part="R1" gate="G$1" pin="1"/>
 <junction x="96.52" y="71.12"/>
 <pinref part="J8" gate="G$1" pin="3"/>
-<pinref part="Q2" gate="G$1" pin="G"/>
+<pinref part="N-FET" gate="G$1" pin="G"/>
 <wire x1="96.52" y1="63.5" x2="96.52" y2="71.12" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -5352,7 +5356,7 @@ FQP27P06 -
 <wire x1="76.2" y1="73.66" x2="63.5" y2="73.66" width="0.1524" layer="91"/>
 <pinref part="J7" gate="G$1" pin="5"/>
 <pinref part="J8" gate="G$1" pin="2"/>
-<pinref part="Q1" gate="G$1" pin="S"/>
+<pinref part="P-FET" gate="G$1" pin="S"/>
 <wire x1="63.5" y1="73.66" x2="0" y2="73.66" width="0.1524" layer="91"/>
 <wire x1="63.5" y1="68.58" x2="63.5" y2="73.66" width="0.1524" layer="91"/>
 <junction x="63.5" y="73.66"/>
@@ -5388,10 +5392,10 @@ FQP27P06 -
 </net>
 <net name="N$7" class="0">
 <segment>
-<pinref part="Q1" gate="G$1" pin="G"/>
+<pinref part="P-FET" gate="G$1" pin="G"/>
 <pinref part="R5" gate="G$1" pin="1"/>
 <wire x1="76.2" y1="63.5" x2="71.12" y2="63.5" width="0.1524" layer="91"/>
-<pinref part="Q2" gate="G$1" pin="D"/>
+<pinref part="N-FET" gate="G$1" pin="D"/>
 <wire x1="88.9" y1="58.42" x2="76.2" y2="58.42" width="0.1524" layer="91"/>
 <wire x1="76.2" y1="58.42" x2="76.2" y2="63.5" width="0.1524" layer="91"/>
 </segment>
