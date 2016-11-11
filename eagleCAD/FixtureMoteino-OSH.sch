@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="7.7.0">
+<eagle version="7.6.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -1933,8 +1933,46 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 </library>
 <library name="MoteinoR4Mod">
 <packages>
+<package name="MOTEINO_R4_WIRE">
+<wire x1="-16.51" y1="10.16" x2="16.51" y2="10.16" width="0.127" layer="21"/>
+<wire x1="16.51" y1="10.16" x2="16.51" y2="-12.7" width="0.127" layer="21"/>
+<wire x1="16.51" y1="-12.7" x2="-16.51" y2="-12.7" width="0.127" layer="21"/>
+<wire x1="-16.51" y1="-12.7" x2="-16.51" y2="10.16" width="0.127" layer="21"/>
+<pad name="3.3V" x="-10.16" y="8.89" drill="0.8" rot="R90"/>
+<pad name="A0" x="15.24" y="8.89" drill="0.8" rot="R90"/>
+<pad name="A1" x="12.7" y="8.89" drill="0.8" rot="R90"/>
+<pad name="A2" x="10.16" y="8.89" drill="0.8" rot="R90"/>
+<pad name="A3" x="7.62" y="8.89" drill="0.8" rot="R90"/>
+<pad name="A4" x="5.08" y="8.89" drill="0.8" rot="R90"/>
+<pad name="A5" x="2.54" y="8.89" drill="0.8" rot="R90"/>
+<pad name="A6" x="0" y="8.89" drill="0.8" rot="R90"/>
+<pad name="A7" x="-2.54" y="8.89" drill="0.8" rot="R90"/>
+<pad name="D0" x="-5.08" y="8.89" drill="0.8" rot="R90"/>
+<pad name="D1" x="-7.62" y="8.89" drill="0.8" rot="R90"/>
+<pad name="D2" x="-12.7" y="-11.43" drill="0.8" rot="R90"/>
+<pad name="D3" x="-10.16" y="-11.43" drill="0.8" rot="R90"/>
+<pad name="D4" x="-7.62" y="-11.43" drill="0.8" rot="R90"/>
+<pad name="D5" x="-5.08" y="-11.43" drill="0.8" rot="R90"/>
+<pad name="D6" x="-2.54" y="-11.43" drill="0.8" rot="R90"/>
+<pad name="D7" x="0" y="-11.43" drill="0.8" rot="R90"/>
+<pad name="D8" x="2.54" y="-11.43" drill="0.8" rot="R90"/>
+<pad name="D9" x="5.08" y="-11.43" drill="0.8" rot="R90"/>
+<pad name="D10" x="7.62" y="-11.43" drill="0.8" rot="R90"/>
+<pad name="D11" x="10.16" y="-11.43" drill="0.8" rot="R90"/>
+<pad name="D12" x="12.7" y="-11.43" drill="0.8" rot="R90"/>
+<pad name="D13" x="15.24" y="-11.43" drill="0.8" rot="R90"/>
+<pad name="GND" x="-15.24" y="8.89" drill="0.8" rot="R90"/>
+<pad name="PWR" x="-12.7" y="8.89" drill="0.8" rot="R90"/>
+<pad name="RST" x="-15.24" y="-11.43" drill="0.8" rot="R90"/>
+<text x="-16.5862" y="10.7188" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="-16.51" y="5.715" size="1.27" layer="27">&gt;VALUE</text>
+</package>
 <package name="MOTEINTO_R4_SQ">
 <description>&lt;b&gt;Footprint for Moteino R4 Module using 0.025" Square Post Pins&lt;/b&gt;</description>
+<wire x1="-16.51" y1="11.43" x2="16.51" y2="11.43" width="0.127" layer="21"/>
+<wire x1="16.51" y1="11.43" x2="16.51" y2="-11.43" width="0.127" layer="21"/>
+<wire x1="16.51" y1="-11.43" x2="-16.51" y2="-11.43" width="0.127" layer="21"/>
+<wire x1="-16.51" y1="-11.43" x2="-16.51" y2="11.43" width="0.127" layer="21"/>
 <rectangle x1="-0.254" y1="9.906" x2="0.254" y2="10.414" layer="51"/>
 <rectangle x1="-2.794" y1="9.906" x2="-2.286" y2="10.414" layer="51"/>
 <rectangle x1="-5.334" y1="9.906" x2="-4.826" y2="10.414" layer="51"/>
@@ -1948,21 +1986,6 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <rectangle x1="7.366" y1="9.906" x2="7.874" y2="10.414" layer="51"/>
 <rectangle x1="4.826" y1="9.906" x2="5.334" y2="10.414" layer="51"/>
 <rectangle x1="2.286" y1="9.906" x2="2.794" y2="10.414" layer="51"/>
-<pad name="GND" x="-15.24" y="10.16" drill="1.016" diameter="1.8796" rot="R90"/>
-<pad name="PWR" x="-12.7" y="10.16" drill="1.016" diameter="1.8796" rot="R90"/>
-<pad name="3.3V" x="-10.16" y="10.16" drill="1.016" diameter="1.8796" rot="R90"/>
-<pad name="D1" x="-7.62" y="10.16" drill="1.016" diameter="1.8796" rot="R90"/>
-<pad name="D0" x="-5.08" y="10.16" drill="1.016" diameter="1.8796" rot="R90"/>
-<pad name="A7" x="-2.54" y="10.16" drill="1.016" diameter="1.8796" rot="R90"/>
-<pad name="A6" x="0" y="10.16" drill="1.016" diameter="1.8796" rot="R90"/>
-<pad name="A5" x="2.54" y="10.16" drill="1.016" diameter="1.8796" rot="R90"/>
-<pad name="A4" x="5.08" y="10.16" drill="1.016" diameter="1.8796" rot="R90"/>
-<pad name="A3" x="7.62" y="10.16" drill="1.016" diameter="1.8796" rot="R90"/>
-<pad name="A2" x="10.16" y="10.16" drill="1.016" diameter="1.8796" rot="R90"/>
-<pad name="A1" x="12.7" y="10.16" drill="1.016" diameter="1.8796" rot="R90"/>
-<pad name="A0" x="15.24" y="10.16" drill="1.016" diameter="1.8796" rot="R90"/>
-<text x="-16.5862" y="11.9888" size="1.27" layer="25" ratio="10">&gt;NAME</text>
-<text x="-16.51" y="6.985" size="1.27" layer="27">&gt;VALUE</text>
 <rectangle x1="-0.254" y1="-10.414" x2="0.254" y2="-9.906" layer="51"/>
 <rectangle x1="-2.794" y1="-10.414" x2="-2.286" y2="-9.906" layer="51"/>
 <rectangle x1="-5.334" y1="-10.414" x2="-4.826" y2="-9.906" layer="51"/>
@@ -1976,7 +1999,23 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <rectangle x1="7.366" y1="-10.414" x2="7.874" y2="-9.906" layer="51"/>
 <rectangle x1="4.826" y1="-10.414" x2="5.334" y2="-9.906" layer="51"/>
 <rectangle x1="2.286" y1="-10.414" x2="2.794" y2="-9.906" layer="51"/>
-<pad name="RST" x="-15.24" y="-10.16" drill="1.016" diameter="1.8796" rot="R90"/>
+<rectangle x1="14.986" y1="2.286" x2="15.494" y2="2.794" layer="51"/>
+<rectangle x1="14.986" y1="-0.254" x2="15.494" y2="0.254" layer="51"/>
+<rectangle x1="14.986" y1="-2.794" x2="15.494" y2="-2.286" layer="51"/>
+<pad name="3.3V" x="-10.16" y="10.16" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="3.3V2" x="15.24" y="0" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="A0" x="15.24" y="10.16" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="A1" x="12.7" y="10.16" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="A2" x="10.16" y="10.16" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="A3" x="7.62" y="10.16" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="A4" x="5.08" y="10.16" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="A5" x="2.54" y="10.16" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="A6" x="0" y="10.16" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="A7" x="-2.54" y="10.16" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="ANT" x="12.7" y="5.08" drill="0.8"/>
+<pad name="AR" x="15.24" y="-2.54" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="D0" x="-5.08" y="10.16" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="D1" x="-7.62" y="10.16" drill="1.016" diameter="1.8796" rot="R90"/>
 <pad name="D2" x="-12.7" y="-10.16" drill="1.016" diameter="1.8796" rot="R90"/>
 <pad name="D3" x="-10.16" y="-10.16" drill="1.016" diameter="1.8796" rot="R90"/>
 <pad name="D4" x="-7.62" y="-10.16" drill="1.016" diameter="1.8796" rot="R90"/>
@@ -1989,55 +2028,12 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <pad name="D11" x="10.16" y="-10.16" drill="1.016" diameter="1.8796" rot="R90"/>
 <pad name="D12" x="12.7" y="-10.16" drill="1.016" diameter="1.8796" rot="R90"/>
 <pad name="D13" x="15.24" y="-10.16" drill="1.016" diameter="1.8796" rot="R90"/>
-<pad name="ANT" x="12.7" y="5.08" drill="0.8"/>
-<rectangle x1="14.986" y1="2.286" x2="15.494" y2="2.794" layer="51"/>
 <pad name="G2" x="15.24" y="2.54" drill="1.016" diameter="1.8796" rot="R90"/>
-<rectangle x1="14.986" y1="-0.254" x2="15.494" y2="0.254" layer="51"/>
-<pad name="3.3V2" x="15.24" y="0" drill="1.016" diameter="1.8796" rot="R90"/>
-<rectangle x1="14.986" y1="-2.794" x2="15.494" y2="-2.286" layer="51"/>
-<pad name="AR" x="15.24" y="-2.54" drill="1.016" diameter="1.8796" rot="R90"/>
-<wire x1="-16.51" y1="11.43" x2="16.51" y2="11.43" width="0.127" layer="21"/>
-<wire x1="16.51" y1="11.43" x2="16.51" y2="-11.43" width="0.127" layer="21"/>
-<wire x1="16.51" y1="-11.43" x2="-16.51" y2="-11.43" width="0.127" layer="21"/>
-<wire x1="-16.51" y1="-11.43" x2="-16.51" y2="11.43" width="0.127" layer="21"/>
-</package>
-<package name="MOTEINO_R4_WIRE">
-<pad name="GND" x="-15.24" y="8.89" drill="0.8" rot="R90"/>
-<pad name="PWR" x="-12.7" y="8.89" drill="0.8" rot="R90"/>
-<pad name="3.3V" x="-10.16" y="8.89" drill="0.8" rot="R90"/>
-<pad name="D1" x="-7.62" y="8.89" drill="0.8" rot="R90"/>
-<pad name="D0" x="-5.08" y="8.89" drill="0.8" rot="R90"/>
-<pad name="A7" x="-2.54" y="8.89" drill="0.8" rot="R90"/>
-<pad name="A6" x="0" y="8.89" drill="0.8" rot="R90"/>
-<pad name="A5" x="2.54" y="8.89" drill="0.8" rot="R90"/>
-<pad name="A4" x="5.08" y="8.89" drill="0.8" rot="R90"/>
-<pad name="A3" x="7.62" y="8.89" drill="0.8" rot="R90"/>
-<pad name="A2" x="10.16" y="8.89" drill="0.8" rot="R90"/>
-<pad name="A1" x="12.7" y="8.89" drill="0.8" rot="R90"/>
-<pad name="A0" x="15.24" y="8.89" drill="0.8" rot="R90"/>
-<text x="-16.5862" y="10.7188" size="1.27" layer="25" ratio="10">&gt;NAME</text>
-<text x="-16.51" y="5.715" size="1.27" layer="27">&gt;VALUE</text>
-<pad name="RST" x="-15.24" y="-11.43" drill="0.8" rot="R90"/>
-<pad name="D2" x="-12.7" y="-11.43" drill="0.8" rot="R90"/>
-<pad name="D3" x="-10.16" y="-11.43" drill="0.8" rot="R90"/>
-<pad name="D4" x="-7.62" y="-11.43" drill="0.8" rot="R90"/>
-<pad name="D5" x="-5.08" y="-11.43" drill="0.8" rot="R90"/>
-<pad name="D6" x="-2.54" y="-11.43" drill="0.8" rot="R90"/>
-<pad name="D7" x="0" y="-11.43" drill="0.8" rot="R90"/>
-<pad name="D8" x="2.54" y="-11.43" drill="0.8" rot="R90"/>
-<pad name="D9" x="5.08" y="-11.43" drill="0.8" rot="R90"/>
-<pad name="D10" x="7.62" y="-11.43" drill="0.8" rot="R90"/>
-<pad name="D11" x="10.16" y="-11.43" drill="0.8" rot="R90"/>
-<pad name="D12" x="12.7" y="-11.43" drill="0.8" rot="R90"/>
-<pad name="D13" x="15.24" y="-11.43" drill="0.8" rot="R90"/>
-<pad name="ANT" x="12.7" y="3.81" drill="0.8"/>
-<pad name="G2" x="15.24" y="1.27" drill="0.8" rot="R90"/>
-<pad name="3.3V2" x="15.24" y="-1.27" drill="0.8" rot="R90"/>
-<pad name="AR" x="15.24" y="-3.81" drill="0.8" rot="R90"/>
-<wire x1="-16.51" y1="10.16" x2="16.51" y2="10.16" width="0.127" layer="21"/>
-<wire x1="16.51" y1="10.16" x2="16.51" y2="-12.7" width="0.127" layer="21"/>
-<wire x1="16.51" y1="-12.7" x2="-16.51" y2="-12.7" width="0.127" layer="21"/>
-<wire x1="-16.51" y1="-12.7" x2="-16.51" y2="10.16" width="0.127" layer="21"/>
+<pad name="GND" x="-15.24" y="10.16" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="PWR" x="-12.7" y="10.16" drill="1.016" diameter="1.8796" rot="R90"/>
+<pad name="RST" x="-15.24" y="-10.16" drill="1.016" diameter="1.8796" rot="R90"/>
+<text x="-16.5862" y="11.9888" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="-16.51" y="6.985" size="1.27" layer="27">&gt;VALUE</text>
 </package>
 </packages>
 <symbols>
@@ -2046,25 +2042,15 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <wire x1="17.78" y1="30.48" x2="17.78" y2="-33.02" width="0.254" layer="94"/>
 <wire x1="17.78" y1="-33.02" x2="-20.32" y2="-33.02" width="0.254" layer="94"/>
 <wire x1="-20.32" y1="-33.02" x2="-20.32" y2="30.48" width="0.254" layer="94"/>
-<pin name="A6" x="22.86" y="12.7" length="middle" rot="R180"/>
-<pin name="A7" x="22.86" y="10.16" length="middle" rot="R180"/>
-<pin name="AREF" x="-25.4" y="12.7" length="middle"/>
-<pin name="PWR" x="-25.4" y="22.86" length="middle" direction="pas"/>
-<pin name="GND@1" x="-25.4" y="-25.4" length="middle" direction="pwr"/>
-<pin name="GND@2" x="-25.4" y="-27.94" length="middle" direction="pwr"/>
-<pin name="D8" x="22.86" y="-17.78" length="middle" rot="R180"/>
-<pin name="D9" x="22.86" y="-20.32" length="middle" rot="R180"/>
-<pin name="D10_SS" x="22.86" y="-22.86" length="middle" rot="R180"/>
-<pin name="D11_MOSI" x="22.86" y="-25.4" length="middle" rot="R180"/>
-<pin name="D12_MISO" x="22.86" y="-27.94" length="middle" rot="R180"/>
-<pin name="D13_SCK" x="22.86" y="-30.48" length="middle" rot="R180"/>
+<pin name="3.3V@1" x="-25.4" y="20.32" length="middle" direction="pas"/>
 <pin name="A0" x="22.86" y="27.94" length="middle" rot="R180"/>
 <pin name="A1" x="22.86" y="25.4" length="middle" rot="R180"/>
 <pin name="A2" x="22.86" y="22.86" length="middle" rot="R180"/>
 <pin name="A3" x="22.86" y="20.32" length="middle" rot="R180"/>
 <pin name="A4_SDA" x="22.86" y="17.78" length="middle" rot="R180"/>
 <pin name="A5_SCL" x="22.86" y="15.24" length="middle" rot="R180"/>
-<pin name="RST" x="-25.4" y="27.94" length="middle" function="dot"/>
+<pin name="A6" x="22.86" y="12.7" length="middle" rot="R180"/>
+<pin name="A7" x="22.86" y="10.16" length="middle" rot="R180"/>
 <pin name="D0_RX" x="22.86" y="5.08" length="middle" rot="R180"/>
 <pin name="D1_TX" x="22.86" y="2.54" length="middle" rot="R180"/>
 <pin name="D2" x="22.86" y="0" length="middle" rot="R180"/>
@@ -2073,11 +2059,17 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <pin name="D5" x="22.86" y="-7.62" length="middle" rot="R180"/>
 <pin name="D6" x="22.86" y="-10.16" length="middle" rot="R180"/>
 <pin name="D7" x="22.86" y="-12.7" length="middle" rot="R180"/>
-<pin name="3.3V@1" x="-25.4" y="20.32" length="middle" direction="pas"/>
-<pin name="3.3V@2" x="-25.4" y="17.78" length="middle" direction="pas"/>
+<pin name="D8" x="22.86" y="-17.78" length="middle" rot="R180"/>
+<pin name="D9" x="22.86" y="-20.32" length="middle" rot="R180"/>
+<pin name="D10_SS" x="22.86" y="-22.86" length="middle" rot="R180"/>
+<pin name="D11_MOSI" x="22.86" y="-25.4" length="middle" rot="R180"/>
+<pin name="D12_MISO" x="22.86" y="-27.94" length="middle" rot="R180"/>
+<pin name="D13_SCK" x="22.86" y="-30.48" length="middle" rot="R180"/>
+<pin name="GND@1" x="-25.4" y="-25.4" length="middle" direction="pwr"/>
+<pin name="PWR" x="-25.4" y="22.86" length="middle" direction="pas"/>
+<pin name="RST" x="-25.4" y="27.94" length="middle" function="dot"/>
 <text x="-20.32" y="-35.56" size="1.778" layer="95">&gt;NAME</text>
 <text x="-20.32" y="30.988" size="1.778" layer="96">&gt;VALUE</text>
-<pin name="ANT" x="0" y="35.56" length="middle" direction="pas" rot="R270"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -2091,7 +2083,6 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <device name="USING_SQ_POST_PINS" package="MOTEINTO_R4_SQ">
 <connects>
 <connect gate="G$1" pin="3.3V@1" pad="3.3V"/>
-<connect gate="G$1" pin="3.3V@2" pad="3.3V2"/>
 <connect gate="G$1" pin="A0" pad="A0"/>
 <connect gate="G$1" pin="A1" pad="A1"/>
 <connect gate="G$1" pin="A2" pad="A2"/>
@@ -2100,8 +2091,6 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <connect gate="G$1" pin="A5_SCL" pad="A5"/>
 <connect gate="G$1" pin="A6" pad="A6"/>
 <connect gate="G$1" pin="A7" pad="A7"/>
-<connect gate="G$1" pin="ANT" pad="ANT"/>
-<connect gate="G$1" pin="AREF" pad="AR"/>
 <connect gate="G$1" pin="D0_RX" pad="D0"/>
 <connect gate="G$1" pin="D10_SS" pad="D10"/>
 <connect gate="G$1" pin="D11_MOSI" pad="D11"/>
@@ -2117,7 +2106,6 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <connect gate="G$1" pin="D8" pad="D8"/>
 <connect gate="G$1" pin="D9" pad="D9"/>
 <connect gate="G$1" pin="GND@1" pad="GND"/>
-<connect gate="G$1" pin="GND@2" pad="G2"/>
 <connect gate="G$1" pin="PWR" pad="PWR"/>
 <connect gate="G$1" pin="RST" pad="RST"/>
 </connects>
@@ -2128,7 +2116,6 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <device name="USING_WIRE_PINS" package="MOTEINO_R4_WIRE">
 <connects>
 <connect gate="G$1" pin="3.3V@1" pad="3.3V"/>
-<connect gate="G$1" pin="3.3V@2" pad="3.3V2"/>
 <connect gate="G$1" pin="A0" pad="A0"/>
 <connect gate="G$1" pin="A1" pad="A1"/>
 <connect gate="G$1" pin="A2" pad="A2"/>
@@ -2137,8 +2124,6 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <connect gate="G$1" pin="A5_SCL" pad="A5"/>
 <connect gate="G$1" pin="A6" pad="A6"/>
 <connect gate="G$1" pin="A7" pad="A7"/>
-<connect gate="G$1" pin="ANT" pad="ANT"/>
-<connect gate="G$1" pin="AREF" pad="AR"/>
 <connect gate="G$1" pin="D0_RX" pad="D0"/>
 <connect gate="G$1" pin="D10_SS" pad="D10"/>
 <connect gate="G$1" pin="D11_MOSI" pad="D11"/>
@@ -2154,7 +2139,6 @@ will be further integrated into the Sparkfun Library for other footprints.  It c
 <connect gate="G$1" pin="D8" pad="D8"/>
 <connect gate="G$1" pin="D9" pad="D9"/>
 <connect gate="G$1" pin="GND@1" pad="GND"/>
-<connect gate="G$1" pin="GND@2" pad="G2"/>
 <connect gate="G$1" pin="PWR" pad="PWR"/>
 <connect gate="G$1" pin="RST" pad="RST"/>
 </connects>
@@ -6047,8 +6031,6 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pinref part="U$2" gate="G$1" pin="GND@1"/>
 <wire x1="20.32" y1="25.4" x2="12.7" y2="25.4" width="0.1524" layer="91"/>
 <wire x1="12.7" y1="25.4" x2="12.7" y2="22.86" width="0.1524" layer="91"/>
-<pinref part="U$2" gate="G$1" pin="GND@2"/>
-<wire x1="20.32" y1="25.4" x2="20.32" y2="22.86" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="J3" gate="G$1" pin="1"/>

@@ -154,10 +154,10 @@
 <text x="7.874" y="2.032" size="1.016" layer="26" rot="MR0">WHT</text>
 <text x="38.608" y="16.256" size="1.016" layer="26" rot="MR0">GND</text>
 <text x="36.068" y="13.462" size="1.016" layer="26" rot="MR180">12V</text>
-<text x="37.338" y="4.318" size="1.016" layer="26" rot="MR90">L-O</text>
-<text x="38.354" y="7.366" size="1.016" layer="26" rot="MR0">L-C</text>
-<text x="38.608" y="9.906" size="1.016" layer="26" rot="MR0">VCC</text>
-<text x="38.354" y="2.286" size="1.016" layer="26" rot="MR0">VCC</text>
+<text x="38.354" y="6.604" size="1.016" layer="26" rot="MR270">OFF</text>
+<text x="38.354" y="7.366" size="1.016" layer="26" rot="MR0">ON</text>
+<text x="38.354" y="9.906" size="1.016" layer="26" rot="MR0">VCC</text>
+<text x="38.354" y="2.032" size="1.016" layer="26" rot="MR0">VCC</text>
 <text x="7.62" y="1.524" size="1.6764" layer="21">VALVE CONTROL BOARD</text>
 <text x="13.716" y="4.064" size="1.016" layer="26" rot="MR180">Revision Date 2016.11.08</text>
 </plain>
