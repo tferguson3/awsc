@@ -5870,7 +5870,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <variantdefs>
 </variantdefs>
 <classes>
-<class number="0" name="default" width="0" drill="0">
+<class number="0" name="default" width="0.4064" drill="0.4064">
+<clearance class="0" value="0.4064"/>
 </class>
 </classes>
 <parts>
