@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="7.6.0">
+<eagle version="7.7.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -5879,8 +5879,8 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="H2" library="holes" deviceset="MOUNT-HOLE" device="3.0"/>
 <part name="H3" library="holes" deviceset="MOUNT-HOLE" device="3.0"/>
 <part name="H4" library="holes" deviceset="MOUNT-HOLE" device="3.0"/>
-<part name="R1" library="resistor" deviceset="R-US_" device="0207/10"/>
-<part name="R2" library="resistor" deviceset="R-US_" device="0207/10"/>
+<part name="R1" library="resistor" deviceset="R-US_" device="0207/10" value="10K"/>
+<part name="R2" library="resistor" deviceset="R-US_" device="0207/10" value="100"/>
 <part name="J1" library="SparkFun-Connectors" deviceset="M02" device="5MM"/>
 <part name="J2" library="SparkFun-Connectors" deviceset="M02" device="5MM"/>
 <part name="J3" library="SparkFun-Connectors" deviceset="M02" device="5MM"/>
