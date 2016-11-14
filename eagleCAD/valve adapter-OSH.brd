@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="7.6.0">
+<eagle version="7.7.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -146,10 +146,10 @@
 <wire x1="1.016" y1="17.516" x2="1.016" y2="0.762" width="0" layer="20"/>
 <text x="4.064" y="7.112" size="1.016" layer="25">BLU</text>
 <text x="9.144" y="7.112" size="1.016" layer="25">BRN</text>
-<text x="15.24" y="7.112" size="1.016" layer="25">GRN</text>
-<text x="20.574" y="7.112" size="1.016" layer="25">GRY</text>
-<text x="26.924" y="7.366" size="1.016" layer="25">PNK</text>
-<text x="31.75" y="7.366" size="1.016" layer="25">WHT</text>
+<text x="15.24" y="7.112" size="1.016" layer="25">GRY</text>
+<text x="20.574" y="7.112" size="1.016" layer="25">GRN</text>
+<text x="26.67" y="7.112" size="1.016" layer="25">WHT</text>
+<text x="32.258" y="7.112" size="1.016" layer="25">PNK</text>
 <text x="12.446" y="1.524" size="1.6764" layer="21">VALVE ADAPTER</text>
 <text x="29.718" y="5.08" size="1.016" layer="25" rot="R180">Revision Date 2016.11.08</text>
 </plain>
