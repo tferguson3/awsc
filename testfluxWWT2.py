@@ -147,7 +147,7 @@ daynfflow=1
 #print(y)
 for j in range(0,k):
     #print(y1[j+err1],y[j+err])
-    if y1[j+err1]==0 and y[j+err]==0 and ROcount>10 and NFcount>10:
+    if y1[j+err1]==0 and y[j+err]==0:# and ROcount>10 and NFcount>10:
         break#print("end")
     elif y1[j+err1] != y[j+err]:
         if y1[j+err1]==y[j+err+1]:
