@@ -23,7 +23,7 @@ filename2 = "/home/addotson/data_AWSC/raw/{0}_{1}_{2}_WWT-{3}".format(year, mont
 #filename1 = "/users/EnvEngineering/flux/{0}_{1}_{2}_conex-{3}".format(year, m$
 #filename2 = "/users/EnvEngineering/flux/{0}_{1}_{2}_conex-{3}".format(year, m$
 i=1
-csv_reader1 = csv.reader(open(filename1+".txt"),delimeter="\t")
+csv_reader1 = csv.reader(open(filename1+".txt"),delimiter="\t")
 next(csv_reader1) #ignore headers
 for line in csv_reader1:
     i=i+1
@@ -44,7 +44,7 @@ pf1=0
 pf2=0
 pf3=0
 j=0
-csv_reader1 = csv.reader(open(filename1+".txt"),delimeter="\t")
+csv_reader1 = csv.reader(open(filename1+".txt"),delimiter="\t")
 next(csv_reader1)
 for line in csv_reader1:
     #print(j)
@@ -53,14 +53,14 @@ for line in csv_reader1:
     NFpf[j]=(float(line[1]))
     ROpf[j]=(float(line[3]))
     Cpf[j]=(float(line[0]))
-    y[j]=(line[5])
+    y[j]=(long(line[5]))
     j=j+1
 ############## pressure reading
 #csv_reader1 = csv.reader(open(filename2+".csv"))
 ############## pressure reading
 #csv_reader1 = csv.reader(open(filename2+".csv"))
 i1=1
-csv_reader1 = csv.reader(open(filename2+".txt"),delimeter="\t")
+csv_reader1 = csv.reader(open(filename2+".txt"),delimiter="\t")
 next(csv_reader1) #ignore headers
 for line in csv_reader1:
     i1=i1+1
@@ -72,7 +72,7 @@ fltr1=[0 for j in range(i1)]
 fltr2=[0 for j in range(i1)]
 y1=[0 for j in range(i1)]
 j=0
-csv_reader1 = csv.reader(open(filename2+".txt"),delimeter="\t")
+csv_reader1 = csv.reader(open(filename2+".txt"),delimiter="\t")
 next(csv_reader1)
 for line in csv_reader1:
     #print(j)
@@ -81,7 +81,7 @@ for line in csv_reader1:
     ROrp[j]=(float(line[4]))
     fltr1[j]=(float(line[1]))
     fltr2[j]=(float(line[2]))
-    y1[j]=(line[5])
+    y1[j]=(long(line[5]))
     j=j+1
 j=0
 if y1[j]==y[j]:#make sure timestamps are equal
