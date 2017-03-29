@@ -17,8 +17,8 @@ power2 = "Pressure"
 
 ## /home/addotson/data_AWSC/raw/
 
-filename1 = "/home/addotson/data_AWSC/raw/{0}_{1}_{2}_WWT-{3}".format(year, $
-filename2 = "/home/addotson/data_AWSC/raw/{0}_{1}_{2}_WWT-{3}".format(year, $
+filename1 = "/home/addotson/data_AWSC/raw/{0}_{1}_{2}_WWT-{3}".format(year, month, day)
+filename2 = "/home/addotson/data_AWSC/raw/{0}_{1}_{2}_WWT-{3}".format(year, month, day)
 
 #filename1 = "/users/EnvEngineering/flux/{0}_{1}_{2}_conex-{3}".format(year, m$
 #filename2 = "/users/EnvEngineering/flux/{0}_{1}_{2}_conex-{3}".format(year, m$
@@ -214,5 +214,5 @@ pf3=sum(pfp2)/pfpcount
 ##writing to file next
 filename="flowpress_analysis.csv"
 file=open(filename,"a")
-file.write("%i_%i_%i,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\n" % (year,month,day,filter$
+file.write("%i_%i_%i,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f\n" % (year,month,day,filtervol,daynfflow,daynfpress,daynfflux,dayroflow,dayropress,dayroflux,pf1,pf2,pf3))
 file.close()
