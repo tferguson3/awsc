@@ -17,8 +17,8 @@ power2 = "Pressure"
 
 ## /home/addotson/data_AWSC/raw/
 
-filename1 = "/home/addotson/data_AWSC/raw/{0}_{1}_{2}_WWT-{3}".format(year, month, day)
-filename2 = "/home/addotson/data_AWSC/raw/{0}_{1}_{2}_WWT-{3}".format(year, month, day)
+filename1 = "/home/addotson/data_AWSC/raw/{0}_{1}_{2}_WWT-{3}".format(year, month, day, power1)
+filename2 = "/home/addotson/data_AWSC/raw/{0}_{1}_{2}_WWT-{3}".format(year, month, day, power2)
 
 #filename1 = "/users/EnvEngineering/flux/{0}_{1}_{2}_conex-{3}".format(year, m$
 #filename2 = "/users/EnvEngineering/flux/{0}_{1}_{2}_conex-{3}".format(year, m$
