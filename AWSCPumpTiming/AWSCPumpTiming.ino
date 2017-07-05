@@ -8,9 +8,9 @@ int pumpstatus=0;
 const int Pump = 8;
 const int Air = 7;
 //Edit these times below to change factors
-unsigned long PumpInterval= 60000 *360;//How often in min
+unsigned long PumpInterval= 60000 *240;//How often in min
 unsigned long AirInterval= 60000 *15;//How often in min
-unsigned long PumpRunTime = 60000 *.5;//How Long in min
+unsigned long PumpRunTime = 60000 *.3;//How Long in min
 unsigned long AirRunTime = 60000 *1;//How Long in min
 
 void setup() {
