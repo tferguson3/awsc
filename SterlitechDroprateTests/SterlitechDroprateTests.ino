@@ -66,7 +66,11 @@ void setup()
    pressures();   
    pressures();   
    pressures();
-
+  Serial.print("Time");Serial.print("\t");
+  Serial.print("PSI");Serial.print("\t");
+  Serial.print("Drops");Serial.print("\t");
+  Serial.print("Vol L");Serial.print("\t");
+  Serial.println("flowrate mL/min");
 }  
 
  void loop()
