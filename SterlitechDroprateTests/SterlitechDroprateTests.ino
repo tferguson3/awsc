@@ -1,19 +1,10 @@
 /* Pins in Use:
      IR Sensor:       2
-     Motor Driver:    8, 9, 10, 11
-     LCD:             12, 13, 6, 5, 4, 3 
-     Button:          7 
+     PRessure sensor on A0
 */
 
-//#include <LiquidCrystal.h>
-//#include <Stepper.h> 
 
-//const int stepsPerRevolution = 200;
-//Stepper myStepper(stepsPerRevolution, 8,9,10,11); 
-
-//int switchPin = 7;
 int val;                        // variable for reading the serial input
-//int buttonState;                // variable to hold the button state
 
 #define BOUNCE_DURATION 200   // define an appropriate bounce time in ms for your switches
 
@@ -40,9 +31,6 @@ volatile long strokerate;
  const int feedppin=A0;
  int sfeedp = 0;
  int feedp = 0;
-//LiquidCrystal lcd(12, 13, 6, 5, 4, 3);  // initialize the library with the numbers of the interface pins
-
-
 
 
 void setup() 
@@ -50,7 +38,6 @@ void setup()
    Serial.begin(9600);
    attachInterrupt(0, dropcount_fun, RISING);  //pin 2 tr reciever
    pinMode(feedppin,INPUT);//pin A0
-   //pinMode(switchPin, INPUT);    // sets the digital pin 7 as input to read buttonswitch
    drop_num = 5;
    dropcount = 0;
    dropcount2 = 0;
@@ -73,39 +60,20 @@ void setup()
    //make sure this is correct!
 
    flowrate = 0;
-   //steppermax = 120;
-   //steppermin = 0;
-   
-  /*/ set up the LCD's number of columns and rows: 
-  lcd.begin(20, 4);
-  // Print a message to the LCD.
-  lcd.setCursor(0, 0);
-  lcd.print("Flow:");
-  lcd.setCursor(0, 1);
-  lcd.print("Volume:");
-  lcd.setCursor(0, 2);
-  lcd.print("Auto:");
-  lcd.setCursor(0, 3);
-  lcd.print("Manual:");    */ 
+   pressures();   
+   pressures();   
+   pressures();   
+   pressures();   
+   pressures();   
+   pressures();
+
 }  
 
  void loop()
- { /*
-      do
-      {
-      //lcd.setCursor(17, 0);
-      //lcd.print(dropcount);
-      } while (dropcount <= drop_num);*/
-     
+ {      
    if (dropcount >= drop_num) { 
      //Update every 30 counts, increase this for better DPM resolution,
      //decrease for faster update
-     //lcd.setCursor(17, 0);
-     //lcd.print("   ");   
-     //lcd.setCursor(17, 1);
-     //lcd.print("   ");
-     //lcd.setCursor(17, 1);
-     //lcd.print(strokerate);   
      time_int = ((millis() - timeold));
      timeold = millis();
      totaldrops = totaldropsold + dropcount;
@@ -117,18 +85,21 @@ void setup()
      dropcount = 0;
      lowflowtime = time_set - (time_set / 10);
      highflowtime = time_set + (time_set / 10);
-     //lcd.setCursor(7, 0);
-     //lcd.print(flowrate);
      pressures();
      pressures();
      pressures();
      pressures();
      pressures();
-     Serial.print("Time: ");Serial.print(timeold);
-     Serial.print(" Pressure: ");Serial.print(sfeedp);
-     Serial.print(" Drops: "); Serial.print(totaldrops);
-     Serial.print(" Volume (L): ");Serial.print(totalvol);
-     Serial.print(" FlowRate (mL/min): ");Serial.println(flowrate);}
+     //Serial.print("Time: ");
+     Serial.print(timeold);Serial.print("\t");
+     //Serial.print(" Pressure: ");
+     Serial.print(sfeedp);Serial.print("\t");
+     //Serial.print(" Drops: "); 
+     Serial.print(totaldrops);Serial.print("\t");
+     //Serial.print(" Volume (L): ");
+     Serial.print(totalvol);Serial.print("\t");
+     //Serial.print(" FlowRate (mL/min): ");
+     Serial.println(flowrate);}
       delay(1);
       if (Serial.available()){//type 0 for reset
         val = Serial.read();
@@ -139,51 +110,8 @@ void setup()
             Serial.println("RESET");   
         }
      val=1;                 // save the new state in our variable
-  
-     //lcd.setCursor(7, 1);
-     //lcd.print(totalvol);
-        
-   } 
-    
-    /*if (dropcount2 = 30 && strokerate <= steppermax && strokerate >= steppermin && flowrate <= flowratehigh && flowrate >= flowratelow) {
-      lcd.setCursor(7, 2);
-      lcd.print("No Change   ");   
-      lcd.setCursor(7, 3);
-      lcd.print("None    ");
-      dropcount2 = 0;
-    } else if (dropcount2 = 30 && flowrate < flowratelow && strokerate <= steppermax && strokerate >= steppermin) {
-      lcd.setCursor(7, 2);
-      lcd.print("Rate Inc + ");
-      lcd.setCursor(7, 3);
-      lcd.print("None    ");  
-      myStepper.step(1);
-      strokerate++;
-      strokerate++;
-      dropcount2 = 0; 
-    } else if (dropcount2 = 30 && flowrate > flowratehigh && strokerate <= steppermax && strokerate >= steppermin) { 
-      lcd.setCursor(7, 2);
-      lcd.print("Rate Dec - ");
-      lcd.setCursor(7, 3);
-      lcd.print("None    ");
-      myStepper.step(-1);
-      strokerate--;
-      strokerate--;
-      dropcount2 = 0; 
-   } else if (strokerate = steppermax) {
-     lcd.setCursor(7, 2);
-     lcd.print("MAN REQ!  ");
-     lcd.setCursor(7, 3);
-     lcd.print("Stroke -");
-     dropcount2 = 0; 
-   } else if (strokerate = steppermin) {
-     lcd.setCursor(7, 2);
-     lcd.print("MAN REQ!  ");
-     lcd.setCursor(7, 3);
-     lcd.print("Stroke +");
-     dropcount2 = 0; 
-  }*/
-  
- 
+         
+   }  
  void dropcount_fun(){  
 // this is the interrupt handler for button presses
 // it ignores presses that occur in intervals less then the bounce time
