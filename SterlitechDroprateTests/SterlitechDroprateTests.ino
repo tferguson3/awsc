@@ -38,8 +38,8 @@ void setup()
    Serial.begin(9600);
    attachInterrupt(0, dropcount_fun, RISING);  //pin 2 tr reciever
    pinMode(feedppin,INPUT);//pin A0
-   drop_num = 5;
-   dropcount = 0;
+   drop_num = 2;
+   dropcount = 3;
    dropcount2 = 0;
    strokerate = 118;
    lowflowtime = 0;
@@ -56,7 +56,7 @@ void setup()
    totalvol = 0;
    
    //make sure this is correct!
-   dropsize = 0.023;//how to find this
+   dropsize = 0.017;//how to find this
    //make sure this is correct!
 
    flowrate = 0;
@@ -69,7 +69,7 @@ void setup()
   Serial.print("Time");Serial.print("\t");
   Serial.print("PSI");Serial.print("\t");
   Serial.print("Drops");Serial.print("\t");
-  Serial.print("Vol L");Serial.print("\t");
+  Serial.print("Vol mL");Serial.print("\t");
   Serial.println("flowrate mL/min");
 }  
 
@@ -82,7 +82,7 @@ void setup()
      timeold = millis();
      totaldrops = totaldropsold + dropcount;
      totaldropsold = totaldrops;
-     totalvol = totaldrops * dropsize; //reports in L
+     totalvol = totaldrops * dropsize; //reports in mL
      flowrate = dropcount * dropsize / time_int * 1000 * 60; //report in mL per min
      flowratehigh = flowtarget * 1.03;
      flowratelow = flowtarget * 0.97;
@@ -100,7 +100,7 @@ void setup()
      Serial.print(sfeedp);Serial.print("\t");
      //Serial.print(" Drops: "); 
      Serial.print(totaldrops);Serial.print("\t");
-     //Serial.print(" Volume (L): ");
+     //Serial.print(" Volume (mL): ");
      Serial.print(totalvol);Serial.print("\t");
      //Serial.print(" FlowRate (mL/min): ");
      Serial.println(flowrate);}
@@ -128,6 +128,6 @@ void setup()
 }
 void pressures(){//read and average pressure values
   int junk = analogRead(feedppin);
-  feedp = analogRead(feedppin)*.21-16.5;
+  feedp = analogRead(feedppin)*.7-54;
   sfeedp = (sfeedp+feedp)/2;
 }
