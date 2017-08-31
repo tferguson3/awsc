@@ -56,7 +56,7 @@ void setup()
    totalvol = 0;
    
    //make sure this is correct!
-   dropsize = 0.017;//how to find this
+   dropsize = 0.047;//how to find this
    //make sure this is correct!
 
    flowrate = 0;
@@ -128,6 +128,6 @@ void setup()
 }
 void pressures(){//read and average pressure values
   int junk = analogRead(feedppin);
-  feedp = analogRead(feedppin)*.7-54;
+  feedp = (analogRead(feedppin)*.7018-54.74)*.868;
   sfeedp = (sfeedp+feedp)/2;
 }
