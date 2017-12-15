@@ -14,25 +14,24 @@ Adafruit_RGBLCDShield lcd = Adafruit_RGBLCDShield();
 int en1 = 2; //1 is fill
 int step1 = 3;
 int dir1 = 4;
-int en2 = 5;//2 is decant
-int step2 = 6;
-int dir2 = 7;
+int decantpump = 5;
+int fillpump = 6;
+int skimmer =7;
 int air = 9;
 int stir = 8;
 int depth = A0;
 float tank;
 void setup() {
   pinMode(en1, OUTPUT);
-  pinMode(en2, OUTPUT);
+  pinMode(decantpump, OUTPUT);
   pinMode(step1, OUTPUT);
-  pinMode(step2, OUTPUT);
+  pinMode(fillpump, OUTPUT);
   pinMode(dir1, OUTPUT);
-  pinMode(dir2, OUTPUT);
+  pinMode(skimmer, OUTPUT);
   pinMode(air, OUTPUT);
   pinMode(stir, OUTPUT);
   pinMode(depth, INPUT);
   digitalWrite(en1, HIGH);
-  digitalWrite(en2, HIGH);
   lcd.begin(16, 2);
    if (! rtc.begin()) {
     lcd.print("Couldn't find RTC");
@@ -61,7 +60,7 @@ void loop() {
   lcd.print(now.unixtime());
   lcd.setCursor(0, 1);
   lcd.print(millis()/1000);
-delay(1000);
+delay(100);
   uint8_t buttons = lcd.readButtons();
 
   if (buttons) {
@@ -109,7 +108,10 @@ void fill(){//check depth and fill until level is 25gal plus stir
   measurevol();
   lcd.setCursor(0,1);
   lcd.print(tank);
-  stepper(400, 1, 2);
+  int starttime = millis();
+   while ((millis()-starttime)<10000){
+    digitalWrite(fillpump, HIGH);}
+    digitalWrite(fillpump, LOW);
 }
 void aeration(){//check depth and keep air on and pumps off for time period
   lcd.clear();
@@ -133,6 +135,19 @@ void settle(){//everything off just timer
   lcd.setCursor(0,1);
   lcd.print(tank);
 }
+void skim(){//skim during settle
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("Skim ");
+  lcd.setBacklight(YELLOW);
+  measurevol();
+  lcd.setCursor(0,1);
+  lcd.print(tank);
+  int starttime = millis();
+  while ((millis()-starttime)<10000){
+    digitalWrite(skimmer, HIGH);}
+    digitalWrite(skimmer, LOW);
+}
 void decant(){ // empty through decant pump checking volume
   lcd.clear();
   lcd.setCursor(0,0);
@@ -141,7 +156,10 @@ void decant(){ // empty through decant pump checking volume
   measurevol();
   lcd.setCursor(0,1);
   lcd.print(tank);
-  stepper(20000, 2, 1);
+  int starttime = millis();
+ while ((millis()-starttime)<10000){
+    digitalWrite(decantpump, HIGH);}
+    digitalWrite(decantpump, LOW);
 }
 void rest(){ //everything off except maybe stir
   lcd.clear();
@@ -151,6 +169,10 @@ void rest(){ //everything off except maybe stir
   measurevol();
   lcd.setCursor(0,1);
   lcd.print(tank);
+  int starttime = millis();
+   while ((millis()-starttime)<10000){
+    digitalWrite(stir, HIGH);}
+    digitalWrite(stir, LOW);
 }
 void stepper(int num, int motor, int direct){
   if (motor == 1){
@@ -167,30 +189,17 @@ void stepper(int num, int motor, int direct){
   }
   digitalWrite(en1, HIGH);
 }
-else if (motor ==2){
-    digitalWrite(en2, LOW); 
-    if (direct == 1){
-      digitalWrite(dir2, HIGH);}//empty
-      else if (direct ==2){
-        digitalWrite(dir2, LOW);}// fill
-    for (int i=0; i<=num; i++){
-      digitalWrite(step2, HIGH);
-      delay(2);
-      digitalWrite(step2, LOW);
-      delay(2);
-  }
-  digitalWrite(en2, HIGH);
 }
-}
+
 void measurevol(){
   int junk = analogRead(depth);
   float tank1 = analogRead(depth)*0.438596-30.7018;
   float tank2 = analogRead(depth)*0.438596-30.7018;
   float tank3 = analogRead(depth)*0.438596-30.7018;
   float tank4 = analogRead(depth)*0.438596-30.7018;
-  float tank5 =analogRead(depth)*0.438596-30.7018;
+  float tank5 = analogRead(depth)*0.438596-30.7018;
   float tank6 = analogRead(depth)*0.438596-30.7018;
-  float tank7 =analogRead(depth)*0.438596-30.7018;
+  float tank7 = analogRead(depth)*0.438596-30.7018;
   float tank8 = analogRead(depth)*0.438596-30.7018;
   tank = (tank1 + tank2 + tank3 + tank4 + tank5 + tank6 + tank7 + tank8)/8;
 }
