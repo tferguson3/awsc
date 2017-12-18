@@ -4,7 +4,7 @@ float pressure = 0;
 float pressure1 = 0;
 
 //A variable to track pressure.
-int interval = 5000;
+int interval = 15000;
 float P = 0;
 long sec_old = 0; 
 long sec = 0;
@@ -30,6 +30,7 @@ void loop() {
   sec = interval/1000 + sec_old;
   Serial.print(sec); 
   Serial.print("\t");
+  pressure= (analogRead(analogPin)*.7018-48.42)*.868;
   pressures();
   pressures();
   pressures();
