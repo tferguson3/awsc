@@ -88,17 +88,20 @@ delay(100);
     }
   }
   //write conditions for running sequence here and add functions
-  /*fill();
+  fill();
   delay(5000);
   aeration();
+  delay(5000);
+  settle();
+  delay(5000);
+  skim();
   delay(5000);
   settle();
   delay(5000);
   decant();
   delay(5000);
   rest();
-  delay(5000);*/
-  decant();
+  delay(5000);
 }
 void fill(){//check depth and fill until level is 25gal plus stir
   lcd.clear();
@@ -109,8 +112,10 @@ void fill(){//check depth and fill until level is 25gal plus stir
   lcd.setCursor(0,1);
   lcd.print(tank);
   int starttime = millis();
-   while ((millis()-starttime)<10000){
-    digitalWrite(fillpump, HIGH);}
+   while (tank<15){
+    digitalWrite(fillpump, HIGH);
+    measurevol();
+    delay(20000);}
     digitalWrite(fillpump, LOW);
 }
 void aeration(){//check depth and keep air on and pumps off for time period
@@ -122,8 +127,10 @@ void aeration(){//check depth and keep air on and pumps off for time period
   lcd.setCursor(0,1);
   lcd.print(tank);
   int starttime = millis();
-  while ((millis()-starttime)<10000){
-    digitalWrite(air, HIGH);}
+  while (((millis()-starttime)<120000)&&(tank>23)){  //2 min
+    digitalWrite(air, HIGH);
+    measurevol();
+    delay(20000);}
     digitalWrite(air, LOW);
 }
 void settle(){//everything off just timer
@@ -134,6 +141,8 @@ void settle(){//everything off just timer
   measurevol();
   lcd.setCursor(0,1);
   lcd.print(tank);
+  int starttime = millis();
+  while (((millis()-starttime)<120000)&&(tank>23)){ } //2 min
 }
 void skim(){//skim during settle
   lcd.clear();
@@ -144,7 +153,7 @@ void skim(){//skim during settle
   lcd.setCursor(0,1);
   lcd.print(tank);
   int starttime = millis();
-  while ((millis()-starttime)<10000){
+  while ((millis()-starttime)<60000){//1min
     digitalWrite(skimmer, HIGH);}
     digitalWrite(skimmer, LOW);
 }
@@ -157,8 +166,9 @@ void decant(){ // empty through decant pump checking volume
   lcd.setCursor(0,1);
   lcd.print(tank);
   int starttime = millis();
- while ((millis()-starttime)<10000){
-    digitalWrite(decantpump, HIGH);}
+ while (tank>7){
+    digitalWrite(decantpump, HIGH);
+    measurevol();}
     digitalWrite(decantpump, LOW);
 }
 void rest(){ //everything off except maybe stir
