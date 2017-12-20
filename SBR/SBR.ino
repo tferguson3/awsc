@@ -20,6 +20,7 @@ int skimmer =7;
 int air = 9;
 int stir = 8;
 int depth = A0;
+int x=0;
 float tank;
 void setup() {
   pinMode(en1, OUTPUT);
@@ -51,6 +52,15 @@ void setup() {
   lcd.print("start!");
   lcd.setBacklight(WHITE);
   delay(5000);
+  lcd.clear();
+  lcd.setCursor(0,1);
+  measurevol();
+  lcd.print(tank);
+  measurevol();
+  lcd.print(tank);
+  measurevol();
+  lcd.print(tank);
+  measurevol();
 }
 uint8_t i=0;
 void loop() {
@@ -87,23 +97,38 @@ delay(100);
       lcd.setBacklight(VIOLET);
     }
   }
+  lcd.clear();
+  lcd.setCursor(0,1);
+  measurevol();
+  lcd.print(tank);
+  measurevol();
+  lcd.print(tank);
+  measurevol();
+  lcd.print(tank);
+  measurevol();
+  lcd.print(tank);
   //write conditions for running sequence here and add functions
-  fill();
+  while (x<1){
+    sequence();
+    x++;}
+  }
+void sequence(){
+  fill(26);
   delay(5000);
-  aeration();
+  aeration(1,10);
   delay(5000);
-  settle();
+  settle(1, 10);
   delay(5000);
-  skim();
+  skim(1);
   delay(5000);
-  settle();
+  settle(1,10);
   delay(5000);
-  decant();
+  decant(4);
   delay(5000);
-  rest();
+  rest(5);
   delay(5000);
 }
-void fill(){//check depth and fill until level is 25gal plus stir
+void fill(int lvl){//check depth and fill until level is 25gal plus stir
   lcd.clear();
   lcd.setCursor(0,0);
   lcd.print("FILL ");
@@ -111,14 +136,17 @@ void fill(){//check depth and fill until level is 25gal plus stir
   measurevol();
   lcd.setCursor(0,1);
   lcd.print(tank);
-  int starttime = millis();
-   while (tank<15){
+  float starttime = millis();
+   while (tank<lvl){
     digitalWrite(fillpump, HIGH);
     measurevol();
-    delay(20000);}
+    lcd.setCursor(0,1);
+    lcd.print(tank);
+    delay(15000);}
     digitalWrite(fillpump, LOW);
 }
-void aeration(){//check depth and keep air on and pumps off for time period
+void aeration(float airduration, int lvl){//duration in min check depth and keep air on and pumps off for time period
+  airduration=airduration*60*1000;
   lcd.clear();
   lcd.setCursor(0,0);
   lcd.print("Aeration ");
@@ -126,14 +154,18 @@ void aeration(){//check depth and keep air on and pumps off for time period
   measurevol();
   lcd.setCursor(0,1);
   lcd.print(tank);
-  int starttime = millis();
-  while (((millis()-starttime)<120000)&&(tank>23)){  //2 min
+  float starttime = millis();
+  delay(100);
+  while (((millis()-starttime)<airduration)&&(tank>lvl)){  //2 min
     digitalWrite(air, HIGH);
     measurevol();
+    lcd.setCursor(0,1);
+    lcd.print(tank);
     delay(20000);}
     digitalWrite(air, LOW);
 }
-void settle(){//everything off just timer
+void settle(float duration, int lvl){//everything off just timer
+  duration=duration*60*1000;
   lcd.clear();
   lcd.setCursor(0,0);
   lcd.print("Settle ");
@@ -141,10 +173,16 @@ void settle(){//everything off just timer
   measurevol();
   lcd.setCursor(0,1);
   lcd.print(tank);
-  int starttime = millis();
-  while (((millis()-starttime)<120000)&&(tank>23)){ } //2 min
+  float starttime = millis();
+  delay(100);
+  while (((millis()-starttime)<duration)&&(tank>lvl)){
+    delay(10000);
+    measurevol();
+  lcd.setCursor(0,1);
+  lcd.print(tank);} //2 min
 }
-void skim(){//skim during settle
+void skim(float duration){//skim during settle
+  duration=duration*60*1000;
   lcd.clear();
   lcd.setCursor(0,0);
   lcd.print("Skim ");
@@ -152,12 +190,16 @@ void skim(){//skim during settle
   measurevol();
   lcd.setCursor(0,1);
   lcd.print(tank);
-  int starttime = millis();
-  while ((millis()-starttime)<60000){//1min
-    digitalWrite(skimmer, HIGH);}
+  float starttime = millis();
+  delay(100);
+  while ((millis()-starttime)<duration){//1min
+    digitalWrite(skimmer, HIGH);
+    lcd.setCursor(0,1);
+  lcd.print(tank);
+  delay(15000);}
     digitalWrite(skimmer, LOW);
 }
-void decant(){ // empty through decant pump checking volume
+void decant(int level){ // empty through decant pump checking volume
   lcd.clear();
   lcd.setCursor(0,0);
   lcd.print("Decant ");
@@ -165,13 +207,16 @@ void decant(){ // empty through decant pump checking volume
   measurevol();
   lcd.setCursor(0,1);
   lcd.print(tank);
-  int starttime = millis();
- while (tank>7){
+  float starttime = millis();
+ while (tank>level){
     digitalWrite(decantpump, HIGH);
-    measurevol();}
+    measurevol();
+    lcd.setCursor(0,1);
+  lcd.print(tank);}
     digitalWrite(decantpump, LOW);
 }
-void rest(){ //everything off except maybe stir
+void rest(float longt){ //everything off except maybe stir
+  longt=longt*60*1000;
   lcd.clear();
   lcd.setCursor(0,0);
   lcd.print("REST ");
@@ -179,8 +224,9 @@ void rest(){ //everything off except maybe stir
   measurevol();
   lcd.setCursor(0,1);
   lcd.print(tank);
-  int starttime = millis();
-   while ((millis()-starttime)<10000){
+  float starttime = millis();
+  delay(100);
+   while ((millis()-starttime)<longt){
     digitalWrite(stir, HIGH);}
     digitalWrite(stir, LOW);
 }
@@ -203,13 +249,13 @@ void stepper(int num, int motor, int direct){
 
 void measurevol(){
   int junk = analogRead(depth);
-  float tank1 = analogRead(depth)*0.438596-30.7018;
-  float tank2 = analogRead(depth)*0.438596-30.7018;
-  float tank3 = analogRead(depth)*0.438596-30.7018;
-  float tank4 = analogRead(depth)*0.438596-30.7018;
-  float tank5 = analogRead(depth)*0.438596-30.7018;
-  float tank6 = analogRead(depth)*0.438596-30.7018;
-  float tank7 = analogRead(depth)*0.438596-30.7018;
-  float tank8 = analogRead(depth)*0.438596-30.7018;
+  float tank1 = analogRead(depth)*0.421569-28.4559;
+  float tank2 = analogRead(depth)*0.421569-28.4559;//*0.438596-32.7018;
+  float tank3 = analogRead(depth)*0.421569-28.4559;//*0.438596-32.7018;
+  float tank4 = analogRead(depth)*0.421569-28.4559;//*0.438596-32.7018;
+  float tank5 = analogRead(depth)*0.421569-28.4559;//*0.438596-32.7018;
+  float tank6 = analogRead(depth)*0.421569-28.4559;//*0.438596-32.7018;
+  float tank7 = analogRead(depth)*0.421569-28.4559;//*0.438596-32.7018;
+  float tank8 = analogRead(depth)*0.421569-28.4559;//*0.438596-32.7018;
   tank = (tank1 + tank2 + tank3 + tank4 + tank5 + tank6 + tank7 + tank8)/8;
 }
