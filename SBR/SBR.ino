@@ -21,7 +21,9 @@ int air = 9;
 int stir = 8;
 int depth = A0;
 int x=0;
+float starttime;
 float tank;
+float airtimer;
 void setup() {
   pinMode(en1, OUTPUT);
   pinMode(decantpump, OUTPUT);
@@ -63,6 +65,8 @@ void setup() {
   measurevol();
 }
 uint8_t i=0;
+
+
 void loop() {
   // put your main code here, to run repeatedly:
   DateTime now = rtc.now();
@@ -70,33 +74,8 @@ void loop() {
   lcd.print(now.unixtime());
   lcd.setCursor(0, 1);
   lcd.print(millis()/1000);
-delay(100);
+  delay(100);
   uint8_t buttons = lcd.readButtons();
-
-  if (buttons) {
-    lcd.clear();
-    lcd.setCursor(0,0);
-    if (buttons & BUTTON_UP) {
-      lcd.print("UP ");
-      lcd.setBacklight(RED);
-    }
-    if (buttons & BUTTON_DOWN) {
-      lcd.print("DOWN ");
-      lcd.setBacklight(YELLOW);
-    }
-    if (buttons & BUTTON_LEFT) {
-      lcd.print("LEFT ");
-      lcd.setBacklight(GREEN);
-    }
-    if (buttons & BUTTON_RIGHT) {
-      lcd.print("RIGHT ");
-      lcd.setBacklight(TEAL);
-    }
-    if (buttons & BUTTON_SELECT) {
-      lcd.print("SELECT ");
-      lcd.setBacklight(VIOLET);
-    }
-  }
   lcd.clear();
   lcd.setCursor(0,1);
   measurevol();
@@ -109,42 +88,92 @@ delay(100);
   lcd.print(tank);
   //write conditions for running sequence here and add functions
   while (x<1){
-    sequence();
+    normalsequence();
     x++;}
   }
-void sequence(){
-  fill(26);
+void weekend(){
+  aeration(15, 4);
+  rest(45);
+}
+void normalsequence(){
+  DateTime now = rtc.now();
+  starttime = now.unixtime();
+  //fill(10);
+  now = rtc.now();
+  starttime = now.unixtime();
+  //fill(13);
+  now = rtc.now();
+  starttime = now.unixtime();
+  fill(16);
+  now = rtc.now();
+  starttime = now.unixtime();
+  fill(19);
+  now = rtc.now();
+  starttime = now.unixtime();
+  fill(22);
+  now = rtc.now();
+  starttime = now.unixtime();
+  fill(25);
+  now = rtc.now();
   delay(5000);
-  aeration(1,10);
+  aeration(240, 24);
   delay(5000);
-  settle(1, 10);
+  settle(60, 24);
   delay(5000);
-  skim(1);
+  skim(60);
   delay(5000);
-  settle(1,10);
+  settle(120,24);
   delay(5000);
-  decant(4);
+  decant(6);
   delay(5000);
-  rest(5);
+  //rest(5);
   delay(5000);
 }
 void fill(int lvl){//check depth and fill until level is 25gal plus stir
+  digitalWrite(stir, HIGH);
   lcd.clear();
   lcd.setCursor(0,0);
   lcd.print("FILL ");
   lcd.setBacklight(TEAL);
   measurevol();
   lcd.setCursor(0,1);
-  lcd.print(tank);
-  float starttime = millis();
-   while (tank<lvl){
-    digitalWrite(fillpump, HIGH);
-    measurevol();
-    lcd.setCursor(0,1);
-    lcd.print(tank);
-    delay(15000);}
+  lcd.print(tank);lcd.print("gal");
+  DateTime now = rtc.now();
+   while (now.unixtime()-starttime <3600000){
+    
+    DateTime now = rtc.now();
+    while (tank<lvl){
+      digitalWrite(fillpump, HIGH);
+      measurevol();
+      lcd.setCursor(0,1);
+      lcd.print(tank);lcd.print("gal");
+      delay(15000);
+    }
     digitalWrite(fillpump, LOW);
-}
+    periodicaeration(15,60, now.unixtime());
+    delay(15000);
+}}
+
+void periodicaeration(float ontime, float onfreq, float tt){//on for 15 min freq is 60 min
+  ontime=ontime*60*1000;
+  onfreq=onfreq*60*1000;
+  if (onfreq-ontime>tt-starttime){
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("Periodic Aeration ");
+  DateTime now = rtc.now();
+  float current = now.unixtime();
+  while (current-tt < ontime){
+    float timedisplay= (ontime-(current-tt))*1000*60;
+    lcd.setCursor(0,1);
+  lcd.print(timedisplay);
+  delay(1000);
+  digitalWrite(air, HIGH);
+  DateTime now = rtc.now();
+  current = now.unixtime();
+  }
+digitalWrite(air, LOW);  }
+  }
 void aeration(float airduration, int lvl){//duration in min check depth and keep air on and pumps off for time period
   airduration=airduration*60*1000;
   lcd.clear();
@@ -212,7 +241,8 @@ void decant(int level){ // empty through decant pump checking volume
     digitalWrite(decantpump, HIGH);
     measurevol();
     lcd.setCursor(0,1);
-  lcd.print(tank);}
+  lcd.print(tank);
+  delay(7000);}
     digitalWrite(decantpump, LOW);
 }
 void rest(float longt){ //everything off except maybe stir
