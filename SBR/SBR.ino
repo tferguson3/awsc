@@ -22,6 +22,7 @@ int stir = 8;
 int depth = A0;
 int x=0;
 float starttime;
+float realstarttime;
 float begintime;
 float tank;
 float airtimer;
@@ -85,9 +86,7 @@ void loop() {
   DateTime now = rtc.now();
   float current = now.unixtime();
   lcd.setCursor(0, 0);
-  lcd.print(now.unixtime());
-  lcd.setCursor(0, 1);
-  lcd.print(millis()/1000);
+  lcd.print("loop        ");
   delay(100);
   uint8_t buttons = lcd.readButtons();
   lcd.clear();
@@ -102,8 +101,8 @@ void loop() {
   lcd.print(tank);
   //write conditions for running sequence here and add functions
   while (x<1){
-   loading();
-    x++;}
+   normalsequence();//decant(4);//loading();
+    x++;}delay(20000);
   }
 
 void fill(int lvl){//check depth and fill until level is 25gal plus stir
@@ -217,7 +216,7 @@ void decant(int level){ // empty through decant pump checking volume
     measurevol();
     lcd.setCursor(0,1);
   lcd.print(tank);
-  delay(7000);}
+  delay(10000);}
     digitalWrite(decantpump, LOW);
 }
 void rest(float longt){ //everything off except maybe stir
@@ -255,56 +254,61 @@ void weekend(){
   aeration(15, 4);
   rest(45);
 }
-void normalsequence(){
+void normalsequence(){//24 hrs
   DateTime now = rtc.now();
-  starttime = now.unixtime();
-  //fill(10);
+  realstarttime = now.unixtime();
+  loading(7);//12 times for 12 hours
+  loading(9);
+  loading(11);
+  loading(13);
+  loading(15);
+  loading(16);
+  loading(17);
+  loading(18);
+  loading(20);
+  loading(21);
+  loading(23);
+  loading(25);
   now = rtc.now();
-  starttime = now.unixtime();
-  //fill(13);
-  now = rtc.now();
-  starttime = now.unixtime();
-  fill(16);
-  now = rtc.now();
-  starttime = now.unixtime();
-  fill(19);
-  now = rtc.now();
-  starttime = now.unixtime();
-  fill(22);
-  now = rtc.now();
-  starttime = now.unixtime();
-  fill(25);
-  now = rtc.now();
-  delay(5000);
+  delay(2000);
   aeration(240, 24);
-  delay(5000);
+  delay(2000);
   settle(60, 24);
-  delay(5000);
+  delay(2000);
   skim(60);
-  delay(5000);
+  delay(2000);
   settle(120,24);
-  delay(5000);
+  delay(2000);
   decant(6);
-  delay(5000);
-  //rest(5);
-  delay(5000);
+  delay(2000);
+  now= rtc.now();
+  float current = now.unixtime();
+  while (current-realstarttime<86400){
+    rest(1);
+    now= rtc.now();
+    current = now.unixtime();
+  }
+  delay(2000);
 }
-void loading(){
+void loading(int h){//takes 1 hr to fill before continuing
    DateTime now = rtc.now();
   begintime = now.unixtime();
    measurevol();
-   fill(18);
+   fill(h);
    periodicaeration(15);
    now = rtc.now();
-  float current = now.unixtime();
-  while (current-begintime<3600000){//1hr
+   float current = now.unixtime();
+    while (current-begintime<3600){//1hr chill
     now = rtc.now();
     current = now.unixtime();
     delay(15000);
     lcd.setCursor(0,0);
-  lcd.print("Loading");
-    
+    lcd.print("Loading Delay       ");
+    int timedisplay = round((3600-(current-begintime))/60);
+    measurevol();
+    lcd.setCursor(0,1);
+    lcd.print(tank);lcd.print("gal  ");
+    lcd.print(timedisplay);
+    lcd.print("min  ");
   }
-  
-  fill(19);
 }
