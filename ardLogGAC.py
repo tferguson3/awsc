@@ -4,13 +4,13 @@ import serial, io
 import time
 
 
-device   = '/dev/cu.usbmodemFA131' # serial port
+device   = '/dev/cu.usbmodem1431' # serial port
 baud     = 9600                          # baud rate
 now=time.localtime(time.time())
 currentyear=now.tm_year
 currentmonth=now.tm_mon
 currentday=now.tm_mday
-filename = '{0}_{1}_{2}bald-log.txt'.format(currentyear,currentmonth,currentday)                # log file to save data in
+filename = '{0}_{1}_{2}GAC-log.txt'.format(currentyear,currentmonth,currentday)                # log file to save data in
 
 with serial.Serial(device,baud) as serialPort, open(filename,'wb') as outFile:
 	while(1):
