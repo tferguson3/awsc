@@ -11,6 +11,7 @@ Adafruit_RGBLCDShield lcd = Adafruit_RGBLCDShield();
 #define BLUE 0x4
 #define VIOLET 0x5
 #define WHITE 0x7
+char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 int en1 = 2; //1 is fill
 int step1 = 3;
 int dir1 = 4;
@@ -84,24 +85,31 @@ void measurevol(){
 void loop() {
   // put your main code here, to run repeatedly:
   DateTime now = rtc.now();
+  //daysOfTheWeek[now.dayOfTheWeek()
   float current = now.unixtime();
-  lcd.setCursor(0, 0);
-  lcd.print("loop        ");
-  delay(100);
-  uint8_t buttons = lcd.readButtons();
   lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(daysOfTheWeek[now.dayOfTheWeek()]);//"loop        ");
+  delay(100);
   lcd.setCursor(0,1);
-  measurevol();
-  lcd.print(tank);
-  measurevol();
-  lcd.print(tank);
-  measurevol();
-  lcd.print(tank);
-  measurevol();
   lcd.print(tank);
   //write conditions for running sequence here and add functions
+  if (now.dayOfTheWeek()== 1){//"Monday"
+  normalsequence();}
+  if (now.dayOfTheWeek()== 2){//"Tuesday"
+  normalsequence();}
+  if (now.dayOfTheWeek()== 3){//"Wednesday"
+  normalsequence();}
+  if (now.dayOfTheWeek()== 4){//"thursday"
+  normalsequence();}
+  if (now.dayOfTheWeek()== 5){//"Friday"
+  normalsequence();}
+  if (now.dayOfTheWeek()== 6){//"Saturday"
+  weekend();}
+  if (now.dayOfTheWeek()== 0){//"Sunday"
+  weekend();}
   while (x<1){
-   normalsequence();//decant(4);//loading();
+   //normalsequence();//decant(4);//loading();
     x++;}delay(20000);
   }
 
@@ -161,9 +169,11 @@ void aeration(float airduration, int lvl){//duration in min check depth and keep
   delay(100);
   while (((millis()-starttime)<airduration)&&(tank>lvl)){  //2 min
     digitalWrite(air, HIGH);
+    int timedisplay = round((airduration-(millis()-starttime))/60/1000);
     measurevol();
     lcd.setCursor(0,1);
-    lcd.print(tank);
+    lcd.print(tank);lcd.print("gal  ");
+    lcd.print(timedisplay);lcd.print("min  ");
     delay(20000);}
     digitalWrite(air, LOW);
 }
@@ -175,14 +185,16 @@ void settle(float duration, int lvl){//everything off just timer
   lcd.setBacklight(YELLOW);
   measurevol();
   lcd.setCursor(0,1);
-  lcd.print(tank);
+  lcd.print(tank);lcd.print("gal  ");
   float starttime = millis();
   delay(100);
   while (((millis()-starttime)<duration)&&(tank>lvl)){
+    int timedisplay = round((duration-(millis()-starttime))/60/1000);
     delay(10000);
     measurevol();
   lcd.setCursor(0,1);
-  lcd.print(tank);} //2 min
+  lcd.print(tank);lcd.print("gal  ");
+  lcd.print(timedisplay);lcd.print("min  ");} //2 min
 }
 void skim(float duration){//skim during settle
   duration=duration*60*1000;
@@ -196,9 +208,11 @@ void skim(float duration){//skim during settle
   float starttime = millis();
   delay(100);
   while ((millis()-starttime)<duration){//1min
+    int timedisplay = round((duration-(millis()-starttime))/60/1000);
     digitalWrite(skimmer, HIGH);
     lcd.setCursor(0,1);
-  lcd.print(tank);
+  lcd.print(tank);lcd.print("gal  ");
+  lcd.print(timedisplay);lcd.print("min  ");
   delay(15000);}
     digitalWrite(skimmer, LOW);
 }
@@ -215,7 +229,7 @@ void decant(int level){ // empty through decant pump checking volume
     digitalWrite(decantpump, HIGH);
     measurevol();
     lcd.setCursor(0,1);
-  lcd.print(tank);
+  lcd.print(tank);lcd.print("gal  ");
   delay(10000);}
     digitalWrite(decantpump, LOW);
 }
@@ -227,7 +241,7 @@ void rest(float longt){ //everything off except maybe stir
   lcd.setBacklight(VIOLET);
   measurevol();
   lcd.setCursor(0,1);
-  lcd.print(tank);
+  lcd.print(tank);lcd.print("gal  ");
   float starttime = millis();
   delay(100);
    while ((millis()-starttime)<longt){
@@ -284,7 +298,7 @@ void normalsequence(){//24 hrs
   now= rtc.now();
   float current = now.unixtime();
   while (current-realstarttime<86400){
-    rest(1);
+    rest(3);
     now= rtc.now();
     current = now.unixtime();
   }
