@@ -37,7 +37,7 @@ void loop() {
   pressures();
   pressures();
   Serial.println(pressure);
-  if(pressure <= 75){
+  if(pressure <= 75 && interval < 30000){
     digitalWrite(switchPin, HIGH);
   }else{
     digitalWrite(switchPin, LOW);
