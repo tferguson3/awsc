@@ -39,7 +39,7 @@ uint8_t i=0;
 
 void loop() {
   float t=millis();
-  float number= (analogRead(PressureAnalog)*.7018-52)*.868;
+  float number= (analogRead(PressureAnalog)*.7018-48.42)*.868;//was50
   PressureReadingSUM = PressureReadingSUM + number;
   int runtime = t/1000/60;
   lcd.clear();
