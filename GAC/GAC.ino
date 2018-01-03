@@ -37,7 +37,7 @@ uint8_t i=0;
   Serial.begin(9600);
 }
 
-void loop() {
+void loop() {//add shutoff? will require wiring of switch to arduino
   float t=millis();
   float number= (analogRead(PressureAnalog)*.34405-25);
   PressureReadingSUM = PressureReadingSUM + number;
