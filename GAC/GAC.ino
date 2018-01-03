@@ -39,7 +39,7 @@ uint8_t i=0;
 
 void loop() {
   float t=millis();
-  float number= (analogRead(PressureAnalog)*.7018-48.42)*.868;//was50
+  float number= (analogRead(PressureAnalog)*.34405-25);
   PressureReadingSUM = PressureReadingSUM + number;
   int runtime = t/1000/60;
   lcd.clear();
@@ -71,7 +71,7 @@ void loop() {
     delay(10000); 
     Serial.println(P);
     //read total flow once per sampling interval
-    delay(10000); 
+    delay(1000); 
     //reset averaging tools if interval is met
     readingCount=0; 
     PressureReadingSUM = 0;
