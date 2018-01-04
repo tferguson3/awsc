@@ -109,7 +109,7 @@ void loop() {
   if (now.dayOfTheWeek()== 0){//"Sunday"
   weekend();}
   while (x<1){
-   //normalsequence();//decant(4);//loading();
+   //RASfill(7);//normalsequence();//decant(4);//loading();
     x++;}delay(20000);
   }
 
@@ -125,14 +125,36 @@ void fill(int lvl){//check depth and fill until level is 25gal plus stir
   DateTime now = rtc.now();
     while (tank<lvl){
       digitalWrite(fillpump, HIGH);
+      digitalWrite(stir, HIGH);
       measurevol();
       lcd.setCursor(0,1);
       lcd.print(tank);lcd.print("gal");
       delay(15000);
     }
     digitalWrite(fillpump, LOW);
+    digitalWrite(stir, LOW);
 }
-
+void RASfill(int lvl){//check depth and fill until level is 25gal plus stir
+  digitalWrite(stir, HIGH);
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("FILL ");
+  lcd.setBacklight(TEAL);
+  measurevol();
+  lcd.setCursor(0,1);
+  lcd.print(tank);lcd.print("gal");
+  DateTime now = rtc.now();
+    while (tank<lvl){
+      digitalWrite(fillpump, HIGH);
+      digitalWrite(air, HIGH);
+      measurevol();
+      lcd.setCursor(0,1);
+      lcd.print(tank);lcd.print("gal");
+      delay(15000);
+    }
+    digitalWrite(air, LOW);
+    digitalWrite(fillpump, LOW);
+}
 void periodicaeration(float ontime){//on for 15 min freq is 60 min
   ontime=ontime*60;
   lcd.clear();
@@ -151,10 +173,12 @@ void periodicaeration(float ontime){//on for 15 min freq is 60 min
   lcd.print("min");
   delay(1000);
   digitalWrite(air, HIGH);
+  digitalWrite(stir, HIGH);
   now = rtc.now();
   current = now.unixtime();
   }
-digitalWrite(air, LOW);  
+digitalWrite(air, LOW);
+digitalWrite(stir, LOW);  
 }
 void aeration(float airduration, int lvl){//duration in min check depth and keep air on and pumps off for time period
   airduration=airduration*60*1000;
