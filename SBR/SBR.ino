@@ -114,7 +114,9 @@ void loop() {
   }
 
 void fill(int lvl){//check depth and fill until level is 25gal plus stir
-  digitalWrite(stir, HIGH);
+  if (lvl<19){
+    digitalWrite(stir, HIGH);
+  }
   lcd.clear();
   lcd.setCursor(0,0);
   lcd.print("FILL ");
@@ -125,7 +127,6 @@ void fill(int lvl){//check depth and fill until level is 25gal plus stir
   DateTime now = rtc.now();
     while (tank<lvl){
       digitalWrite(fillpump, HIGH);
-      digitalWrite(stir, HIGH);
       measurevol();
       lcd.setCursor(0,1);
       lcd.print(tank);lcd.print("gal");
@@ -135,7 +136,7 @@ void fill(int lvl){//check depth and fill until level is 25gal plus stir
     digitalWrite(stir, LOW);
 }
 void RASfill(int lvl){//check depth and fill until level is 25gal plus stir
-  digitalWrite(stir, HIGH);
+  //digitalWrite(stir, HIGH);
   lcd.clear();
   lcd.setCursor(0,0);
   lcd.print("FILL ");
@@ -173,7 +174,8 @@ void periodicaeration(float ontime){//on for 15 min freq is 60 min
   lcd.print("min");
   delay(1000);
   digitalWrite(air, HIGH);
-  digitalWrite(stir, HIGH);
+  if (tank<20){
+  digitalWrite(stir, HIGH);}
   now = rtc.now();
   current = now.unixtime();
   }
@@ -269,7 +271,13 @@ void rest(float longt){ //everything off except maybe stir
   float starttime = millis();
   delay(100);
    while ((millis()-starttime)<longt){
-    digitalWrite(stir, HIGH);}
+    int timedisplay = round((longt-(millis()-starttime))/60/1000);
+     measurevol();
+     lcd.setCursor(0,1);
+  lcd.print(tank);lcd.print("gal  ");
+  lcd.print(timedisplay);lcd.print("min  ");
+  //digitalWrite(stir, HIGH);
+    delay(1000);}
     digitalWrite(stir, LOW);
 }
 void stepper(int num, int motor, int direct){
@@ -292,11 +300,11 @@ void weekend(){
   aeration(15, 4);
   rest(45);
 }
-void normalsequence(){//24 hrs
+void normalsequence(){//24 hrs///////////////////////////////////////////remembree to uncomment this part when starting next time!!!!!!!!!!!!!!!!!!!
   DateTime now = rtc.now();
   realstarttime = now.unixtime();
-  loading(7);//12 times for 12 hours
-  loading(9);
+  //loading(7);//12 times for 12 hours
+  //loading(9);
   loading(11);
   loading(13);
   loading(15);
@@ -337,6 +345,9 @@ void loading(int h){//takes 1 hr to fill before continuing
    now = rtc.now();
    float current = now.unixtime();
     while (current-begintime<3600){//1hr chill
+    if (h<20){
+    digitalWrite(stir, HIGH);
+    }
     now = rtc.now();
     current = now.unixtime();
     delay(15000);
@@ -349,4 +360,5 @@ void loading(int h){//takes 1 hr to fill before continuing
     lcd.print(timedisplay);
     lcd.print("min  ");
   }
+  digitalWrite(stir, LOW);
 }
