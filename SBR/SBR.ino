@@ -95,7 +95,7 @@ void loop() {
   lcd.print(tank);
   //write conditions for running sequence here and add functions
   if (now.dayOfTheWeek()== 1){//"Monday"
-  normalsequence();}
+    if (now.hour()>1){normalsequence();}}
   if (now.dayOfTheWeek()== 2){//"Tuesday"
   normalsequence();}
   if (now.dayOfTheWeek()== 3){//"Wednesday"
@@ -103,7 +103,7 @@ void loop() {
   if (now.dayOfTheWeek()== 4){//"thursday"
   normalsequence();}
   if (now.dayOfTheWeek()== 5){//"Friday"
-  normalsequence();}
+  fillup();}
   if (now.dayOfTheWeek()== 6){//"Saturday"
   weekend();}
   if (now.dayOfTheWeek()== 0){//"Sunday"
@@ -271,7 +271,7 @@ void rest(float longt){ //everything off except maybe stir
   float starttime = millis();
   delay(100);
    while ((millis()-starttime)<longt){
-    int timedisplay = round((longt-(millis()-starttime))/60/1000);
+    float timedisplay = round((longt-(millis()-starttime))/60/1000);
      measurevol();
      lcd.setCursor(0,1);
   lcd.print(tank);lcd.print("gal  ");
@@ -300,21 +300,12 @@ void weekend(){
   aeration(15, 4);
   rest(45);
 }
-void normalsequence(){//24 hrs///////////////////////////////////////////remembree to uncomment this part when starting next time!!!!!!!!!!!!!!!!!!!
+void normalsequence(){//24 hrs
   DateTime now = rtc.now();
   realstarttime = now.unixtime();
-  //loading(7);//12 times for 12 hours
-  //loading(9);
-  loading(11);
-  loading(13);
-  loading(15);
-  loading(16);
-  loading(17);
-  loading(18);
-  loading(20);
-  loading(21);
-  loading(23);
-  loading(25);
+  if (tank<23){
+    fillup();
+  }
   now = rtc.now();
   delay(2000);
   aeration(240, 24);
@@ -361,4 +352,18 @@ void loading(int h){//takes 1 hr to fill before continuing
     lcd.print("min  ");
   }
   digitalWrite(stir, LOW);
+}
+void fillup(){
+  loading(7);//12 times for 12 hours
+  loading(9);
+  loading(11);
+  loading(13);
+  loading(15);
+  loading(16);
+  loading(17);
+  loading(18);
+  loading(20);
+  loading(21);
+  loading(23);
+  loading(25);
 }
