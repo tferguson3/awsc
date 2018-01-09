@@ -82,36 +82,6 @@ void measurevol(){
 }
 
 
-void loop() {
-  // put your main code here, to run repeatedly:
-  DateTime now = rtc.now();
-  //daysOfTheWeek[now.dayOfTheWeek()
-  float current = now.unixtime();
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print(daysOfTheWeek[now.dayOfTheWeek()]);//"loop        ");
-  delay(100);
-  lcd.setCursor(0,1);
-  lcd.print(tank);
-  //write conditions for running sequence here and add functions
-  if (now.dayOfTheWeek()== 1){//"Monday"
-    normalsequence();}
-  if (now.dayOfTheWeek()== 2){//"Tuesday"
-    if (now.hour()>6){normalsequence();}}
-  if (now.dayOfTheWeek()== 3){//"Wednesday"
-  normalsequence();}
-  if (now.dayOfTheWeek()== 4){//"thursday"
-  normalsequence();}
-  if (now.dayOfTheWeek()== 5){//"Friday"
-  fillup();}
-  if (now.dayOfTheWeek()== 6){//"Saturday"
-  weekend();}
-  if (now.dayOfTheWeek()== 0){//"Sunday"
-  weekend();}
-  while (x<1){
-   //RASfill(7);//normalsequence();//decant(4);//loading();
-    x++;}delay(20000);
-  }
 
 void fill(int lvl, int airadd){//check depth and fill until level is 25gal plus stir
   if (lvl<19){
@@ -138,6 +108,36 @@ void fill(int lvl, int airadd){//check depth and fill until level is 25gal plus 
     digitalWrite(fillpump, LOW);
     digitalWrite(stir, LOW);
     digitalWrite(air, LOW);
+}
+void fillplusair(int lvl, int airadd){//check depth and fill until level is 25gal plus stir
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("FILL ");
+  lcd.setBacklight(TEAL);
+  measurevol();
+  lcd.setCursor(0,1);
+  lcd.print(tank);lcd.print("gal");
+  DateTime now = rtc.now();
+  float lastair = millis();
+    while (tank<lvl){
+      digitalWrite(fillpump, HIGH);
+      measurevol();
+      lcd.setCursor(0,1);
+      lcd.print(tank);lcd.print("gal");
+      delay(30000);
+      measurevol();
+      lcd.setCursor(0,1);
+      lcd.print(tank);lcd.print("gal");
+      delay(30000);
+      digitalWrite(air,LOW);
+      if ((airadd == 1) && (millis()-lastair > 300000)){
+       digitalWrite(air,HIGH);
+       lastair = millis();
+      }
+    }
+  digitalWrite(fillpump, LOW);
+  digitalWrite(stir, LOW);
+  digitalWrite(air, LOW);
 }
 void RASfill(int lvl){//check depth and fill until level is 25gal plus stir
   //digitalWrite(stir, HIGH);
@@ -178,8 +178,6 @@ void periodicaeration(float ontime){//on for 15 min freq is 60 min
   lcd.print("min");
   delay(1000);
   digitalWrite(air, HIGH);
-  if (tank<20){
-  digitalWrite(stir, HIGH);}
   now = rtc.now();
   current = now.unixtime();
   }
@@ -205,6 +203,39 @@ void aeration(float airduration, int lvl){//duration in min check depth and keep
     lcd.print(tank);lcd.print("gal  ");
     lcd.print(timedisplay);lcd.print("min  ");
     delay(20000);}
+    digitalWrite(air, LOW);
+}
+void thirtysecaeration(float airduration, int lvl){//duration in min check depth and keep air on and pumps off for time period
+  airduration=airduration*60*1000;
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("30Aeration ");
+  lcd.setBacklight(GREEN);
+  measurevol();
+  lcd.setCursor(0,1);
+  lcd.print(tank);
+  float starttime = millis();
+  delay(100);
+  while (((millis()-starttime)<airduration)&&(tank>lvl)){  //2 min
+    digitalWrite(air, HIGH);
+    delay(30000);
+    digitalWrite(air, LOW);
+    delay(30000);
+    delay(30000);
+    delay(30000);
+    delay(30000);
+    delay(30000);
+    delay(30000);
+    delay(30000);
+    delay(30000);
+
+    int timedisplay = round((airduration-(millis()-starttime))/60/1000);
+    measurevol();
+    lcd.setCursor(0,1);
+    lcd.print(tank);lcd.print("gal  ");
+    lcd.print(timedisplay);lcd.print("min  ");
+    //delay(20000);
+    }
     digitalWrite(air, LOW);
 }
 void settle(float duration, int lvl){//everything off just timer
@@ -302,22 +333,15 @@ void stepper(int num, int motor, int direct){
 }
 void weekend(){
   aeration(15, 4);
-  rest(45);
+  rest(43);
 }
 void normalsequence(){//10 hrs
   DateTime now = rtc.now();
   realstarttime = now.unixtime();
-  fill(12,0);
-  fill(25,1);
+  fillplusair(25,1);
   now = rtc.now();
   delay(2000);
-  aeration(60, 24);
-  float current = now.unixtime();
-  while (current-realstarttime<14400){
-    aeration(1,24);
-    now= rtc.now();
-    current = now.unixtime();
-  }
+  aeration(120,24);//thirtysecaeration(60, 24);
   delay(2000);
   settle(180, 24);
   delay(2000);
@@ -392,3 +416,35 @@ void fillup(){
   loading(23);
   loading(25);
 }
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  DateTime now = rtc.now();
+  //daysOfTheWeek[now.dayOfTheWeek()
+  float current = now.unixtime();
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(daysOfTheWeek[now.dayOfTheWeek()]);//"loop        ");
+  delay(100);
+  lcd.setCursor(0,1);
+  lcd.print(tank);
+  while (x<1){
+   //RASfill(7);//normalsequence();//decant(4);//loading();
+    x++;}
+    //write conditions for running sequence here and add functions
+  if (now.dayOfTheWeek()== 1){//"Monday"
+    if (now.hour()>9 && now.hour()<11){normalsequence();}}
+  if (now.dayOfTheWeek()== 2){//"Tuesday"
+    if (now.hour()>6 && now.hour()<8){normalsequence();}}
+  if (now.dayOfTheWeek()== 3){//"Wednesday"
+    if (now.hour()>6 && now.hour()<8){normalsequence();}}//normalsequence();}
+  if (now.dayOfTheWeek()== 4){//"thursday"
+    if (now.hour()>6 && now.hour()<8){normalsequence();}}//normalsequence();}
+  if (now.dayOfTheWeek()== 5){//"Friday"
+    if (now.hour()>6 && now.hour()<8){normalsequence();}}
+  if (now.dayOfTheWeek()== 6){//"Saturday"
+    if (now.hour()>6 && now.hour()<8){fillplusair(25,1);}}
+  if (now.dayOfTheWeek()== 0){//"Sunday"
+    weekend();}
+  delay(20000);
+  weekend();}
