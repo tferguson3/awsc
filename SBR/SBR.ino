@@ -95,9 +95,9 @@ void loop() {
   lcd.print(tank);
   //write conditions for running sequence here and add functions
   if (now.dayOfTheWeek()== 1){//"Monday"
-    if (now.hour()>1){normalsequence();}}
+    normalsequence();}
   if (now.dayOfTheWeek()== 2){//"Tuesday"
-  normalsequence();}
+    if (now.hour()>6){normalsequence();}}
   if (now.dayOfTheWeek()== 3){//"Wednesday"
   normalsequence();}
   if (now.dayOfTheWeek()== 4){//"thursday"
@@ -113,7 +113,7 @@ void loop() {
     x++;}delay(20000);
   }
 
-void fill(int lvl){//check depth and fill until level is 25gal plus stir
+void fill(int lvl, int airadd){//check depth and fill until level is 25gal plus stir
   if (lvl<19){
     digitalWrite(stir, HIGH);
   }
@@ -125,6 +125,9 @@ void fill(int lvl){//check depth and fill until level is 25gal plus stir
   lcd.setCursor(0,1);
   lcd.print(tank);lcd.print("gal");
   DateTime now = rtc.now();
+  if (airadd == 1){
+    digitalWrite(air,HIGH);
+  }
     while (tank<lvl){
       digitalWrite(fillpump, HIGH);
       measurevol();
@@ -134,6 +137,7 @@ void fill(int lvl){//check depth and fill until level is 25gal plus stir
     }
     digitalWrite(fillpump, LOW);
     digitalWrite(stir, LOW);
+    digitalWrite(air, LOW);
 }
 void RASfill(int lvl){//check depth and fill until level is 25gal plus stir
   //digitalWrite(stir, HIGH);
@@ -300,7 +304,27 @@ void weekend(){
   aeration(15, 4);
   rest(45);
 }
-void normalsequence(){//24 hrs
+void normalsequence(){//10 hrs
+  DateTime now = rtc.now();
+  realstarttime = now.unixtime();
+  fill(12,0);
+  fill(25,1);
+  now = rtc.now();
+  delay(2000);
+  aeration(60, 24);
+  float current = now.unixtime();
+  while (current-realstarttime<14400){
+    aeration(1,24);
+    now= rtc.now();
+    current = now.unixtime();
+  }
+  delay(2000);
+  settle(180, 24);
+  delay(2000);
+  decant(6);
+  delay(2000);
+}
+void oldsequence(){
   DateTime now = rtc.now();
   realstarttime = now.unixtime();
   if (tank<23){
@@ -325,13 +349,14 @@ void normalsequence(){//24 hrs
     now= rtc.now();
     current = now.unixtime();
   }
+
   delay(2000);
 }
 void loading(int h){//takes 1 hr to fill before continuing
    DateTime now = rtc.now();
   begintime = now.unixtime();
    measurevol();
-   fill(h);
+   fill(h,1);
    periodicaeration(15);
    now = rtc.now();
    float current = now.unixtime();
