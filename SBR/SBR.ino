@@ -338,12 +338,14 @@ void weekend(){
 void normalsequence(){//10 hrs
   DateTime now = rtc.now();
   realstarttime = now.unixtime();
-  fillplusair(25,1);
+  fillplusair(21,1);
   now = rtc.now();
   delay(2000);
-  aeration(120,24);//thirtysecaeration(60, 24);
+  thirtysecaeration(60, 19);
   delay(2000);
-  settle(180, 24);
+  aeration(60,19);
+  delay(2000);
+  settle(180, 19);
   delay(2000);
   decant(6);
   delay(2000);
@@ -351,18 +353,18 @@ void normalsequence(){//10 hrs
 void oldsequence(){
   DateTime now = rtc.now();
   realstarttime = now.unixtime();
-  if (tank<23){
+  if (tank<20){
     fillup();
   }
   now = rtc.now();
   delay(2000);
-  aeration(240, 24);
+  aeration(240, 19);
   delay(2000);
-  settle(60, 24);
+  settle(60, 19);
   delay(2000);
   skim(60);
   delay(2000);
-  settle(120,24);
+  settle(120,19);
   delay(2000);
   decant(6);
   delay(2000);
@@ -413,8 +415,6 @@ void fillup(){
   loading(18);
   loading(20);
   loading(21);
-  loading(23);
-  loading(25);
 }
 
 void loop() {
@@ -429,22 +429,22 @@ void loop() {
   lcd.setCursor(0,1);
   lcd.print(tank);
   while (x<1){
-   //RASfill(7);//normalsequence();//decant(4);//loading();
+   decant(6);//loading();
     x++;}
     //write conditions for running sequence here and add functions
   if (now.dayOfTheWeek()== 1){//"Monday"
-    if (now.hour()>9 && now.hour()<11){normalsequence();}}
+    if (now.hour()>6 && now.hour()<8){normalsequence();}}
   if (now.dayOfTheWeek()== 2){//"Tuesday"
     if (now.hour()>6 && now.hour()<8){normalsequence();}}
   if (now.dayOfTheWeek()== 3){//"Wednesday"
-    if (now.hour()>6 && now.hour()<8){normalsequence();}}//normalsequence();}
+    if (now.hour()>6 && now.hour()<8){normalsequence();}}
   if (now.dayOfTheWeek()== 4){//"thursday"
-    if (now.hour()>6 && now.hour()<8){normalsequence();}}//normalsequence();}
+    if (now.hour()>6 && now.hour()<8){normalsequence();}}
   if (now.dayOfTheWeek()== 5){//"Friday"
     if (now.hour()>6 && now.hour()<8){normalsequence();}}
   if (now.dayOfTheWeek()== 6){//"Saturday"
-    if (now.hour()>6 && now.hour()<8){fillplusair(25,1);}}
+    if (now.hour()>6 && now.hour()<8){normalsequence();}}//fillplusair(21,1);thirtysecaeration(100,10);}}
   if (now.dayOfTheWeek()== 0){//"Sunday"
-    weekend();}
+    if (now.hour()>6 && now.hour()<8){normalsequence();}}//weekend();}
   delay(20000);
   weekend();}
