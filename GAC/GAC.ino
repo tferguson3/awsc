@@ -10,17 +10,11 @@ Adafruit_RGBLCDShield lcd = Adafruit_RGBLCDShield();
 #define BLUE 0x4
 #define VIOLET 0x5
 #define WHITE 0x7
-const int chipSelect = 10;
-
+int flag =0; //1 if pressure was exceded
 unsigned long LOG_INTERVAL = 15000;
 unsigned long previousMillis = 0;
-
-// The analog pins that connect to the sensors
+int switchPin =19;
 #define PressureAnalog A0      // analog 1
-
-float f;
-char *flotot;
-
 float PressureAnalogReading = 0;
 float PressureReadingSUM = 0;
 unsigned long readingCount = 0;
@@ -75,5 +69,11 @@ void loop() {//add shutoff? will require wiring of switch to arduino
     //reset averaging tools if interval is met
     readingCount=0; 
     PressureReadingSUM = 0;
+    if(P <= 20 && flag == 0){
+    digitalWrite(switchPin, HIGH);
+  }else{
+    flag =1;
+    digitalWrite(switchPin, LOW);
+  }
   }
 }
