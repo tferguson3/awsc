@@ -11,7 +11,7 @@ long sec = 0;
 
 //When this threshold is met, turn off power to pump.
 int Pressure = 100;
-
+int flag =0; //1 if pressure was exceded
 void setup() {
   pinMode(switchPin,OUTPUT);
   // put your setup code here, to run once:
@@ -37,9 +37,10 @@ void loop() {
   pressures();
   pressures();
   Serial.println(pressure);
-  if(pressure <= 75 && interval < 30000){
+  if(pressure <= 75 && flag == 0){
     digitalWrite(switchPin, HIGH);
   }else{
+    flag =1;
     digitalWrite(switchPin, LOW);
   }
 }
