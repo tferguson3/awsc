@@ -124,15 +124,17 @@ void fillplusair(int lvl, int airadd){//check depth and fill until level is 25ga
       measurevol();
       lcd.setCursor(0,1);
       lcd.print(tank);lcd.print("gal");
-      delay(30000);
+      delay(3000);
       measurevol();
       lcd.setCursor(0,1);
       lcd.print(tank);lcd.print("gal");
-      delay(30000);
-      digitalWrite(air,LOW);
+      //digitalWrite(air,LOW);
       if ((airadd == 1) && (millis()-lastair > 300000)){
        digitalWrite(air,HIGH);
        lastair = millis();
+      }
+      else if ((airadd == 1) && (millis()-lastair > 30000)){
+       digitalWrite(air,LOW);
       }
     }
   digitalWrite(fillpump, LOW);
@@ -286,12 +288,20 @@ void decant(int level){ // empty through decant pump checking volume
   lcd.setCursor(0,1);
   lcd.print(tank);
   float starttime = millis();
+  digitalWrite(decantpump, HIGH);
+  delay(2000);
+  digitalWrite(decantpump, LOW);
+  delay(1000);
+  digitalWrite(decantpump, HIGH);
+  delay(2000);
+  digitalWrite(decantpump, LOW);
+  delay(1000);
  while (tank>level){
     digitalWrite(decantpump, HIGH);
     measurevol();
     lcd.setCursor(0,1);
   lcd.print(tank);lcd.print("gal  ");
-  delay(10000);}
+  delay(3000);}
     digitalWrite(decantpump, LOW);
 }
 void rest(float longt){ //everything off except maybe stir
@@ -424,27 +434,31 @@ void loop() {
   float current = now.unixtime();
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print(daysOfTheWeek[now.dayOfTheWeek()]);//"loop        ");
+  lcd.print(daysOfTheWeek[now.dayOfTheWeek()]);
   delay(100);
   lcd.setCursor(0,1);
   lcd.print(tank);
   while (x<1){
-   decant(6);//loading();
+   //aeration(60,19);
+   //delay(1000);
+   //settle(180,18);
+   //delay(1000);
+   //decant(6);//loading();
     x++;}
     //write conditions for running sequence here and add functions
   if (now.dayOfTheWeek()== 1){//"Monday"
-    if (now.hour()>6 && now.hour()<8){normalsequence();}}
+    if (now.hour()>7 && now.hour()<9){normalsequence();}}
   if (now.dayOfTheWeek()== 2){//"Tuesday"
-    if (now.hour()>6 && now.hour()<8){normalsequence();}}
+    if (now.hour()>7 && now.hour()<9){normalsequence();}}
   if (now.dayOfTheWeek()== 3){//"Wednesday"
-    if (now.hour()>6 && now.hour()<8){normalsequence();}}
+    if (now.hour()>7 && now.hour()<9){normalsequence();}}
   if (now.dayOfTheWeek()== 4){//"thursday"
-    if (now.hour()>6 && now.hour()<8){normalsequence();}}
+    if (now.hour()>7 && now.hour()<9){normalsequence();}}
   if (now.dayOfTheWeek()== 5){//"Friday"
-    if (now.hour()>6 && now.hour()<8){normalsequence();}}
+    if (now.hour()>7 && now.hour()<9){normalsequence();}}
   if (now.dayOfTheWeek()== 6){//"Saturday"
-    if (now.hour()>6 && now.hour()<8){normalsequence();}}//fillplusair(21,1);thirtysecaeration(100,10);}}
+    if (now.hour()>7 && now.hour()<9){normalsequence();}}//fillplusair(21,1);thirtysecaeration(100,10);}}
   if (now.dayOfTheWeek()== 0){//"Sunday"
-    if (now.hour()>6 && now.hour()<8){normalsequence();}}//weekend();}
+    if (now.hour()>7 && now.hour()<9){normalsequence();}}//weekend();}
   delay(20000);
   weekend();}
