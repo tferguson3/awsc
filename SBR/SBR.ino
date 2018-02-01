@@ -84,9 +84,6 @@ void measurevol(){
 
 
 void fill(int lvl, int airadd){//check depth and fill until level is 25gal plus stir
-  if (lvl<19){
-    digitalWrite(stir, HIGH);
-  }
   lcd.clear();
   lcd.setCursor(0,0);
   lcd.print("FILL ");
@@ -115,6 +112,7 @@ void fillplusair(int lvl, int airadd){//check depth and fill until level is 25ga
   lcd.print("FILL ");
   lcd.setBacklight(TEAL);
   measurevol();
+  digitalWrite(air,LOW);
   lcd.setCursor(0,1);
   lcd.print(tank);lcd.print("gal");
   DateTime now = rtc.now();
@@ -128,7 +126,6 @@ void fillplusair(int lvl, int airadd){//check depth and fill until level is 25ga
       measurevol();
       lcd.setCursor(0,1);
       lcd.print(tank);lcd.print("gal");
-      //digitalWrite(air,LOW);
       if ((airadd == 1) && (millis()-lastair > 300000)){
        digitalWrite(air,HIGH);
        lastair = millis();
@@ -341,17 +338,20 @@ void stepper(int num, int motor, int direct){
   digitalWrite(en1, HIGH);
 }
 }
-void weekend(){
-  aeration(15, 4);
-  rest(43);
+void weekend(){//in reality would do some aeration if system was idle for 24hrs
+  rest(5);
 }
 void normalsequence(){//10 hrs
   DateTime now = rtc.now();
   realstarttime = now.unixtime();
-  fillplusair(21,1);
+  fillplusair(21,0);
   now = rtc.now();
   delay(2000);
-  thirtysecaeration(60, 19);
+  aeration(.25,19);
+  delay(1000);
+  rest(30);
+  delay(2000);
+  thirtysecaeration(30, 19);
   delay(2000);
   aeration(60,19);
   delay(2000);
