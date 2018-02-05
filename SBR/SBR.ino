@@ -84,6 +84,9 @@ void measurevol(){
 
 
 void fill(int lvl, int airadd){//check depth and fill until level is 25gal plus stir
+  if (lvl<19){
+    digitalWrite(stir, HIGH);
+  }
   lcd.clear();
   lcd.setCursor(0,0);
   lcd.print("FILL ");
@@ -112,7 +115,6 @@ void fillplusair(int lvl, int airadd){//check depth and fill until level is 25ga
   lcd.print("FILL ");
   lcd.setBacklight(TEAL);
   measurevol();
-  digitalWrite(air,LOW);
   lcd.setCursor(0,1);
   lcd.print(tank);lcd.print("gal");
   DateTime now = rtc.now();
@@ -126,6 +128,7 @@ void fillplusair(int lvl, int airadd){//check depth and fill until level is 25ga
       measurevol();
       lcd.setCursor(0,1);
       lcd.print(tank);lcd.print("gal");
+      //digitalWrite(air,LOW);
       if ((airadd == 1) && (millis()-lastair > 300000)){
        digitalWrite(air,HIGH);
        lastair = millis();
@@ -219,6 +222,50 @@ void thirtysecaeration(float airduration, int lvl){//duration in min check depth
     digitalWrite(air, HIGH);
     delay(30000);
     digitalWrite(air, LOW);
+    delay(30000);
+    delay(30000);
+    delay(30000);
+    delay(30000);
+    delay(30000);
+    delay(30000);
+    delay(30000);
+    delay(30000);
+
+    int timedisplay = round((airduration-(millis()-starttime))/60/1000);
+    measurevol();
+    lcd.setCursor(0,1);
+    lcd.print(tank);lcd.print("gal  ");
+    lcd.print(timedisplay);lcd.print("min  ");
+    //delay(20000);
+    }
+    digitalWrite(air, LOW);
+}
+void halftimeair(float airduration, int lvl){//duration in min check depth and keep air on and pumps off for time period
+  airduration=airduration*60*1000;
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("halftimeAir ");
+  lcd.setBacklight(GREEN);
+  measurevol();
+  lcd.setCursor(0,1);
+  lcd.print(tank);
+  float starttime = millis();
+  delay(100);
+  while (((millis()-starttime)<airduration)&&(tank>lvl)){  //2 min
+    digitalWrite(air, HIGH);
+    delay(30000);
+    delay(30000);
+    delay(30000);
+    delay(30000);
+    delay(30000);
+    delay(30000);
+    delay(30000);
+    delay(30000);
+    delay(30000);
+    delay(30000);
+    digitalWrite(air, LOW);
+    delay(30000);
+    delay(30000);
     delay(30000);
     delay(30000);
     delay(30000);
@@ -338,22 +385,21 @@ void stepper(int num, int motor, int direct){
   digitalWrite(en1, HIGH);
 }
 }
-void weekend(){//in reality would do some aeration if system was idle for 24hrs
-  rest(5);
+void weekend(){
+  aeration(5, 4);
+  rest(50);
 }
 void normalsequence(){//10 hrs
   DateTime now = rtc.now();
   realstarttime = now.unixtime();
-  fillplusair(21,0);
+  fillplusair(21,1);
   now = rtc.now();
   delay(2000);
-  aeration(.25,19);
-  delay(1000);
-  rest(30);
+  thirtysecaeration(120, 19);
   delay(2000);
-  thirtysecaeration(30, 19);
+  halftimeair(60,19);
   delay(2000);
-  aeration(60,19);
+  aeration(120,19);
   delay(2000);
   settle(180, 19);
   delay(2000);
@@ -439,26 +485,26 @@ void loop() {
   lcd.setCursor(0,1);
   lcd.print(tank);
   while (x<1){
-   //aeration(60,19);
-   //delay(1000);
-   //settle(180,18);
+   //thirtysecaeration(120,17);
+   delay(1000);
+   //aeration(60,17);
    //delay(1000);
    //decant(6);//loading();
     x++;}
     //write conditions for running sequence here and add functions
   if (now.dayOfTheWeek()== 1){//"Monday"
-    if (now.hour()>7 && now.hour()<9){normalsequence();}}
+    if (now.hour()>6 && now.hour()<8){normalsequence();}}
   if (now.dayOfTheWeek()== 2){//"Tuesday"
-    if (now.hour()>7 && now.hour()<9){normalsequence();}}
+    if (now.hour()>6 && now.hour()<8){normalsequence();}}
   if (now.dayOfTheWeek()== 3){//"Wednesday"
-    if (now.hour()>7 && now.hour()<9){normalsequence();}}
+    if (now.hour()>6 && now.hour()<8){normalsequence();}}
   if (now.dayOfTheWeek()== 4){//"thursday"
-    if (now.hour()>7 && now.hour()<9){normalsequence();}}
+    if (now.hour()>6 && now.hour()<8){normalsequence();}}
   if (now.dayOfTheWeek()== 5){//"Friday"
-    if (now.hour()>7 && now.hour()<9){normalsequence();}}
+    if (now.hour()>6 && now.hour()<8){normalsequence();}}
   if (now.dayOfTheWeek()== 6){//"Saturday"
-    if (now.hour()>7 && now.hour()<9){normalsequence();}}//fillplusair(21,1);thirtysecaeration(100,10);}}
+    if (now.hour()>6 && now.hour()<8){normalsequence();}}//fillplusair(21,1);thirtysecaeration(100,10);}}
   if (now.dayOfTheWeek()== 0){//"Sunday"
-    if (now.hour()>7 && now.hour()<9){normalsequence();}}//weekend();}
+    if (now.hour()>6 && now.hour()<8){normalsequence();}}//weekend();}
   delay(20000);
   weekend();}
