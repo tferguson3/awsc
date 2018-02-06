@@ -284,6 +284,37 @@ void halftimeair(float airduration, int lvl){//duration in min check depth and k
     }
     digitalWrite(air, LOW);
 }
+void oneonthreeoffair(float airduration, int lvl){//duration in min check depth and keep air on and pumps off for time period
+  airduration=airduration*60*1000;
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("halftimeAir ");
+  lcd.setBacklight(GREEN);
+  measurevol();
+  lcd.setCursor(0,1);
+  lcd.print(tank);
+  float starttime = millis();
+  delay(100);
+  while (((millis()-starttime)<airduration)&&(tank>lvl)){  //2 min
+    digitalWrite(air, HIGH);
+    delay(30000);
+    delay(30000);
+    digitalWrite(air, LOW);
+    delay(30000);
+    delay(30000);
+    delay(30000);
+    delay(30000);
+    delay(30000);
+    delay(30000);
+    int timedisplay = round((airduration-(millis()-starttime))/60/1000);
+    measurevol();
+    lcd.setCursor(0,1);
+    lcd.print(tank);lcd.print("gal  ");
+    lcd.print(timedisplay);lcd.print("min  ");
+    //delay(20000);
+    }
+    digitalWrite(air, LOW);
+}
 void settle(float duration, int lvl){//everything off just timer
   duration=duration*60*1000;
   lcd.clear();
@@ -397,15 +428,18 @@ void normalsequence(){//10 hrs
   delay(2000);
   thirtysecaeration(120, 19);
   delay(2000);
+  oneonthreeoffair(60,19);
+  delay(2000);
   halftimeair(60,19);
   delay(2000);
-  aeration(120,19);
+  aeration(60,19);
   delay(2000);
   settle(180, 19);
   delay(2000);
   decant(6);
   delay(2000);
 }
+
 void oldsequence(){
   DateTime now = rtc.now();
   realstarttime = now.unixtime();
