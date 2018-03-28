@@ -15,10 +15,10 @@ int decant = 4;
 int slowsludge = 5;
 
 int x=0;
-float TimeToFill=300000;//5min
-float airtimer=600000;//10min
-float partialemptytime=60000;//1min
-float decanttime=600000;//10min
+float TimeToFill=30000;//300000;//5min
+float airtimer=30000;//600000;//10min
+float partialemptytime=30000;//60000;//1min
+float decanttime=30000;//600000;//10min
 unsigned long timenow;
 
 void setup() {
@@ -120,8 +120,8 @@ void rest(float resttime){//rest time in ms
 void partialempty(){//rest time in ms
   lcd.clear();
   lcd.setCursor(0,0);
-  lcd.print("REST ");
-  lcd.setBacklight(VIOLET);
+  lcd.print("REMOVAL ");
+  lcd.setBacklight(YELLOW);
   unsigned long startempty = millis();
   digitalWrite(slowsludge, HIGH);
   x=0;
@@ -146,8 +146,8 @@ void partialempty(){//rest time in ms
 void decantdrain(){//rest time in ms
   lcd.clear();
   lcd.setCursor(0,0);
-  lcd.print("REST ");
-  lcd.setBacklight(VIOLET);
+  lcd.print("DECANT ");
+  lcd.setBacklight(RED);
   unsigned long startdecant = millis();
   digitalWrite(decant, HIGH);
   x=0;
@@ -178,7 +178,7 @@ void normalsequence(){
   delay(2000);
   aeration();
   delay(2000);
-  rest(180000);//3min
+  rest(30000);//3min
   delay(2000);
   partialempty();
   delay(2000);
@@ -193,7 +193,7 @@ void loop() {
   lcd.setCursor(0,1);
 
   while (x<1){
-   //sludgeremoval();
+   partialempty();
    //aeration(60,17);
    //delay(1000);
    //decant(6);//loading();
