@@ -396,7 +396,6 @@ void rest(float longt){ //everything off except maybe stir
      lcd.setCursor(0,1);
   lcd.print(tank);lcd.print("gal  ");
   lcd.print(timedisplay);lcd.print("min  ");
-  //digitalWrite(stir, HIGH);
     delay(1000);}
     digitalWrite(stir, LOW);
 }
@@ -416,9 +415,15 @@ void stepper(int num, int motor, int direct){
   digitalWrite(en1, HIGH);
 }
 }
+void sludgeremoval(){
+  stepper(6400,1,2);//fills up tube. revolutions, 1st motor, "empty" dir
+  stepper(1250,1,2);//empties(was 2500 steps, now 1250). revolutions, 1st motor, "empty" dir
+  stepper(6400,1,1);//empty tube back into sbr. revolutions, 1st motor, "fill" dir
+}
 void weekend(){
   aeration(5, 4);
   rest(50);
+  sludgeremoval();
 }
 void normalsequence(){//10 hrs
   DateTime now = rtc.now();
@@ -519,32 +524,25 @@ void loop() {
   lcd.setCursor(0,1);
   lcd.print(tank);
   while (x<1){
-  halftimeair(60,19);
-  delay(2000);
-  aeration(60,19);
-  delay(2000);
-  settle(180, 19);
-  delay(2000);
-  decant(6);
-   delay(1000);
+   //sludgeremoval();
    //aeration(60,17);
-   //delay(1000);
+   //settle(50, 19);//delay(1000);
    //decant(6);//loading();
     x++;}
     //write conditions for running sequence here and add functions
   if (now.dayOfTheWeek()== 1){//"Monday"
-    if (now.hour()>5 && now.hour()<7){normalsequence();}}
+    if (now.hour()>4 && now.hour()<6){normalsequence();}}
   if (now.dayOfTheWeek()== 2){//"Tuesday"
-    if (now.hour()>5 && now.hour()<7){normalsequence();}}
+    if (now.hour()>4 && now.hour()<6){normalsequence();}}
   if (now.dayOfTheWeek()== 3){//"Wednesday"
-    if (now.hour()>5 && now.hour()<7){normalsequence();}}
+    if (now.hour()>4 && now.hour()<6){normalsequence();}}
   if (now.dayOfTheWeek()== 4){//"thursday"
-    if (now.hour()>5 && now.hour()<7){normalsequence();}}
+    if (now.hour()>4 && now.hour()<6){normalsequence();}}
   if (now.dayOfTheWeek()== 5){//"Friday"
-    if (now.hour()>5 && now.hour()<7){normalsequence();}}
+    if (now.hour()>4 && now.hour()<6){normalsequence();}}
   if (now.dayOfTheWeek()== 6){//"Saturday"
-    if (now.hour()>5 && now.hour()<7){normalsequence();}}//fillplusair(21,1);thirtysecaeration(100,10);}}
+    if (now.hour()>4 && now.hour()<6){normalsequence();}}//fillplusair(21,1);thirtysecaeration(100,10);}}
   if (now.dayOfTheWeek()== 0){//"Sunday"
-    if (now.hour()>5 && now.hour()<7){normalsequence();}}//weekend();}
+    if (now.hour()>4 && now.hour()<6){normalsequence();}}//weekend();}
   delay(20000);
   weekend();}
