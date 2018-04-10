@@ -12,12 +12,12 @@ Adafruit_RGBLCDShield lcd = Adafruit_RGBLCDShield();
 int air = 2; 
 int fill = 3;
 int decant = 4;
-int slowsludge = 5;
+//int slowsludge = 5;
 
 int x=0;
 float TimeToFill=30000;//300000;//5min
 float airtimer=30000;//600000;//10min
-float partialemptytime=30000;//60000;//1min
+//float partialemptytime=30000;//60000;//1min
 float decanttime=30000;//600000;//10min
 unsigned long timenow;
 
@@ -25,11 +25,11 @@ void setup() {
   pinMode(air, OUTPUT);
   pinMode(decant, OUTPUT);
   pinMode(fill, OUTPUT);
-  pinMode(slowsludge, OUTPUT);
+ // pinMode(slowsludge, OUTPUT);
   digitalWrite(air, LOW);
   digitalWrite(fill, LOW);
   digitalWrite(decant, LOW);
-  digitalWrite(slowsludge, LOW);
+  //digitalWrite(slowsludge, LOW);
   lcd.begin(16, 2);
   lcd.print("start!");
   lcd.setBacklight(WHITE);
@@ -62,7 +62,6 @@ void fillup(){
   digitalWrite(air, LOW);
   digitalWrite(fill, LOW);
   digitalWrite(decant, LOW);
-  digitalWrite(slowsludge, LOW);
     
 }
 void aeration(){
@@ -89,8 +88,7 @@ void aeration(){
   digitalWrite(air, LOW);
   digitalWrite(fill, LOW);
   digitalWrite(decant, LOW);
-  digitalWrite(slowsludge, LOW);
-    
+      
 }
 
 void rest(float resttime){//rest time in ms
@@ -102,7 +100,7 @@ void rest(float resttime){//rest time in ms
   digitalWrite(air, LOW);
   digitalWrite(fill, LOW);
   digitalWrite(decant, LOW);
-  digitalWrite(slowsludge, LOW);
+  
   x=0;
   while (x==0){
       if (millis()-startrest > resttime){
@@ -115,33 +113,6 @@ void rest(float resttime){//rest time in ms
       }
       delay(20);
     }
-}
-
-void partialempty(){//rest time in ms
-  lcd.clear();
-  lcd.setCursor(0,0);
-  lcd.print("REMOVAL ");
-  lcd.setBacklight(YELLOW);
-  unsigned long startempty = millis();
-  digitalWrite(slowsludge, HIGH);
-  x=0;
-  while (x==0){
-      if (millis()-startempty > partialemptytime){
-       x=1;
-       digitalWrite(slowsludge, LOW);
-      }
-      else if (millis()-startempty < partialemptytime){
-       digitalWrite(slowsludge, HIGH);
-       int timedisplay = round((partialemptytime-(millis()-startempty))/60/1000);
-       lcd.setCursor(0,1);
-       lcd.print(timedisplay);lcd.print("min  ");
-      }
-      delay(20);
-    }
-  digitalWrite(air, LOW);
-  digitalWrite(fill, LOW);
-  digitalWrite(decant, LOW);
-  digitalWrite(slowsludge, LOW);
 }
 void decantdrain(){//rest time in ms
   lcd.clear();
@@ -167,8 +138,9 @@ void decantdrain(){//rest time in ms
   digitalWrite(air, LOW);
   digitalWrite(fill, LOW);
   digitalWrite(decant, LOW);
-  digitalWrite(slowsludge, LOW);
 }
+
+
 void weekend(){
 }
 
@@ -180,10 +152,9 @@ void normalsequence(){
   delay(2000);
   rest(30000);//3min
   delay(2000);
-  partialempty();
-  delay(2000);
   decantdrain();
   delay(2000);
+  rest(30000);//3min
 }
 
 void loop() {
@@ -193,7 +164,7 @@ void loop() {
   lcd.setCursor(0,1);
 
   while (x<1){
-   partialempty();
+   //partialempty();
    //aeration(60,17);
    //delay(1000);
    //decant(6);//loading();
