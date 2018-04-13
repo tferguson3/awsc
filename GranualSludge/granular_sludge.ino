@@ -15,10 +15,10 @@ int decant = 4;
 //int slowsludge = 5;
 
 int x=0;
-float TimeToFill=30000;//300000;//5min
-float airtimer=30000;//600000;//10min
+float TimeToFill=60000;//300000;//5min
+float airtimer=60000;//600000;//10min
 //float partialemptytime=30000;//60000;//1min
-float decanttime=30000;//600000;//10min
+float decanttime=60000;//600000;//10min
 unsigned long timenow;
 
 void setup() {
@@ -53,9 +53,9 @@ void fillup(){
       }
       else if (timenow-startfill < TimeToFill){
        digitalWrite(fill,HIGH);
-       int timedisplay = round((TimeToFill-(timenow-startfill))/60/1000);
+       int timedisplay = round((TimeToFill-(timenow-startfill))/1000);
        lcd.setCursor(0,1);
-       lcd.print(timedisplay);lcd.print("min  ");
+       lcd.print(timedisplay);lcd.print("sec  ");
       }
       delay(200);
     }
@@ -114,6 +114,29 @@ void rest(float resttime){//rest time in ms
       delay(20);
     }
 }
+void settlerest(float resttime){//rest time in ms
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("settle EST ");
+  lcd.setBacklight(VIOLET);
+  unsigned long startrest = millis();
+  digitalWrite(air, LOW);
+  digitalWrite(fill, LOW);
+  digitalWrite(decant, LOW);
+  
+  x=0;
+  while (x==0){
+      if (millis()-startrest > resttime){
+       x=1;
+      }
+      else if (millis()-startrest < resttime){
+       int timedisplay = round((resttime-(millis()-startrest))/1000);
+       lcd.setCursor(0,1);
+       lcd.print(timedisplay);lcd.print("sec  ");
+      }
+      delay(20);
+    }
+}
 void decantdrain(){//rest time in ms
   lcd.clear();
   lcd.setCursor(0,0);
@@ -129,15 +152,16 @@ void decantdrain(){//rest time in ms
       }
       else if (millis()-startdecant < decanttime){
        digitalWrite(decant, HIGH);
-       int timedisplay = round((decanttime-(millis()-startdecant))/60/1000);
+       int timedisplay = round((decanttime-(millis()-startdecant))/1000);
        lcd.setCursor(0,1);
-       lcd.print(timedisplay);lcd.print("min  ");
+       lcd.print(timedisplay);lcd.print("sec  ");
       }
       delay(20);
     }
   digitalWrite(air, LOW);
   digitalWrite(fill, LOW);
   digitalWrite(decant, LOW);
+  delay(7000);
 }
 
 
@@ -150,11 +174,11 @@ void normalsequence(){
   delay(2000);
   aeration();
   delay(2000);
-  rest(30000);//3min
+  settlerest(60000);//3min
   delay(2000);
   decantdrain();
   delay(2000);
-  rest(30000);//3min
+  rest(60000);//3min
 }
 
 void loop() {
@@ -162,7 +186,7 @@ void loop() {
   lcd.setCursor(0, 0);
   delay(100);
   lcd.setCursor(0,1);
-
+  decantdrain();
   while (x<1){
    //partialempty();
    //aeration(60,17);
