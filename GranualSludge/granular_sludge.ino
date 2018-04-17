@@ -15,10 +15,10 @@ int decant = 4;
 //int slowsludge = 5;
 
 int x=0;
-float TimeToFill=60000;//300000;//5min
-float airtimer=60000;//600000;//10min
-//float partialemptytime=30000;//60000;//1min
-float decanttime=60000;//600000;//10min
+float TimeToFill=800000;//14.52min
+float airtimer=24000000;//400min
+float thirtysecairtime = 1800000;//30min 
+float decanttime=60000;//1min
 unsigned long timenow;
 
 void setup() {
@@ -90,7 +90,37 @@ void aeration(){
   digitalWrite(decant, LOW);
       
 }
-
+void thirtysecaeration(){
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("30Aeration ");
+  lcd.setBacklight(GREEN);
+  unsigned long starttime = millis();
+  delay(100);
+  while (x==0){
+      if ((millis()-starttime)>thirtysecairtime){//5min
+       digitalWrite(air,LOW);
+       x=1;
+      }
+      else if ((millis()-starttime)<thirtysecairtime){
+       digitalWrite(air,HIGH);
+       int timedisplay = round((thirtysecairtime-(millis()-starttime))/60/1000);
+       lcd.setCursor(0,1);
+       lcd.print(timedisplay);lcd.print("min  ");
+       digitalWrite(air, HIGH);
+    delay(30000);
+    digitalWrite(air, LOW);
+    delay(30000);
+    delay(30000);
+    delay(30000);
+    delay(30000);
+      }
+      delay(200);
+    }
+  digitalWrite(air, LOW);
+  digitalWrite(fill, LOW);
+  digitalWrite(decant, LOW);
+}
 void rest(float resttime){//rest time in ms
   lcd.clear();
   lcd.setCursor(0,0);
@@ -164,21 +194,19 @@ void decantdrain(){//rest time in ms
   delay(7000);
 }
 
-
-void weekend(){
-}
-
-void normalsequence(){
+void normalsequence(){//~8hr cycle
   delay(2000);
-  fillup();
+  fillup();//14.5min
   delay(2000);
-  aeration();
+  thirtysecaeration();//1800000 = 30 min
   delay(2000);
-  settlerest(60000);//3min
+  aeration();//400min
   delay(2000);
-  decantdrain();
+  settlerest(195000);//3min 15secs --time to settle before decant
   delay(2000);
-  rest(60000);//3min
+  decantdrain();//1min
+  delay(2000);
+  rest(2160000);//50min - 14 for the fill
 }
 
 void loop() {
@@ -186,12 +214,12 @@ void loop() {
   lcd.setCursor(0, 0);
   delay(100);
   lcd.setCursor(0,1);
-  decantdrain();
+  //decantdrain();
   while (x<1){
-   //partialempty();
-   //aeration(60,17);
+   //fillup();
+   //aeration();
    //delay(1000);
    //decant(6);//loading();
     x++;}
-    normalsequence();
+    //normalsequence();
 }
