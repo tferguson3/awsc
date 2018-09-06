@@ -11,7 +11,11 @@ Adafruit_RGBLCDShield lcd = Adafruit_RGBLCDShield();
 #define BLUE 0x4
 #define VIOLET 0x5
 #define WHITE 0x7
+
+//Real time clock dates incase you want weekends to act differently than weekdays
 char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+
+//These are the digital pin numbers and what they turn on and off
 int en1 = 2; //1 is fill
 int step1 = 3;
 int dir1 = 4;
@@ -20,13 +24,19 @@ int fillpump = 6;
 int skimmer =7;
 int air = 9;
 int stir = 8;
+
+//This is hte analog pin for depth measurement
 int depth = A0;
+
+//These are other variables set up for calculations
 int x=0;
 float starttime;
 float realstarttime;
 float begintime;
 float tank;
 float airtimer;
+
+//This is the setup section that the code runs through once before doing the "loop" section over and over
 void setup() {
   pinMode(en1, OUTPUT);
   pinMode(decantpump, OUTPUT);
@@ -68,6 +78,8 @@ void setup() {
   measurevol();
 }
 uint8_t i=0;
+
+//This function takes an average of tank volume readings to get a smoothed value when "measurevol();" is used
 void measurevol(){
   int junk = analogRead(depth);
   float tank1 = analogRead(depth)*0.421569-28.4559;
@@ -113,7 +125,7 @@ void fillplusair(int lvl, int airadd){//check depth and fill until level is 25ga
   lcd.clear();
   lcd.setCursor(0,0);
   lcd.print("FILL ");
-  lcd.setBacklight(TEAL);
+  lcd.setBacklight(TEAL);//Writes fill and changes color of led screen
   measurevol();
   lcd.setCursor(0,1);
   lcd.print(tank);lcd.print("gal");
@@ -141,6 +153,7 @@ void fillplusair(int lvl, int airadd){//check depth and fill until level is 25ga
   digitalWrite(stir, LOW);
   digitalWrite(air, LOW);
 }
+
 void RASfill(int lvl){//check depth and fill until level is 25gal plus stir
   //digitalWrite(stir, HIGH);
   lcd.clear();
@@ -334,26 +347,7 @@ void settle(float duration, int lvl){//everything off just timer
   lcd.print(tank);lcd.print("gal  ");
   lcd.print(timedisplay);lcd.print("min  ");} //2 min
 }
-void skim(float duration){//skim during settle
-  duration=duration*60*1000;
-  lcd.clear();
-  lcd.setCursor(0,0);
-  lcd.print("Skim ");
-  lcd.setBacklight(YELLOW);
-  measurevol();
-  lcd.setCursor(0,1);
-  lcd.print(tank);
-  float starttime = millis();
-  delay(100);
-  while ((millis()-starttime)<duration){//1min
-    int timedisplay = round((duration-(millis()-starttime))/60/1000);
-    digitalWrite(skimmer, HIGH);
-    lcd.setCursor(0,1);
-  lcd.print(tank);lcd.print("gal  ");
-  lcd.print(timedisplay);lcd.print("min  ");
-  delay(15000);}
-    digitalWrite(skimmer, LOW);
-}
+
 void decant(int level){ // empty through decant pump checking volume
   lcd.clear();
   lcd.setCursor(0,0);
@@ -399,6 +393,7 @@ void rest(float longt){ //everything off except maybe stir
     delay(1000);}
     digitalWrite(stir, LOW);
 }
+//This is a general stepper function that can be used for any stepper attached
 void stepper(int num, int motor, int direct){
   if (motor == 1){
     digitalWrite(en1, LOW); 
@@ -415,16 +410,22 @@ void stepper(int num, int motor, int direct){
   digitalWrite(en1, HIGH);
 }
 }
+
+//calls stepper function abovre to remove sludge automatically
 void sludgeremoval(){
   stepper(6400,1,2);//fills up tube. revolutions, 1st motor, "empty" dir
   stepper(1250,1,2);//empties(was 2500 steps, now 1250). revolutions, 1st motor, "empty" dir
   stepper(6400,1,1);//empty tube back into sbr. revolutions, 1st motor, "fill" dir
 }
+
+////// This is what happens when resting //////
 void weekend(){
   aeration(5, 4);
   rest(50);
   sludgeremoval();
 }
+
+///////// THIS IS THE SEQUENCE THAT MATTERS /////////
 void normalsequence(){//10 hrs
   DateTime now = rtc.now();
   realstarttime = now.unixtime();
@@ -444,35 +445,8 @@ void normalsequence(){//10 hrs
   decant(6);
   delay(2000);
 }
-
-void oldsequence(){
-  DateTime now = rtc.now();
-  realstarttime = now.unixtime();
-  if (tank<20){
-    fillup();
-  }
-  now = rtc.now();
-  delay(2000);
-  aeration(240, 19);
-  delay(2000);
-  settle(60, 19);
-  delay(2000);
-  skim(60);
-  delay(2000);
-  settle(120,19);
-  delay(2000);
-  decant(6);
-  delay(2000);
-  now= rtc.now();
-  float current = now.unixtime();
-  while (current-realstarttime<86400){
-    rest(3);
-    now= rtc.now();
-    current = now.unixtime();
-  }
-
-  delay(2000);
-}
+//NOT USED//
+//this was for a slow fillup to avoid bubbling over
 void loading(int h){//takes 1 hr to fill before continuing
    DateTime now = rtc.now();
   begintime = now.unixtime();
@@ -499,6 +473,9 @@ void loading(int h){//takes 1 hr to fill before continuing
   }
   digitalWrite(stir, LOW);
 }
+
+//NOT USED//
+//this was for a slow fillup to avoid bubbling over
 void fillup(){
   loading(7);//12 times for 12 hours
   loading(9);
@@ -512,8 +489,9 @@ void fillup(){
   loading(21);
 }
 
+
+// put your main code here, to run repeatedly:
 void loop() {
-  // put your main code here, to run repeatedly:
   DateTime now = rtc.now();
   //daysOfTheWeek[now.dayOfTheWeek()
   float current = now.unixtime();
@@ -523,13 +501,15 @@ void loop() {
   delay(100);
   lcd.setCursor(0,1);
   lcd.print(tank);
-  while (x<1){
+  while (x<1){//////////////If something gets off and you want to run a small part of the code put it in this while loop
+   /////////////////Everything in here only runs once/////////////////////
    //sludgeremoval();
    //aeration(60,17);
    //settle(50, 19);//delay(1000);
    //decant(6);//loading();
     x++;}
-    //write conditions for running sequence here and add functions
+  
+    //this section checks what day it is then starts the sequence if time of day is between these hours
   if (now.dayOfTheWeek()== 1){//"Monday"
     if (now.hour()>4 && now.hour()<6){normalsequence();}}
   if (now.dayOfTheWeek()== 2){//"Tuesday"
@@ -545,4 +525,5 @@ void loop() {
   if (now.dayOfTheWeek()== 0){//"Sunday"
     if (now.hour()>4 && now.hour()<6){normalsequence();}}//weekend();}
   delay(20000);
+  ////This weekend function is poorly named but means what happens before the sequence is triggered and after it is done
   weekend();}
