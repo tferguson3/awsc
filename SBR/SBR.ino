@@ -121,60 +121,7 @@ void fill(int lvl, int airadd){//check depth and fill until level is 25gal plus 
     digitalWrite(stir, LOW);
     digitalWrite(air, LOW);
 }
-void fillplusair(int lvl, int airadd){//check depth and fill until level is 25gal plus stir
-  lcd.clear();
-  lcd.setCursor(0,0);
-  lcd.print("FILL ");
-  lcd.setBacklight(TEAL);//Writes fill and changes color of led screen
-  measurevol();
-  lcd.setCursor(0,1);
-  lcd.print(tank);lcd.print("gal");
-  DateTime now = rtc.now();
-  float lastair = millis();
-    while (tank<lvl){
-      digitalWrite(fillpump, HIGH);
-      measurevol();
-      lcd.setCursor(0,1);
-      lcd.print(tank);lcd.print("gal");
-      delay(3000);
-      measurevol();
-      lcd.setCursor(0,1);
-      lcd.print(tank);lcd.print("gal");
-      //digitalWrite(air,LOW);
-      if ((airadd == 1) && (millis()-lastair > 300000)){
-       digitalWrite(air,HIGH);
-       lastair = millis();
-      }
-      else if ((airadd == 1) && (millis()-lastair > 30000)){
-       digitalWrite(air,LOW);
-      }
-    }
-  digitalWrite(fillpump, LOW);
-  digitalWrite(stir, LOW);
-  digitalWrite(air, LOW);
-}
 
-void RASfill(int lvl){//check depth and fill until level is 25gal plus stir
-  //digitalWrite(stir, HIGH);
-  lcd.clear();
-  lcd.setCursor(0,0);
-  lcd.print("FILL ");
-  lcd.setBacklight(TEAL);
-  measurevol();
-  lcd.setCursor(0,1);
-  lcd.print(tank);lcd.print("gal");
-  DateTime now = rtc.now();
-    while (tank<lvl){
-      digitalWrite(fillpump, HIGH);
-      digitalWrite(air, HIGH);
-      measurevol();
-      lcd.setCursor(0,1);
-      lcd.print(tank);lcd.print("gal");
-      delay(15000);
-    }
-    digitalWrite(air, LOW);
-    digitalWrite(fillpump, LOW);
-}
 void periodicaeration(float ontime){//on for 15 min freq is 60 min
   ontime=ontime*60;
   lcd.clear();
