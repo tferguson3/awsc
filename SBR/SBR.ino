@@ -19,15 +19,15 @@ char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursd
 int en1 = 2; //1 is fill
 int step1 = 3;
 int dir1 = 4;
-int decantpump = 5;
-int fillpump = 6;
+int decantpump = 5; //decants SBR into Effluent Tanks
+int fillpump = 6; //fills the SBR from the GW tank
 int skimmer =7;
-int air = 9;
+int air = 9; //Controls the air pump
 int stir = 8;
 
 
-//This is hte analog pin for depth measurement
-int depth = A0;
+//This is the analog pin for depth measurement
+int depth = A0; //defines depth based off measurement coming from the sensor
 
 //These are other variables set up for calculations
 int x=0;
@@ -51,7 +51,7 @@ void setup() {
   digitalWrite(en1, HIGH);
   lcd.begin(16, 2);
    if (! rtc.begin()) {
-    lcd.print("Couldn't find RTC");
+     lcd.print("Couldn't find RTC");
     while (1);
   }
 
@@ -98,7 +98,7 @@ void measurevol(){
 
 void fill(int lvl, int airadd){//check depth and fill until level is 25gal plus stir
   if (lvl<19){
-    digitalWrite(stir, HIGH);
+    digitalWrite(stir, HIGH);//high turns that pin on (if it is set to output), low turns it off
   }
   lcd.clear();
   lcd.setCursor(0,0);
@@ -359,7 +359,7 @@ void stepper(int num, int motor, int direct){
 }
 }
 
-//calls stepper function abovre to remove sludge automatically
+//calls stepper function above to remove sludge automatically
 void sludgeremoval(){
   stepper(6400,1,2);//fills up tube. revolutions, 1st motor, "empty" dir
   stepper(1250,1,2);//empties(was 2500 steps, now 1250). revolutions, 1st motor, "empty" dir
