@@ -467,7 +467,7 @@ void loop() {
   if (now.dayOfTheWeek()== 4){//"thursday"
     if (now.hour()>4 && now.hour()<6){normalsequence();}}
   if (now.dayOfTheWeek()== 5){//"Friday"
-    if (now.hour()>4 && now.hour()<6){normalsequence();}}
+    if (now.hour()>12 && now.hour()<14){normalsequence();}}
   if (now.dayOfTheWeek()== 6){//"Saturday"
     if (now.hour()>4 && now.hour()<6){normalsequence();}}//fillplusair(21,1);thirtysecaeration(100,10);}}
   if (now.dayOfTheWeek()== 0){//"Sunday"
