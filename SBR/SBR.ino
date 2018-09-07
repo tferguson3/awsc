@@ -377,7 +377,7 @@ void weekend(){
 void normalsequence(){//10 hrs
   DateTime now = rtc.now();
   realstarttime = now.unixtime();
-  fillplusair(21,1);
+  fill(21,1);
   now = rtc.now();
   delay(2000);
   thirtysecaeration(120, 19);
@@ -459,19 +459,19 @@ void loop() {
   
     //this section checks what day it is then starts the sequence if time of day is between these hours
   if (now.dayOfTheWeek()== 1){//"Monday"
-    if (now.hour()>4 && now.hour()<6){normalsequence();}}
+    if (now.hour()>8 && now.hour()<10){normalsequence();}}
   if (now.dayOfTheWeek()== 2){//"Tuesday"
-    if (now.hour()>4 && now.hour()<6){normalsequence();}}
+    if (now.hour()>8 && now.hour()<10){normalsequence();}}
   if (now.dayOfTheWeek()== 3){//"Wednesday"
-    if (now.hour()>4 && now.hour()<6){normalsequence();}}
+    if (now.hour()>8 && now.hour()<10){normalsequence();}}
   if (now.dayOfTheWeek()== 4){//"thursday"
-    if (now.hour()>4 && now.hour()<6){normalsequence();}}
+    if (now.hour()>8 && now.hour()<10){normalsequence();}}
   if (now.dayOfTheWeek()== 5){//"Friday"
-    if (now.hour()>4 && now.hour()<6){normalsequence();}}
+    if (now.hour()>8 && now.hour()<10){normalsequence();}}
   if (now.dayOfTheWeek()== 6){//"Saturday"
-    if (now.hour()>4 && now.hour()<6){normalsequence();}}//fillplusair(21,1);thirtysecaeration(100,10);}}
+    if (now.hour()>8 && now.hour()<10){normalsequence();}}//fillplusair(21,1);thirtysecaeration(100,10);}}
   if (now.dayOfTheWeek()== 0){//"Sunday"
-    if (now.hour()>4 && now.hour()<6){normalsequence();}}//weekend();}
+    if (now.hour()>8 && now.hour()<10){normalsequence();}}//weekend();}
   delay(20000);
   ////This weekend function is poorly named but means what happens before the sequence is triggered and after it is done
   weekend();}
